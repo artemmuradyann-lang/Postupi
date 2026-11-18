@@ -2,163 +2,565 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f5f7ff">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f7fc">
 <title>ПОСТУПАЙ — навигатор абитуриента</title>
+
 <style>
 :root{
- --bg:#f5f7fc;--white:#fff;--ink:#202943;--muted:#78829b;
- --blue:#536be8;--violet:#8968dc;--line:#e5e9f2;
- --green:#148b68;--greenbg:#e6f7ef;
- --orange:#ad781b;--orangebg:#fff5df;
- --red:#c64e60;--redbg:#ffedf0;
- --shadow:0 12px 35px rgba(40,55,100,.07)
+ --bg:#f5f7fc;
+ --white:#fff;
+ --ink:#202943;
+ --muted:#78829b;
+ --blue:#536be8;
+ --violet:#8968dc;
+ --line:#e5e9f2;
+ --green:#148b68;
+ --greenbg:#e6f7ef;
+ --orange:#ad781b;
+ --orangebg:#fff5df;
+ --red:#c64e60;
+ --redbg:#ffedf0;
+ --shadow:0 12px 35px rgba(40,55,100,.07);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);
- font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+body{
+ margin:0;
+ background:var(--bg);
+ color:var(--ink);
+ font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 a{color:var(--blue);text-decoration:none}
 a:hover{text-decoration:underline}
 .container{width:min(1200px,92%);margin:auto}
-header{position:sticky;top:0;z-index:50;background:#ffffffed;
- backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
-nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-size:25px;font-weight:900;letter-spacing:-1px;color:var(--blue)}
+
+header{
+ position:sticky;
+ top:0;
+ z-index:50;
+ background:#ffffffed;
+ backdrop-filter:blur(15px);
+ border-bottom:1px solid var(--line);
+}
+nav{
+ min-height:72px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:15px;
+}
+.logo{
+ font-size:25px;
+ font-weight:900;
+ letter-spacing:-1px;
+ color:var(--blue);
+}
 .logo span{color:var(--violet)}
-.navlinks{display:flex;gap:9px}
-.navlinks button{background:transparent;color:var(--muted);
- padding:10px 13px;border-radius:11px;font-weight:700}
-.navlinks button.active,.navlinks button:hover{background:#edf0ff;color:var(--blue)}
-.primary,.nav-cta{border:0;background:linear-gradient(120deg,var(--blue),var(--violet));
- color:white;padding:13px 19px;border-radius:12px;font-weight:800}
-.secondary{border:1px solid var(--line);background:white;color:var(--ink);
- padding:12px 17px;border-radius:12px;font-weight:750}
+.navlinks{display:flex;gap:7px}
+.navlinks button{
+ background:transparent;
+ color:var(--muted);
+ padding:10px 12px;
+ border-radius:11px;
+ font-weight:750;
+ border:0;
+}
+.navlinks button:hover{background:#edf0ff;color:var(--blue)}
+.primary,.nav-cta{
+ border:0;
+ background:linear-gradient(120deg,var(--blue),var(--violet));
+ color:white;
+ padding:13px 19px;
+ border-radius:12px;
+ font-weight:800;
+}
+.secondary{
+ border:1px solid var(--line);
+ background:white;
+ color:var(--ink);
+ padding:12px 17px;
+ border-radius:12px;
+ font-weight:750;
+}
 button:disabled{opacity:.5;cursor:not-allowed}
-.hero{padding:76px 0 65px;background:
+
+.hero{
+ padding:75px 0 65px;
+ background:
  radial-gradient(circle at 85% 15%,#e4e8ff,transparent 30%),
  radial-gradient(circle at 10% 100%,#fce8f3,transparent 30%),
- linear-gradient(120deg,#fff,#f0f2ff)}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:38px;align-items:center}
-.badge{display:inline-flex;gap:8px;align-items:center;background:white;
- border:1px solid var(--line);padding:9px 13px;border-radius:30px;
- color:var(--blue);font-size:11px;font-weight:850}
-.hero h1{font-size:clamp(40px,6vw,68px);line-height:1.05;
- letter-spacing:-2.6px;margin:23px 0}
+ linear-gradient(120deg,#fff,#f0f2ff);
+}
+.hero-grid{
+ display:grid;
+ grid-template-columns:1.15fr .85fr;
+ gap:38px;
+ align-items:center;
+}
+.badge{
+ display:inline-flex;
+ gap:8px;
+ align-items:center;
+ background:white;
+ border:1px solid var(--line);
+ padding:9px 13px;
+ border-radius:30px;
+ color:var(--blue);
+ font-size:11px;
+ font-weight:850;
+}
+.hero h1{
+ font-size:clamp(40px,6vw,68px);
+ line-height:1.05;
+ letter-spacing:-2.6px;
+ margin:23px 0;
+}
 .hero h1 em{font-style:normal;color:var(--blue)}
-.hero p{font-size:16px;line-height:1.8;color:var(--muted);max-width:600px}
+.hero p{
+ font-size:16px;
+ line-height:1.8;
+ color:var(--muted);
+ max-width:600px;
+}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:27px}
-.hero-card{padding:28px;border-radius:25px;background:white;
- box-shadow:var(--shadow);border:1px solid var(--line)}
+.hero-card{
+ padding:28px;
+ border-radius:25px;
+ background:white;
+ box-shadow:var(--shadow);
+ border:1px solid var(--line);
+}
 .hero-card h3{margin:0 0 9px;font-size:22px}
 .hero-card p{font-size:13px;margin:0 0 18px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:-22px;position:relative}
-.stat{background:white;border:1px solid var(--line);padding:18px;border-radius:16px;box-shadow:var(--shadow)}
+.hero-numbers{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+}
+.hero-number{
+ background:#f3f5ff;
+ padding:17px;
+ border-radius:14px;
+}
+.hero-number strong{
+ display:block;
+ font-size:27px;
+ color:var(--blue);
+}
+.hero-number span{font-size:11px;color:var(--muted)}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:13px;
+ margin-top:-22px;
+ position:relative;
+}
+.stat{
+ background:white;
+ border:1px solid var(--line);
+ padding:18px;
+ border-radius:16px;
+ box-shadow:var(--shadow);
+}
 .stat b{display:block;font-size:25px;color:var(--blue)}
 .stat span{font-size:12px;color:var(--muted);font-weight:650}
+
 .section{padding:57px 0}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}
-.section-head h2{font-size:clamp(26px,4vw,37px);letter-spacing:-1.2px;margin:0 0 8px}
-.section-head p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.feature{padding:23px;border-radius:19px;background:white;border:1px solid var(--line)}
+.section-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:end;
+ gap:20px;
+ margin-bottom:25px;
+}
+.section-head h2{
+ font-size:clamp(26px,4vw,37px);
+ letter-spacing:-1.2px;
+ margin:0 0 8px;
+}
+.section-head p{
+ margin:0;
+ color:var(--muted);
+ font-size:14px;
+ line-height:1.6;
+}
+.features{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+}
+.feature{
+ padding:23px;
+ border-radius:19px;
+ background:white;
+ border:1px solid var(--line);
+}
 .feature .icon{font-size:27px}
 .feature h3{margin:13px 0 7px}
-.feature p{font-size:13px;line-height:1.7;color:var(--muted);margin:0}
-.panel{background:white;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:var(--shadow)}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:23px}
-.step{background:#f1f3fa;color:var(--muted);border-radius:11px;padding:12px;font-size:12px;font-weight:800}
+.feature p{
+ font-size:13px;
+ line-height:1.7;
+ color:var(--muted);
+ margin:0;
+}
+.panel{
+ background:white;
+ border:1px solid var(--line);
+ border-radius:22px;
+ padding:24px;
+ box-shadow:var(--shadow);
+}
+.steps{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:9px;
+ margin-bottom:23px;
+}
+.step{
+ background:#f1f3fa;
+ color:var(--muted);
+ border-radius:11px;
+ padding:12px;
+ font-size:12px;
+ font-weight:800;
+}
 .step.active{background:#e9edff;color:var(--blue)}
 .step small{display:block;font-size:10px;margin-bottom:4px}
+
 .question{display:none}
 .question.active{display:block;animation:appear .25s ease}
-@keyframes appear{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@keyframes appear{
+ from{opacity:0;transform:translateY(7px)}
+ to{opacity:1;transform:translateY(0)}
+}
 .question h3{font-size:23px;margin:0 0 8px}
-.hint{color:var(--muted);font-size:13px;line-height:1.7;margin:0 0 20px}
-.options{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
-.option{border:1px solid var(--line);background:white;text-align:left;
- border-radius:13px;padding:16px;color:var(--ink);transition:.15s}
+.hint{
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.7;
+ margin:0 0 20px;
+}
+.options{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:11px;
+}
+.option{
+ border:1px solid var(--line);
+ background:white;
+ text-align:left;
+ border-radius:13px;
+ padding:16px;
+ color:var(--ink);
+ transition:.15s;
+}
 .option:hover{border-color:var(--blue);background:#f8f9ff}
 .option.selected{border:2px solid var(--blue);background:#f0f2ff}
 .option strong{display:block;font-size:14px;margin-bottom:5px}
-.option small{display:block;font-size:11px;color:var(--muted);line-height:1.5}
-.quiznav{display:flex;justify-content:space-between;gap:10px;margin-top:24px}
-.field{width:100%;border:1px solid var(--line);background:#fafbff;
- padding:12px 13px;border-radius:10px;color:var(--ink);outline:none}
-.field:focus{border-color:var(--blue);box-shadow:0 0 0 3px #536be81a}
-.field-label{display:block;margin:0 0 7px;font-size:12px;font-weight:800}
+.option small{
+ display:block;
+ font-size:11px;
+ color:var(--muted);
+ line-height:1.5;
+}
+.quiznav{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ margin-top:24px;
+}
+.field{
+ width:100%;
+ border:1px solid var(--line);
+ background:#fafbff;
+ padding:12px 13px;
+ border-radius:10px;
+ color:var(--ink);
+ outline:none;
+}
+.field:focus{
+ border-color:var(--blue);
+ box-shadow:0 0 0 3px #536be81a;
+}
+.field-label{
+ display:block;
+ margin:0 0 7px;
+ font-size:12px;
+ font-weight:800;
+}
 .field-wrap{margin-bottom:14px}
-.exam-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.exam-item{display:grid;grid-template-columns:22px 1fr 90px;align-items:center;
- gap:9px;background:white;border:1px solid var(--line);border-radius:11px;padding:10px}
-.exam-item input[type=checkbox]{accent-color:var(--blue);width:17px;height:17px}
-.exam-item input[type=number]{width:100%;min-width:0;padding:9px;border:1px solid var(--line);border-radius:8px}
+.exam-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+}
+.exam-item{
+ display:grid;
+ grid-template-columns:22px 1fr 90px;
+ align-items:center;
+ gap:9px;
+ background:white;
+ border:1px solid var(--line);
+ border-radius:11px;
+ padding:10px;
+}
+.exam-item input[type=checkbox]{
+ accent-color:var(--blue);
+ width:17px;
+ height:17px;
+}
+.exam-item input[type=number]{
+ width:100%;
+ min-width:0;
+ padding:9px;
+ border:1px solid var(--line);
+ border-radius:8px;
+}
 .exam-item span{font-size:12px;font-weight:750}
-.exam-item small{display:block;font-size:10px;color:var(--muted);font-weight:400}
+.exam-item small{
+ display:block;
+ font-size:10px;
+ color:var(--muted);
+ font-weight:400;
+}
 .exam-item.disabled{opacity:.55;background:#f5f6f9}
-.notice{background:#fff7e5;border:1px solid #f1e3ba;color:#795d22;
- padding:13px 15px;border-radius:12px;font-size:12px;line-height:1.65;margin:15px 0}
-.info{background:#eff3ff;border:1px solid #dfe5ff;color:#4255a0;
- padding:13px 15px;border-radius:12px;font-size:12px;line-height:1.65;margin:15px 0}
-.toolbar{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:10px;
- background:white;padding:14px;border:1px solid var(--line);border-radius:17px;margin-bottom:17px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.uni{background:white;border:1px solid var(--line);border-radius:17px;padding:18px;
- box-shadow:0 6px 20px #28365b08;display:flex;flex-direction:column;min-width:0}
+
+.notice{
+ background:#fff7e5;
+ border:1px solid #f1e3ba;
+ color:#795d22;
+ padding:13px 15px;
+ border-radius:12px;
+ font-size:12px;
+ line-height:1.65;
+ margin:15px 0;
+}
+.info{
+ background:#eff3ff;
+ border:1px solid #dfe5ff;
+ color:#4255a0;
+ padding:13px 15px;
+ border-radius:12px;
+ font-size:12px;
+ line-height:1.65;
+ margin:15px 0;
+}
+.toolbar{
+ display:grid;
+ grid-template-columns:1.5fr 1fr 1fr 1fr;
+ gap:10px;
+ background:white;
+ padding:14px;
+ border:1px solid var(--line);
+ border-radius:17px;
+ margin-bottom:17px;
+}
+.cards{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+}
+.uni{
+ background:white;
+ border:1px solid var(--line);
+ border-radius:17px;
+ padding:18px;
+ box-shadow:0 6px 20px #28365b08;
+ display:flex;
+ flex-direction:column;
+ min-width:0;
+ transition:.2s;
+}
 .uni:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
-.uni-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.city{font-size:10px;font-weight:850;background:#edf0ff;color:var(--blue);padding:7px 10px;border-radius:20px}
+.uni-top{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+}
+.city{
+ font-size:10px;
+ font-weight:850;
+ background:#edf0ff;
+ color:var(--blue);
+ padding:7px 10px;
+ border-radius:20px;
+}
 .uni h3{font-size:16px;line-height:1.4;margin:13px 0 6px}
 .muted{color:var(--muted);font-size:12px;line-height:1.65}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
-.tag{font-size:10px;font-weight:800;padding:6px 8px;border-radius:8px;background:#f1f3f9;color:#65708a}
+.tag{
+ font-size:10px;
+ font-weight:800;
+ padding:6px 8px;
+ border-radius:8px;
+ background:#f1f3f9;
+ color:#65708a;
+}
 .tag.green{background:var(--greenbg);color:var(--green)}
 .tag.orange{background:var(--orangebg);color:var(--orange)}
 .tag.red{background:var(--redbg);color:var(--red)}
 .tag.blue{background:#e9edff;color:var(--blue)}
 .uni-buttons{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto;padding-top:12px}
-.small{font-size:11px;font-weight:800;padding:9px 11px;background:#f1f3fa;color:var(--ink);border-radius:9px}
+.small{
+ font-size:11px;
+ font-weight:800;
+ padding:9px 11px;
+ background:#f1f3fa;
+ color:var(--ink);
+ border:0;
+ border-radius:9px;
+}
 .small:hover{background:#e8edff;color:var(--blue)}
-.fav{font-size:17px}
-.result-card{background:white;border:1px solid var(--line);border-radius:16px;padding:17px;margin:11px 0}
+.result-card{
+ background:white;
+ border:1px solid var(--line);
+ border-radius:16px;
+ padding:17px;
+ margin:11px 0;
+}
 .result-card h3{font-size:17px;margin:0 0 5px}
 .result-card p{font-size:12px;color:var(--muted);line-height:1.65}
-.result-title{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.result-status{font-size:11px;font-weight:850;padding:7px 10px;border-radius:20px}
+.result-title{
+ display:flex;
+ justify-content:space-between;
+ gap:12px;
+ flex-wrap:wrap;
+}
+.result-status{
+ font-size:11px;
+ font-weight:850;
+ padding:7px 10px;
+ border-radius:20px;
+ height:max-content;
+}
 .result-status.above{background:var(--greenbg);color:var(--green)}
 .result-status.close{background:var(--orangebg);color:var(--orange)}
 .result-status.below{background:var(--redbg);color:var(--red)}
 .result-status.unknown{background:#edf0fa;color:#626d8b}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
-.tab{border:1px solid var(--line);background:white;padding:10px 14px;border-radius:10px;font-size:12px;font-weight:800}
+.tab{
+ border:1px solid var(--line);
+ background:white;
+ padding:10px 14px;
+ border-radius:10px;
+ font-size:12px;
+ font-weight:800;
+}
 .tab.active{background:var(--blue);color:white;border-color:var(--blue)}
-.empty{background:white;border:1px dashed #ccd3e5;padding:28px;border-radius:16px;text-align:center;color:var(--muted);line-height:1.6}
-.modal{display:none;position:fixed;inset:0;z-index:100;background:#17213c88;align-items:center;justify-content:center;padding:18px}
+.empty{
+ background:white;
+ border:1px dashed #ccd3e5;
+ padding:28px;
+ border-radius:16px;
+ text-align:center;
+ color:var(--muted);
+ line-height:1.6;
+}
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:100;
+ background:#17213c88;
+ align-items:center;
+ justify-content:center;
+ padding:18px;
+}
 .modal.open{display:flex}
-.modal-box{width:min(850px,100%);max-height:88vh;overflow:auto;background:white;border-radius:20px;padding:23px;position:relative}
-.modal-close{position:absolute;right:15px;top:12px;background:#f0f2f8;border-radius:9px;width:35px;height:35px;font-size:20px}
+.modal-box{
+ width:min(850px,100%);
+ max-height:88vh;
+ overflow:auto;
+ background:white;
+ border-radius:20px;
+ padding:23px;
+ position:relative;
+}
+.modal-close{
+ position:absolute;
+ right:15px;
+ top:12px;
+ background:#f0f2f8;
+ border-radius:9px;
+ width:35px;
+ height:35px;
+ font-size:20px;
+ border:0;
+}
 .modal-box h2{margin:4px 45px 7px 0;font-size:24px}
 .program{border-top:1px solid var(--line);padding:15px 0}
 .program h4{margin:0 0 7px;font-size:15px}
 .program p{font-size:12px;color:var(--muted);line-height:1.6}
 .scoreline{display:flex;flex-wrap:wrap;gap:7px}
-.scoreline span{font-size:11px;font-weight:800;border-radius:8px;padding:7px 9px;background:#edf0ff;color:#4859b1}
+.scoreline span{
+ font-size:11px;
+ font-weight:800;
+ border-radius:8px;
+ padding:7px 9px;
+ background:#edf0ff;
+ color:#4859b1;
+}
 .pricebox{background:#f5f6fb;border-radius:12px;padding:13px;margin:12px 0}
 .pricebox strong{font-size:15px}
-.pricebox small{display:block;color:var(--muted);font-size:11px;margin-top:5px;line-height:1.5}
-.comparebar{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);
- z-index:40;display:none;align-items:center;gap:10px;padding:11px 14px;
- background:white;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.pricebox small{
+ display:block;
+ color:var(--muted);
+ font-size:11px;
+ margin-top:5px;
+ line-height:1.5;
+}
+.comparebar{
+ position:fixed;
+ bottom:14px;
+ left:50%;
+ transform:translateX(-50%);
+ z-index:40;
+ display:none;
+ align-items:center;
+ gap:10px;
+ padding:11px 14px;
+ background:white;
+ border:1px solid var(--line);
+ border-radius:14px;
+ box-shadow:var(--shadow);
+}
 .comparebar.show{display:flex}
-footer{background:#fff;border-top:1px solid var(--line);padding:34px 0;margin-top:35px}
+footer{
+ background:#fff;
+ border-top:1px solid var(--line);
+ padding:34px 0;
+ margin-top:35px;
+}
 footer p{color:var(--muted);font-size:12px;line-height:1.7;max-width:700px}
-.gamebox{background:linear-gradient(135deg,#edf0ff,#f8efff);border:1px solid var(--line);padding:23px;border-radius:20px}
-.gamearena{height:180px;position:relative;background:white;border:1px dashed #cbd2e7;border-radius:13px;margin:15px 0;overflow:hidden}
-.star{position:absolute;background:none;border:0;font-size:34px}
+.gamebox{
+ background:linear-gradient(135deg,#edf0ff,#f8efff);
+ border:1px solid var(--line);
+ padding:23px;
+ border-radius:20px;
+}
+.gamearena{
+ height:180px;
+ position:relative;
+ background:white;
+ border:1px dashed #cbd2e7;
+ border-radius:13px;
+ margin:15px 0;
+ overflow:hidden;
+}
+.star{
+ position:absolute;
+ background:none;
+ border:0;
+ font-size:34px;
+}
 @media(max-width:850px){
- .hero-grid{grid-template-columns:1fr}.hero-card{display:none}
+ .hero-grid{grid-template-columns:1fr}
+ .hero-card{display:none}
  .cards{grid-template-columns:repeat(2,1fr)}
  .toolbar{grid-template-columns:1fr 1fr}
  .features{grid-template-columns:1fr 1fr}
@@ -179,18 +581,19 @@ footer p{color:var(--muted);font-size:12px;line-height:1.7;max-width:700px}
 }
 </style>
 </head>
+
 <body>
 
 <header>
 <div class="container">
 <nav>
-<a class="logo" href="#" onclick="go('home');return false">ПОСТУПАЙ<span>.</span></a>
+<a class="logo" href="#home">ПОСТУПАЙ<span>.</span></a>
 <div class="navlinks">
-<button id="nav-home" class="active" onclick="go('home')">Главная</button>
-<button id="nav-quiz" onclick="go('quiz')">Подбор</button>
-<button id="nav-catalog" onclick="go('catalog')">Каталог вузов</button>
+<button onclick="goTo('home')">Главная</button>
+<button onclick="goTo('quiz')">Подбор</button>
+<button onclick="goTo('catalog')">Каталог вузов</button>
 </div>
-<button class="nav-cta" onclick="go('quiz')">Подобрать вуз →</button>
+<button class="nav-cta" onclick="goTo('quiz')">Подобрать вуз →</button>
 </nav>
 </div>
 </header>
@@ -201,20 +604,24 @@ footer p{color:var(--muted);font-size:12px;line-height:1.7;max-width:700px}
 <div>
 <div class="badge">🎓 НАВИГАТОР АБИТУРИЕНТА · 28 ВУЗОВ</div>
 <h1>Найди вуз, в который <em>сможешь поступить</em></h1>
-<p>У тебя уже есть выбранное направление? Укажи способ поступления, свои экзамены или олимпиаду. Сравни университеты по проходным баллам и стоимости обучения.</p>
+<p>
+Ты уже выбрал направление? Укажи способ поступления, свои экзамены
+или олимпиаду. Сравни университеты по опубликованным проходным баллам,
+бюджетным местам и стоимости обучения.
+</p>
 <div class="actions">
-<button class="primary" onclick="go('quiz')">Начать подбор →</button>
-<button class="secondary" onclick="go('catalog')">Открыть каталог</button>
+<button class="primary" onclick="goTo('quiz')">Начать подбор →</button>
+<button class="secondary" onclick="goTo('catalog')">Открыть каталог</button>
 </div>
 </div>
 <div class="hero-card">
 <h3>Всё для поступления в одном месте</h3>
 <p>Сравни программы, бюджетные места и стоимость платного обучения.</p>
-<div class="stats" style="margin:0;grid-template-columns:1fr 1fr">
-<div class="stat"><b>28</b><span>университетов</span></div>
-<div class="stat"><b>3</b><span>города и Иннополис</span></div>
-<div class="stat"><b>3</b><span>способа поступления</span></div>
-<div class="stat"><b>2</b><span>формы оплаты</span></div>
+<div class="hero-numbers">
+<div class="hero-number"><strong>28</strong><span>университетов</span></div>
+<div class="hero-number"><strong>3</strong><span>способа поступления</span></div>
+<div class="hero-number"><strong>5</strong><span>максимум для базовой математики</span></div>
+<div class="hero-number"><strong>3</strong><span>вуза для сравнения</span></div>
 </div>
 </div>
 </div>
@@ -222,28 +629,49 @@ footer p{color:var(--muted);font-size:12px;line-height:1.7;max-width:700px}
 
 <div class="container stats">
 <div class="stat"><b>28</b><span>университетов в каталоге</span></div>
-<div class="stat"><b>2026</b><span>год актуальных правил</span></div>
+<div class="stat"><b>2026/27</b><span>тарифный учебный год</span></div>
 <div class="stat"><b>3</b><span>способа поступления</span></div>
 <div class="stat"><b>3</b><span>вуза для сравнения</span></div>
 </div>
 
 <section class="section">
 <div class="container">
-<div class="section-head"><div><h2>Как работает сайт</h2><p>Подбор зависит от твоего способа поступления.</p></div></div>
+<div class="section-head">
+<div>
+<h2>Как работает сайт</h2>
+<p>Подбор зависит от твоего способа поступления.</p>
+</div>
+</div>
 <div class="features">
-<div class="feature"><div class="icon">📝</div><h3>ЕГЭ</h3><p>Вводишь предметы и баллы. Базовая математика учитывается отдельно и не заменяет профильную.</p></div>
-<div class="feature"><div class="icon">🏆</div><h3>Олимпиада</h3><p>Указываешь олимпиаду, предмет, уровень и результат. Вопросов о баллах ЕГЭ не будет.</p></div>
-<div class="feature"><div class="icon">📚</div><h3>Внутренние испытания</h3><p>Отмечаешь вид испытаний. Сайт не сравнивает их с баллами ЕГЭ.</p></div>
+<div class="feature">
+<div class="icon">📝</div>
+<h3>ЕГЭ</h3>
+<p>Вводишь предметы и баллы. Базовая математика учитывается отдельно и не заменяет профильную.</p>
+</div>
+<div class="feature">
+<div class="icon">🏆</div>
+<h3>Олимпиада</h3>
+<p>Указываешь олимпиаду, предмет, уровень и результат. Вопросов о баллах ЕГЭ не будет.</p>
+</div>
+<div class="feature">
+<div class="icon">📚</div>
+<h3>Внутренние испытания</h3>
+<p>Отмечаешь основание поступления. Сайт не сравнивает внутренние экзамены с баллами ЕГЭ.</p>
+</div>
 </div>
 </div>
 </section>
 </main>
 
-<section class="section" id="quiz-section" style="display:none">
+<section class="section" id="quiz">
 <div class="container">
 <div class="section-head">
-<div><h2>Подбор университета</h2><p>Каждый следующий вопрос зависит от предыдущих ответов.</p></div>
+<div>
+<h2>Подбор университета</h2>
+<p>Каждый следующий вопрос зависит от предыдущего ответа.</p>
 </div>
+</div>
+
 <div class="panel">
 <div class="steps">
 <div class="step active" data-step="0"><small>ШАГ 1</small>Образование</div>
@@ -251,7 +679,9 @@ footer p{color:var(--muted);font-size:12px;line-height:1.7;max-width:700px}
 <div class="step" data-step="2"><small>ШАГ 3</small>Направление</div>
 <div class="step" data-step="3"><small>ШАГ 4</small>Данные</div>
 </div>
+
 <div id="questionHost"></div>
+
 <div class="quiznav">
 <button class="secondary" id="prevBtn" onclick="previousQuestion()">← Назад</button>
 <button class="primary" id="nextBtn" onclick="nextQuestion()">Продолжить →</button>
@@ -260,67 +690,91 @@ footer p{color:var(--muted);font-size:12px;line-height:1.7;max-width:700px}
 </div>
 </section>
 
-<section class="section" id="catalog-section" style="display:none">
+<section class="section" id="results" style="display:none">
 <div class="container">
 <div class="section-head">
-<div><h2>Каталог университетов</h2><p>Ищи вузы, изучай правила приёма, стоимость и прошлогодние проходные баллы.</p></div>
+<div>
+<h2>Результаты подбора</h2>
+<p id="resultsCaption"></p>
 </div>
-<div class="toolbar">
-<input id="search" class="field" placeholder="Поиск университета или программы..." oninput="renderCatalog()">
-<select id="cityFilter" class="field" onchange="renderCatalog()">
-<option value="">Все города</option><option>Москва</option><option>Санкт-Петербург</option><option>Казань</option><option>Иннополис</option>
-</select>
-<select id="directionFilter" class="field" onchange="renderCatalog()">
-<option value="">Все направления</option>
-<option>IT</option><option>Экономика</option><option>Менеджмент</option>
-<option>Международные отношения</option><option>Политология</option>
-<option>Право</option><option>Медицина</option><option>Инженерия</option>
-<option>Математика</option><option>Дизайн</option><option>Гуманитарные науки</option>
-<option>Педагогика и психология</option><option>Спорт</option>
-</select>
-<select id="sortFilter" class="field" onchange="renderCatalog()">
-<option value="">Без сортировки</option>
-<option value="budget">Ниже проходной на бюджет</option>
-<option value="paid">Ниже проходной на платное</option>
-<option value="price">Дешевле платное обучение</option>
-</select>
-</div>
-<div id="catalogSummary" class="result-card"></div>
-<div id="catalogCards" class="cards"></div>
-</div>
-</section>
-
-<section class="section" id="results-section" style="display:none">
-<div class="container">
-<div class="section-head">
-<div><h2>Результаты подбора</h2><p id="resultsCaption"></p></div>
-<button class="secondary" onclick="go('quiz')">Изменить ответы</button>
+<button class="secondary" onclick="goTo('quiz')">Изменить ответы</button>
 </div>
 <div id="resultsList"></div>
 </div>
 </section>
 
-<section class="section" id="favorites-section">
+<section class="section" id="catalog">
 <div class="container">
-<div class="section-head"><div><h2>Избранное ❤️</h2><p>Сохранённые университеты.</p></div></div>
+<div class="section-head">
+<div>
+<h2>Каталог университетов</h2>
+<p>Все 28 университетов. Сравнивай программы, поступление и стоимость обучения.</p>
+</div>
+</div>
+
+<div class="toolbar">
+<input id="search" class="field" placeholder="Поиск университета или программы..." oninput="renderCatalog()">
+<select id="cityFilter" class="field" onchange="renderCatalog()">
+<option value="">Все города</option>
+<option>Москва</option>
+<option>Санкт-Петербург</option>
+<option>Казань</option>
+<option>Иннополис</option>
+</select>
+<select id="directionFilter" class="field" onchange="renderCatalog()">
+<option value="">Все направления</option>
+<option>IT</option>
+<option>Экономика</option>
+<option>Менеджмент</option>
+<option>Международные отношения</option>
+<option>Политология</option>
+<option>Право</option>
+<option>Медицина</option>
+<option>Инженерия</option>
+<option>Математика</option>
+<option>Дизайн</option>
+<option>Гуманитарные науки</option>
+<option>Педагогика и психология</option>
+<option>Спорт</option>
+</select>
+<select id="sortFilter" class="field" onchange="renderCatalog()">
+<option value="">Без сортировки</option>
+<option value="budget">Сначала ниже проходной на бюджет</option>
+<option value="paid">Сначала ниже проходной на платное</option>
+<option value="price">Сначала дешевле платное обучение</option>
+</select>
+</div>
+
+<div id="catalogSummary" class="result-card"></div>
+<div id="catalogCards" class="cards"></div>
+</div>
+</section>
+
+<section class="section" id="favoritesSection">
+<div class="container">
+<div class="section-head">
+<div><h2>Избранное ❤️</h2><p>Сохранённые университеты.</p></div>
+</div>
 <div id="favoritesList" class="cards"></div>
 </div>
 </section>
 
-<section class="section" id="compare-section">
+<section class="section" id="compareSection">
 <div class="container">
-<div class="section-head"><div><h2>Сравнение университетов</h2><p>Сравнивай до трёх вузов по проходным баллам и стоимости обучения.</p></div></div>
+<div class="section-head">
+<div><h2>Сравнение университетов</h2><p>Сравнивай до трёх вузов по проходным баллам, стоимости и программам.</p></div>
+</div>
 <div id="compareList" class="empty">Добавь университеты к сравнению в каталоге.</div>
 </div>
 </section>
 
-<section class="section">
+<section class="section" id="gameSection">
 <div class="container">
 <div class="gamebox">
 <h2>Поймай звезду ⭐</h2>
 <p class="muted">Небольшая игра на 15 секунд.</p>
 <div class="gamearena" id="gameArena"></div>
-<p>Очки: <b id="gameScore">0</b> · Рекорд: <b id="gameBest">0</b></p>
+<p>Очки: <b id="gameScore">0</b> · Рекорд: <b id="gameBest">0</b> · Время: <b id="gameTime">15</b></p>
 <button class="primary" id="gameStart" onclick="startGame()">Начать игру</button>
 <span id="gameMessage" class="muted"></span>
 </div>
@@ -343,7 +797,11 @@ footer p{color:var(--muted);font-size:12px;line-height:1.7;max-width:700px}
 <footer>
 <div class="container">
 <div class="logo">ПОСТУПАЙ<span>.</span></div>
-<p>Справочник для абитуриентов. Проходные баллы прошлых лет не гарантируют зачисление. Бюджетные места и платное обучение проверяются по конкретным образовательным программам. Все цены следует перепроверять перед заключением договора.</p>
+<p>
+Справочник для абитуриентов. Проходные баллы прошлых лет не гарантируют зачисление.
+Стоимость обучения зависит от конкретной программы, формы обучения и года.
+Бюджетные места и тарифы проверяй по официальным документам.
+</p>
 </div>
 </footer>
 
@@ -369,40 +827,53 @@ const EXAMS = {
 };
 
 const DIRECTIONS = [
- "IT","Экономика","Менеджмент","Международные отношения",
- "Политология","Право","Медицина","Инженерия","Математика",
- "Дизайн","Гуманитарные науки","Педагогика и психология","Спорт"
+ "IT",
+ "Экономика",
+ "Менеджмент",
+ "Международные отношения",
+ "Политология",
+ "Право",
+ "Медицина",
+ "Инженерия",
+ "Математика",
+ "Дизайн",
+ "Гуманитарные науки",
+ "Педагогика и психология",
+ "Спорт"
 ];
 
 /*
- * examGroups означает:
- * каждый объект — обязательная группа предметов;
- * в options выбирается один предмет из группы.
- *
- * Например:
- * русский + профильная математика + информатика ИЛИ физика.
- *
- * Если examGroups=null, набор ЕГЭ по данной программе
- * ещё не подтверждён в карточке и сайт не рассчитывает прогноз.
- */
+  examGroups — это группы обязательных вступительных испытаний.
+  Внутри options — альтернативные предметы одной группы.
+
+  Пример:
+  русский + профильная математика + информатика ИЛИ физика.
+
+  Если examGroups не указан, сайт не выдумывает требования.
+  Он предлагает открыть официальный перечень испытаний.
+*/
 
 /* =====================================================
    БАЗА 28 УНИВЕРСИТЕТОВ
 ===================================================== */
 
-const universities = [
+const DB = [
+
 {
- id:"msu",short:"МГУ",name:"МГУ имени М. В. Ломоносова",city:"Москва",
+ id:"msu",
+ name:"МГУ имени М. В. Ломоносова",
+ short:"МГУ",
+ city:"Москва",
  desc:"Классический университет: математика, IT, экономика, право, медицина и гуманитарные науки.",
- admission:"https://www.msu.ru/entrance/",
+ admission:"https://cpk.msu.ru/",
  fee:"https://www.msu.ru/entrance/",
- price:"Зависит от факультета. Проверенные примеры 2026 года: 557 580 ₽, 593 530 ₽, 660 000 ₽ и 750 000 ₽ в год.",
- priceTag:"Цены факультетов",
- budget:"Бюджетные места распределяются по факультетам и программам. Число мест нужно проверять в плане приёма.",
+ cost:"Стоимость устанавливается факультетом и конкретной программой. Единого тарифа для всего МГУ нет.",
+ budget:"Бюджетные места распределяются по факультетам и программам. Количество мест указано в плане приёма.",
  programs:[
   {name:"Экономика",code:"38.03.01",dir:"Экономика"},
   {name:"Менеджмент",code:"38.03.02",dir:"Менеджмент"},
   {name:"Государственное и муниципальное управление",code:"38.03.04",dir:"Менеджмент"},
+  {name:"Управление персоналом",code:"38.03.03",dir:"Менеджмент"},
   {name:"Международные отношения",code:"41.03.05",dir:"Международные отношения"},
   {name:"Политология",code:"41.03.04",dir:"Политология"},
   {name:"Юриспруденция",code:"40.03.01",dir:"Право"},
@@ -411,52 +882,70 @@ const universities = [
   {name:"Лечебное дело",code:"31.05.01",dir:"Медицина"}
  ]
 },
+
 {
- id:"hse",short:"ВШЭ",name:"НИУ «Высшая школа экономики»",city:"Москва",
- desc:"Экономика, программирование, дизайн, право, управление, международные отношения.",
+ id:"hse",
+ name:"НИУ «Высшая школа экономики»",
+ short:"ВШЭ",
+ city:"Москва",
+ desc:"Экономика, программирование, дизайн, право, управление и международные направления.",
  admission:"https://ba.hse.ru/",
  fee:"https://ba.hse.ru/price",
- price:"560 000–1 300 000 ₽ в год для набора 2026 года. Стоимость конкретной программы указана в официальном тарифе.",
- priceTag:"Официальный диапазон 2026",
- budget:"Количество бюджетных мест зависит от программы; проверь план приёма на странице бакалавриата.",
+ cost:"Цена публикуется отдельно для каждой образовательной программы. Официальная страница содержит тарифы на текущий набор.",
+ budget:"Бюджетные места и конкурсные показатели публикуются отдельно для образовательных программ.",
  programs:[
-  {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT",pass:{budget:292,paid:206,year:2026,source:"https://ba.hse.ru/result2026"}},
-  {name:"Программная инженерия",code:"09.03.04",dir:"IT",pass:{budget:297,paid:221,year:2026,source:"https://ba.hse.ru/result2026"}},
-  {name:"Информационная безопасность",code:"10.03.01",dir:"IT",pass:{budget:298,paid:212,year:2026,source:"https://ba.hse.ru/result2026"}},
-  {name:"Экономика",code:"38.03.01",dir:"Экономика",pass:{budget:309,paid:236,year:2026,source:"https://ba.hse.ru/result2026"}},
-  {name:"Менеджмент",code:"38.03.02",dir:"Менеджмент",pass:{budget:288,paid:224,year:2026,source:"https://ba.hse.ru/result2026"}},
-  {name:"Дизайн",code:"54.03.01",dir:"Дизайн",pass:{budget:294,paid:200,year:2026,source:"https://ba.hse.ru/result2026"}},
-  {name:"Физика",code:"03.03.02",dir:"Математика",pass:{budget:274,paid:224,year:2026,source:"https://ba.hse.ru/result2026"}},
-  {name:"Химия",code:"04.03.01",dir:"Математика",pass:{budget:285,paid:212,year:2026,source:"https://ba.hse.ru/result2026"}},
-  {name:"Государственное и муниципальное управление",code:"38.03.04",dir:"Менеджмент"},
+  {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT",
+   pass:{budget:292,paid:206,year:2026,source:"https://ba.hse.ru/result2026"}},
+  {name:"Программная инженерия",code:"09.03.04",dir:"IT",
+   pass:{budget:297,paid:221,year:2026,source:"https://ba.hse.ru/result2026"}},
+  {name:"Информационная безопасность",code:"10.03.01",dir:"IT",
+   pass:{budget:298,paid:212,year:2026,source:"https://ba.hse.ru/result2026"}},
+  {name:"Экономика",code:"38.03.01",dir:"Экономика",
+   pass:{budget:309,paid:236,year:2026,source:"https://ba.hse.ru/result2026"}},
+  {name:"Менеджмент",code:"38.03.02",dir:"Менеджмент",
+   pass:{budget:288,paid:224,year:2026,source:"https://ba.hse.ru/result2026"}},
+  {name:"Государственное и муниципальное управление",code:"38.03.04",dir:"Менеджмент",
+   pass:{budget:274,paid:206,year:2026,source:"https://ba.hse.ru/result2026"}},
+  {name:"Физика",code:"03.03.02",dir:"Математика",
+   pass:{budget:274,paid:224,year:2026,source:"https://ba.hse.ru/result2026"}},
+  {name:"Химия",code:"04.03.01",dir:"Математика",
+   pass:{budget:285,paid:212,year:2026,source:"https://ba.hse.ru/result2026"}},
+  {name:"Дизайн",code:"54.03.01",dir:"Дизайн",
+   pass:{budget:294,paid:200,year:2026,source:"https://ba.hse.ru/result2026"}},
   {name:"Управление персоналом",code:"38.03.03",dir:"Менеджмент"},
   {name:"Международные отношения",code:"41.03.05",dir:"Международные отношения"},
   {name:"Политология",code:"41.03.04",dir:"Политология"}
  ]
 },
+
 {
- id:"mipt",short:"МФТИ",name:"Московский физико-технический институт",city:"Москва",
- desc:"Математика, физика, программирование и инженерные направления.",
+ id:"mipt",
+ name:"Московский физико-технический институт",
+ short:"МФТИ",
+ city:"Москва",
+ desc:"Физика, математика, программирование и инженерные направления.",
  admission:"https://mipt.ru/education/admission/",
- fee:"https://mipt.ru/vikon/sveden/files/rin/Prikaz_o_stoimosti_obucheniya_6008-1_ot_24.11.2025.pdf",
- price:"От 1 014 000 ₽ в год по опубликованному тарифу 2026/27. Цена зависит от программы.",
- priceTag:"Официальный приказ 2026/27",
- budget:"Есть бюджетные места; конкурс и количество мест устанавливаются по программам и направлениям.",
+ fee:"https://mipt.ru/",
+ cost:"Стоимость обучения зависит от программы. Точный тариф указан в документах приёмной комиссии.",
+ budget:"Бюджетные места предусмотрены по направлениям института. Проверяй конкурс и план приёма.",
  programs:[
   {name:"Математика",code:"01.03.01",dir:"Математика"},
   {name:"Прикладная математика и информатика",code:"01.03.02",dir:"IT"},
-  {name:"Прикладные математика и физика",code:"03.03.01",dir:"Математика"},
+  {name:"Прикладная математика и физика",code:"03.03.01",dir:"Математика"},
   {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT"},
   {name:"Программная инженерия",code:"09.03.04",dir:"IT"}
  ]
 },
+
 {
- id:"mgimo",short:"МГИМО",name:"МГИМО МИД России",city:"Москва",
+ id:"mgimo",
+ name:"МГИМО МИД России",
+ short:"МГИМО",
+ city:"Москва",
  desc:"Международные отношения, политология, экономика, менеджмент и право.",
  admission:"https://abiturient.mgimo.ru/",
- fee:"https://abiturient.mgimo.ru/",
- price:"Цена устанавливается отдельно для каждой программы и формы обучения. Проверь официальный тариф в разделе платного приёма.",
- priceTag:"Тариф по программе",
+ fee:"https://mgimo.ru/payedu/bachelor/",
+ cost:"Официальная страница публикует стоимость бакалавриата для набора 2026/27. Точная сумма зависит от программы.",
  budget:"Количество бюджетных мест и конкурс публикуются в правилах приёма МГИМО.",
  programs:[
   {name:"Международные отношения",code:"41.03.05",dir:"Международные отношения"},
@@ -467,62 +956,96 @@ const universities = [
   {name:"Государственное и муниципальное управление",code:"38.03.04",dir:"Менеджмент"}
  ]
 },
+
 {
- id:"mephi",short:"МИФИ",name:"НИЯУ МИФИ",city:"Москва",
+ id:"mephi",
+ name:"НИЯУ МИФИ",
+ short:"МИФИ",
+ city:"Москва",
  desc:"Ядерная физика, математика, инженерия, информационная безопасность и IT.",
  admission:"https://admission.mephi.ru/",
  fee:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/education/paid-formation",
- price:"Официальная страница приёмной комиссии публикует тарифы по конкретным программам на 2026/27 год. Смотри цену по коду направления.",
- priceTag:"Официальные тарифы по программам",
- budget:"Бюджетные места предусмотрены по ряду направлений. Есть программы с особым порядком зачисления; проверяй план приёма.",
+ cost:"Официальная страница содержит тарифы по конкретным программам. Единой цены для всех направлений нет.",
+ budget:"По ряду направлений есть бюджетные места. Число мест и конкурс указаны в плане приёма.",
  programs:[
-  {name:"Прикладная математика и информатика",code:"01.03.02",dir:"Математика",pass:{budget:305,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
-  {name:"Физика",code:"03.03.02",dir:"Математика",pass:{budget:282,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
-  {name:"Информационная безопасность",code:"10.03.01",dir:"IT",pass:{budget:278,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
-  {name:"Ядерная физика и технологии",code:"14.03.02",dir:"Инженерия",pass:{budget:272,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
-  {name:"Мехатроника и робототехника",code:"15.03.06",dir:"Инженерия",pass:{budget:270,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
-  {name:"Экономика",code:"38.03.01",dir:"Экономика",pass:{budget:275,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
-  {name:"Бизнес-информатика",code:"38.03.05",dir:"IT",pass:{budget:273,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
-  {name:"Международные отношения",code:"41.03.05",dir:"Международные отношения",pass:{budget:272,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}}
+  {name:"Прикладная математика и информатика",code:"01.03.02",dir:"Математика",
+   examGroups:[
+    {label:"Русский язык",options:["russian"]},
+    {label:"Математика",options:["math"]},
+    {label:"Информатика или физика",options:["informatics","physics"]}
+   ],
+   pass:{budget:305,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
+  {name:"Физика",code:"03.03.02",dir:"Математика",
+   examGroups:[
+    {label:"Русский язык",options:["russian"]},
+    {label:"Математика",options:["math"]},
+    {label:"Физика",options:["physics"]}
+   ],
+   pass:{budget:282,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
+  {name:"Информационная безопасность",code:"10.03.01",dir:"IT",
+   pass:{budget:278,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
+  {name:"Ядерная физика и технологии",code:"14.03.02",dir:"Инженерия",
+   pass:{budget:272,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
+  {name:"Мехатроника и робототехника",code:"15.03.06",dir:"Инженерия",
+   pass:{budget:270,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
+  {name:"Экономика",code:"38.03.01",dir:"Экономика",
+   examGroups:[
+    {label:"Русский язык",options:["russian"]},
+    {label:"Математика",options:["math"]},
+    {label:"Обществознание, информатика или история",options:["social","informatics","history"]}
+   ],
+   pass:{budget:275,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
+  {name:"Менеджмент",code:"38.03.02",dir:"Менеджмент",
+   examGroups:[
+    {label:"Русский язык",options:["russian"]},
+    {label:"Математика",options:["math"]},
+    {label:"Обществознание, информатика или история",options:["social","informatics","history"]}
+   ]},
+  {name:"Бизнес-информатика",code:"38.03.05",dir:"IT",
+   pass:{budget:273,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}},
+  {name:"Международные отношения",code:"41.03.05",dir:"Международные отношения",
+   examGroups:[
+    {label:"Русский язык",options:["russian"]},
+    {label:"История",options:["history"]},
+    {label:"Иностранный язык или обществознание",options:["foreign","social"]}
+   ],
+   pass:{budget:272,year:2025,source:"https://admission.mephi.ru/admission/baccalaureate-and-specialty/exams/previous-years"}}
  ]
 },
+
 {
- id:"bmstu",short:"Бауманка",name:"МГТУ имени Н. Э. Баумана",city:"Москва",
- desc:"Машиностроение, инженерия, робототехника, программирование.",
+ id:"bmstu",
+ name:"МГТУ имени Н. Э. Баумана",
+ short:"Бауманка",
+ city:"Москва",
+ desc:"Машиностроение, инженерия, робототехника, программирование и IT.",
  admission:"https://priem.bmstu.ru/",
- fee:"https://bmstu.ru/",
- price:"Ориентир 2026 года — 350 000–600 000 ₽ в год. Точная стоимость зависит от образовательной программы; проверь приказ вуза.",
- priceTag:"Ориентир, уточнить по программе",
- budget:"Бюджетные места есть по ряду инженерных и IT-направлений. Количество — в плане приёма.",
+ fee:"https://promo.bmstu.ru/edu/cost",
+ cost:"Для набора 2026/27 официальный тариф содержит, например, 466 960 ₽ в год по информатике и вычислительной технике и 570 960 ₽ по программной инженерии. Цены зависят от кода программы.",
+ budget:"Бюджетные места есть по инженерным и IT-направлениям. Количество указано в плане приёма.",
  programs:[
   {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT"},
   {name:"Программная инженерия",code:"09.03.04",dir:"IT"},
   {name:"Мехатроника и робототехника",code:"15.03.06",dir:"Инженерия"},
   {name:"Машиностроение",code:"15.03.01",dir:"Инженерия"},
-  {name:"Прикладная математика",code:"01.03.04",dir:"Математика"}
+  {name:"Прикладная математика и информатика",code:"01.03.02",dir:"Математика"},
+  {name:"Менеджмент",code:"38.03.02",dir:"Менеджмент"}
  ]
 },
+
 {
- id:"rudn",short:"РУДН",name:"Российский университет дружбы народов",city:"Москва",
+ id:"rudn",
+ name:"Российский университет дружбы народов",
+ short:"РУДН",
+ city:"Москва",
  desc:"Медицина, экономика, менеджмент, международные отношения, право и IT.",
- admission:"https://admission.rudn.ru/undergraduate/directions/",
+ admission:"https://admission.rudn.ru/undergraduate/",
  fee:"https://admission.rudn.ru/guide/",
- price:"Официальный справочник РУДН указывает диапазон 310 000–750 000 ₽ в год для бакалавриата и специалитета. В карточках программ есть точные тарифы.",
- priceTag:"Официальный диапазон",
+ cost:"Официальный диапазон бакалавриата и специалитета для граждан РФ — 310 000–750 000 ₽ в год. Отдельные программы имеют собственные тарифы.",
  budget:"Бюджетные и контрактные места публикуются отдельно по каждой программе.",
  programs:[
-  {name:"Фундаментальная информатика и информационные технологии",code:"02.03.02",dir:"IT",
-   examGroups:[
-    {label:"Русский язык",options:["russian"]},
-    {label:"Профильная математика",options:["math"]},
-    {label:"Информатика или физика",options:["informatics","physics"]}
-   ]},
-  {name:"Экономика",code:"38.03.01",dir:"Экономика",
-   examGroups:[
-    {label:"Русский язык",options:["russian"]},
-    {label:"Профильная математика",options:["math"]},
-    {label:"Один предмет по выбору",options:["social","foreign","geography","history","informatics"]}
-   ]},
+  {name:"Фундаментальная информатика и информационные технологии",code:"02.03.02",dir:"IT"},
+  {name:"Экономика",code:"38.03.01",dir:"Экономика"},
   {name:"Менеджмент",code:"38.03.02",dir:"Менеджмент"},
   {name:"Государственное и муниципальное управление",code:"38.03.04",dir:"Менеджмент"},
   {name:"Управление персоналом",code:"38.03.03",dir:"Менеджмент"},
@@ -532,29 +1055,36 @@ const universities = [
   {name:"Лечебное дело",code:"31.05.01",dir:"Медицина"}
  ]
 },
+
 {
- id:"mirea",short:"МИРЭА",name:"РТУ МИРЭА",city:"Москва",
+ id:"mirea",
+ name:"РТУ МИРЭА",
+ short:"МИРЭА",
+ city:"Москва",
  desc:"IT, программная инженерия, информационная безопасность и инженерия.",
  admission:"https://priem.mirea.ru/",
  fee:"https://www.mirea.ru/",
- price:"Стоимость зависит от направления и формы обучения. Проверь утверждённый тариф в разделе платного приёма.",
- priceTag:"По программе",
- budget:"План бюджетных мест публикуется в карточках направлений.",
+ cost:"Стоимость отличается по программам и формам обучения. Тарифы следует смотреть в официальном разделе платного приёма.",
+ budget:"План бюджетных мест публикуется по каждому направлению бакалавриата.",
  programs:[
   {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT"},
   {name:"Информационные системы и технологии",code:"09.03.02",dir:"IT"},
   {name:"Программная инженерия",code:"09.03.04",dir:"IT"},
   {name:"Информационная безопасность",code:"10.03.01",dir:"IT"},
-  {name:"Радиотехника",code:"11.03.01",dir:"Инженерия"}
+  {name:"Радиотехника",code:"11.03.01",dir:"Инженерия"},
+  {name:"Экономика",code:"38.03.01",dir:"Экономика"}
  ]
 },
+
 {
- id:"sechenov",short:"Сеченовский",name:"Сеченовский университет",city:"Москва",
- desc:"Лечебное дело, педиатрия, стоматология и медицинские науки.",
- admission:"https://priem.sechenov.ru/",
+ id:"sechenov",
+ name:"Сеченовский университет",
+ short:"Сеченовский",
+ city:"Москва",
+ desc:"Лечебное дело, педиатрия, стоматология, фармация и медицинские науки.",
+ admission:"https://www.sechenov.ru/admissions/",
  fee:"https://www.sechenov.ru/admissions/stoimost-obucheniya/",
- price:"На одной из программ лечебного дела стоимость первого курса для граждан РФ указана от 1 100 000 ₽. Тарифы по медицинским направлениям различаются.",
- priceTag:"Пример официального тарифа",
+ cost:"Стоимость медицинских программ устанавливается по специальности и форме обучения. Актуальный тариф размещается приёмной комиссией.",
  budget:"Бюджетные места распределяются по медицинским специальностям и квотам.",
  programs:[
   {name:"Лечебное дело",code:"31.05.01",dir:"Медицина"},
@@ -563,14 +1093,17 @@ const universities = [
   {name:"Фармация",code:"33.05.01",dir:"Медицина"}
  ]
 },
+
 {
- id:"rsmu",short:"Пирогова",name:"РНИМУ имени Н. И. Пирогова",city:"Москва",
+ id:"rsmu",
+ name:"РНИМУ имени Н. И. Пирогова",
+ short:"Пирогова",
+ city:"Москва",
  desc:"Медицинские специальности, педиатрия и фундаментальная медицина.",
- admission:"https://rsmu.ru/abitur/",
+ admission:"https://rsmu.ru/abitur/bachelor/",
  fee:"https://rsmu.ru/abitur/tuition-fees/",
- price:"На официальной странице опубликованы тарифы специалитета на 2026/27 учебный год. Стоимость зависит от специальности.",
- priceTag:"Официальный тариф по специальности",
- budget:"Проверяй число бюджетных мест отдельно по лечебному делу, педиатрии и другим программам.",
+ cost:"На официальном сайте опубликованы тарифы по программам специалитета на 2026/27 учебный год. Тариф нужно смотреть по конкретной специальности.",
+ budget:"Количество бюджетных мест проверяется отдельно по лечебному делу, педиатрии и другим программам.",
  programs:[
   {name:"Лечебное дело",code:"31.05.01",dir:"Медицина"},
   {name:"Педиатрия",code:"31.05.02",dir:"Медицина"},
@@ -578,14 +1111,17 @@ const universities = [
   {name:"Медицинская биохимия",code:"30.05.01",dir:"Медицина"}
  ]
 },
+
 {
- id:"rea",short:"РЭУ",name:"РЭУ имени Г. В. Плеханова",city:"Москва",
+ id:"rea",
+ name:"РЭУ имени Г. В. Плеханова",
+ short:"РЭУ",
+ city:"Москва",
  desc:"Экономика, менеджмент, бизнес-информатика и юриспруденция.",
  admission:"https://www.rea.ru/pk/entrant/bakalavriat-i-spetsialitet",
  fee:"https://www.rea.ru/pk/entrant/bakalavriat-i-spetsialitet",
- price:"Официальный каталог содержит цены на 2026/27 год по 112 программам. Стоимость нужно смотреть по названию программы и форме обучения.",
- priceTag:"Официальная таблица цен",
- budget:"План бюджетных мест и конкурсные списки публикуются в приёмной комиссии.",
+ cost:"Официальный каталог содержит стоимость 112 программ на 2026/27 год. Цена указывается отдельно для каждой программы и формы обучения.",
+ budget:"План бюджетных мест, правила и конкурсные списки публикуются на странице приёмной комиссии.",
  programs:[
   {name:"Экономика",code:"38.03.01",dir:"Экономика"},
   {name:"Менеджмент",code:"38.03.02",dir:"Менеджмент"},
@@ -595,14 +1131,17 @@ const universities = [
   {name:"Юриспруденция",code:"40.03.01",dir:"Право"}
  ]
 },
+
 {
- id:"mgpu",short:"МГПУ",name:"Московский городской педагогический университет",city:"Москва",
+ id:"mgpu",
+ name:"Московский городской педагогический университет",
+ short:"МГПУ",
+ city:"Москва",
  desc:"Педагогика, психология, IT-образование и гуманитарные программы.",
- admission:"https://www.mgpu.ru/postuplenie/",
+ admission:"https://priem.mgpu.ru/",
  fee:"https://www.mgpu.ru/sveden/paid_edu/",
- price:"Официальный приказ о стоимости обучения на 2026/27 учебный год опубликован. Тариф зависит от программы.",
- priceTag:"Официальный приказ 2026/27",
- budget:"Смотри бюджетные места отдельно по образовательным программам.",
+ cost:"Официальная стоимость обучения на 2026/27 год устанавливается приказом и различается по программам.",
+ budget:"На страницах бакалавриата опубликованы места общего конкурса, квоты и проходные показатели.",
  programs:[
   {name:"Педагогическое образование",code:"44.03.01",dir:"Педагогика и психология"},
   {name:"Психолого-педагогическое образование",code:"44.03.02",dir:"Педагогика и психология"},
@@ -610,14 +1149,17 @@ const universities = [
   {name:"История",code:"46.03.01",dir:"Гуманитарные науки"}
  ]
 },
+
 {
- id:"mpei",short:"МЭИ",name:"НИУ «МЭИ»",city:"Москва",
+ id:"mpei",
+ name:"НИУ «МЭИ»",
+ short:"МЭИ",
+ city:"Москва",
  desc:"Электроэнергетика, теплоэнергетика, инженерия и IT.",
  admission:"https://pk.mpei.ru/info/speclist",
  fee:"https://www.mpei.ru/students/Pages/cost-all.aspx",
- price:"На официальном сайте опубликованы приказы о стоимости на 2026/27 год. Тариф зависит от направления и формы обучения.",
- priceTag:"Официальные приказы",
- budget:"Приёмная комиссия публикует число бюджетных и договорных мест по направлениям.",
+ cost:"Опубликованы приказы № 596 и № 600 от 03.06.2026 о стоимости обучения на 2026/27 учебный год.",
+ budget:"План бюджетных и договорных мест публикуется приёмной комиссией по направлениям.",
  programs:[
   {name:"Электроэнергетика и электротехника",code:"13.03.02",dir:"Инженерия"},
   {name:"Теплоэнергетика и теплотехника",code:"13.03.01",dir:"Инженерия"},
@@ -625,27 +1167,33 @@ const universities = [
   {name:"Прикладная информатика",code:"09.03.03",dir:"IT"}
  ]
 },
+
 {
- id:"markhi",short:"МАРХИ",name:"Московский архитектурный институт",city:"Москва",
+ id:"markhi",
+ name:"Московский архитектурный институт",
+ short:"МАРХИ",
+ city:"Москва",
  desc:"Архитектура, градостроительство и проектирование.",
  admission:"https://www.markhi.ru/",
  fee:"https://www.markhi.ru/",
- price:"Стоимость зависит от программы и формы обучения. Проверяй текущий приказ и стоимость творческих программ на сайте института.",
- priceTag:"Требуется проверить тариф",
- budget:"Проверь количество бюджетных мест по архитектурным программам и результаты дополнительных испытаний.",
+ cost:"Стоимость зависит от программы, формы обучения и творческих испытаний. Проверь текущий приказ института.",
+ budget:"Проверь количество бюджетных мест по архитектурным программам.",
  programs:[
   {name:"Архитектура",code:"07.03.01",dir:"Дизайн"},
   {name:"Градостроительство",code:"07.03.04",dir:"Дизайн"},
   {name:"Дизайн архитектурной среды",code:"07.03.03",dir:"Дизайн"}
  ]
 },
+
 {
- id:"rggu",short:"РГГУ",name:"Российский государственный гуманитарный университет",city:"Москва",
+ id:"rggu",
+ name:"Российский государственный гуманитарный университет",
+ short:"РГГУ",
+ city:"Москва",
  desc:"История, международные отношения, политология, право и гуманитарные науки.",
  admission:"https://www.rsuh.ru/abitur/",
- fee:"https://www.rsuh.ru/upload/main/priem26/bac/2026_БАК_СПЕЦ_стоимость_обучения_на_2026_год_01_06_2026.pdf",
- price:"В официальном документе 2026 года цены указаны по семестрам и программам. Встречаются суммы от 171 600 ₽ за семестр; итог за год зависит от программы.",
- priceTag:"Официальный тариф 2026",
+ fee:"https://www.rsuh.ru/upload/main/ypoy/Stoim_obuch_290526.pdf",
+ cost:"Опубликован официальный приказ о стоимости обучения на 2026/27 учебный год. Тарифы указаны по программам и семестрам.",
  budget:"План бюджетных мест и конкурсные списки доступны в приёмной комиссии.",
  programs:[
   {name:"История",code:"46.03.01",dir:"Гуманитарные науки"},
@@ -656,130 +1204,191 @@ const universities = [
   {name:"Государственное и муниципальное управление",code:"38.03.04",dir:"Менеджмент"}
  ]
 },
+
 {
- id:"itmo",short:"ИТМО",name:"Университет ИТМО",city:"Санкт-Петербург",
+ id:"itmo",
+ name:"Университет ИТМО",
+ short:"ИТМО",
+ city:"Санкт-Петербург",
  desc:"Программирование, компьютерные науки, математика, дизайн и инженерия.",
  admission:"https://abit.itmo.ru/bachelor",
- fee:"https://abit.itmo.ru/bachelor",
- price:"Стоимость обучения указывается отдельно по программам бакалавриата. Смотри актуальную карточку программы в приёмной комиссии.",
- priceTag:"Тариф по программе",
- budget:"Опубликованы бюджетные места и рейтинговые списки по программам. Минимальные ЕГЭ для допуска не являются проходными баллами.",
+ fee:"https://abit.itmo.ru/programs/bachelor",
+ cost:"В официальном каталоге программ показываются вступительные испытания и цена контракта за год. Тариф зависит от программы.",
+ budget:"На сайте бакалавриата публикуются бюджетные места и проходные значения по отдельным программам.",
  programs:[
-  {name:"Прикладная математика и информатика",code:"01.03.02",dir:"Математика",pass:{budget:305,year:2025,source:"https://abit.itmo.ru/bachelor"}},
-  {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT",pass:{budget:282,year:2025,source:"https://abit.itmo.ru/bachelor"}},
-  {name:"Программная инженерия",code:"09.03.04",dir:"IT",pass:{budget:284,year:2025,source:"https://abit.itmo.ru/bachelor"}},
-  {name:"Информационная безопасность",code:"10.03.01",dir:"IT",pass:{budget:275,year:2025,source:"https://abit.itmo.ru/bachelor"}},
-  {name:"Мехатроника и робототехника",code:"15.03.06",dir:"Инженерия"},
+  {name:"Прикладная математика и информатика",code:"01.03.02",dir:"Математика",
+   examGroups:[
+    {label:"Русский язык",options:["russian"]},
+    {label:"Математика профильная",options:["math"]},
+    {label:"Информатика",options:["informatics"]}
+   ],
+   pass:{budget:305,year:2025,source:"https://abit.itmo.ru/bachelor"},
+   passNote:"Проходной балл включает ЕГЭ и индивидуальные достижения."},
+  {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT",
+   examGroups:[
+    {label:"Русский язык",options:["russian"]},
+    {label:"Математика профильная",options:["math"]},
+    {label:"Информатика",options:["informatics"]}
+   ],
+   pass:{budget:282,year:2025,source:"https://abit.itmo.ru/bachelor"},
+   passNote:"Проходной балл включает ЕГЭ и индивидуальные достижения."},
+  {name:"Программная инженерия",code:"09.03.04",dir:"IT",
+   examGroups:[
+    {label:"Русский язык",options:["russian"]},
+    {label:"Математика профильная",options:["math"]},
+    {label:"Информатика",options:["informatics"]}
+   ],
+   pass:{budget:284,year:2025,source:"https://abit.itmo.ru/bachelor"},
+   passNote:"Проходной балл включает ЕГЭ и индивидуальные достижения."},
+  {name:"Информационная безопасность",code:"10.03.01",dir:"IT",
+   examGroups:[
+    {label:"Русский язык",options:["russian"]},
+    {label:"Математика профильная",options:["math"]},
+    {label:"Информатика",options:["informatics"]}
+   ],
+   pass:{budget:275,year:2025,source:"https://abit.itmo.ru/bachelor"},
+   passNote:"Проходной балл включает ЕГЭ и индивидуальные достижения."},
+  {name:"Физика",code:"03.03.02",dir:"Математика",
+   examGroups:[
+    {label:"Русский язык",options:["russian"]},
+    {label:"Математика профильная",options:["math"]},
+    {label:"Физика",options:["physics"]}
+   ],
+   pass:{budget:282,year:2025,source:"https://abit.itmo.ru/bachelor"}},
+  {name:"Химия",code:"04.03.01",dir:"Математика"},
   {name:"Дизайн",code:"54.03.01",dir:"Дизайн"}
  ]
 },
+
 {
- id:"spbu",short:"СПбГУ",name:"Санкт-Петербургский государственный университет",city:"Санкт-Петербург",
+ id:"spbu",
+ name:"Санкт-Петербургский государственный университет",
+ short:"СПбГУ",
+ city:"Санкт-Петербург",
  desc:"Математика, экономика, право, медицина, международные отношения и гуманитарные науки.",
  admission:"https://abiturient.spbu.ru/",
  fee:"https://abiturient.spbu.ru/",
- price:"Ориентир 280 000–550 000 ₽ в год по опубликованным тарифам 2026 года. Точный тариф зависит от программы.",
- priceTag:"Диапазон; уточнить программу",
- budget:"Бюджетные места и конкурс публикуются по направлениям и образовательным программам.",
+ cost:"Стоимость обучения устанавливается по образовательным программам. Актуальные тарифы публикуются на сайте приёмной комиссии.",
+ budget:"Бюджетные места и конкурс публикуются отдельно по программам бакалавриата и специалитета.",
  programs:[
   {name:"Прикладная математика и информатика",code:"01.03.02",dir:"Математика"},
   {name:"Экономика",code:"38.03.01",dir:"Экономика"},
   {name:"Менеджмент",code:"38.03.02",dir:"Менеджмент"},
+  {name:"Государственное и муниципальное управление",code:"38.03.04",dir:"Менеджмент"},
   {name:"Международные отношения",code:"41.03.05",dir:"Международные отношения"},
   {name:"Политология",code:"41.03.04",dir:"Политология"},
   {name:"Юриспруденция",code:"40.03.01",dir:"Право"},
   {name:"Лечебное дело",code:"31.05.01",dir:"Медицина"}
  ]
 },
+
 {
- id:"spbstu",short:"СПбПУ",name:"СПбПУ Петра Великого",city:"Санкт-Петербург",
+ id:"spbstu",
+ name:"СПбПУ Петра Великого",
+ short:"СПбПУ",
+ city:"Санкт-Петербург",
  desc:"Инженерия, энергетика, IT, математика и экономика.",
  admission:"https://www.spbstu.ru/abit/bachelor/",
  fee:"https://www.spbstu.ru/abit/bachelor/apply/stoimost-obucheniya/",
- price:"В опубликованной таблице 2026 года есть программы с тарифами 145 000–207 000 ₽ за семестр (примерно 290 000–414 000 ₽ в год).",
- priceTag:"Примеры официальных тарифов",
- budget:"Количество бюджетных мест указано в плане приёма бакалавриата.",
+ cost:"Официальная таблица 2026/27 указывает, например, 207 000 ₽ за семестр по информатике, 174 000 ₽ за семестр по экономике и 145 000 ₽ за семестр по некоторым инженерным программам.",
+ budget:"Бюджетные места и конкурс публикуются в плане приёма бакалавриата.",
  programs:[
-  {name:"Электроэнергетика и электротехника",code:"13.03.02",dir:"Инженерия",pass:{budget:251,year:2026,source:"https://ie.spbstu.ru/news/enrollment2026/"}},
-  {name:"Теплоэнергетика и теплотехника",code:"13.03.01",dir:"Инженерия",pass:{budget:264,year:2026,source:"https://ie.spbstu.ru/news/enrollment2026/"}},
-  {name:"Ядерная энергетика",code:"14.03.01",dir:"Инженерия",pass:{budget:290,year:2026,source:"https://ie.spbstu.ru/news/enrollment2026/"}},
+  {name:"Электроэнергетика и электротехника",code:"13.03.02",dir:"Инженерия",
+   pass:{budget:251,year:2026,source:"https://ie.spbstu.ru/news/enrollment2026/"}},
+  {name:"Теплоэнергетика и теплотехника",code:"13.03.01",dir:"Инженерия",
+   pass:{budget:264,year:2026,source:"https://ie.spbstu.ru/news/enrollment2026/"}},
+  {name:"Ядерная энергетика и теплофизика",code:"14.03.01",dir:"Инженерия",
+   pass:{budget:290,year:2026,source:"https://ie.spbstu.ru/news/enrollment2026/"}},
+  {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT"},
   {name:"Программная инженерия",code:"09.03.04",dir:"IT"},
-  {name:"Экономика",code:"38.03.01",dir:"Экономика"}
+  {name:"Экономика",code:"38.03.01",dir:"Экономика"},
+  {name:"Менеджмент",code:"38.03.02",dir:"Менеджмент"}
  ]
 },
+
 {
- id:"spbgeu",short:"СПбГЭУ",name:"Санкт-Петербургский государственный экономический университет",city:"Санкт-Петербург",
+ id:"spbgeu",
+ name:"Санкт-Петербургский государственный экономический университет",
+ short:"СПбГЭУ",
+ city:"Санкт-Петербург",
  desc:"Экономика, менеджмент, управление, международные отношения и право.",
  admission:"https://unecon.ru/priem/",
  fee:"https://unecon.ru/priem/kontraktnoe-obuchenie/",
- price:"Стоимость обучения на 2026/27 год утверждена приказом № 128 от 13.04.2026. Тарифы различаются по направлениям.",
- priceTag:"Официальный приказ 2026/27",
- budget:"В плане приёма указаны бюджетные места по направлениям бакалавриата и специалитета.",
+ cost:"Стоимость обучения 2026/27 утверждена приказом № 128 от 13.04.2026. Тарифы отличаются по направлению.",
+ budget:"План приёма содержит бюджетные места по направлениям бакалавриата и специалитета.",
  programs:[
   {name:"Экономика",code:"38.03.01",dir:"Экономика"},
   {name:"Менеджмент",code:"38.03.02",dir:"Менеджмент"},
   {name:"Государственное и муниципальное управление",code:"38.03.04",dir:"Менеджмент"},
   {name:"Управление персоналом",code:"38.03.03",dir:"Менеджмент"},
-  {name:"Международные отношения",code:"41.03.05",dir:"Международные отношения"}
+  {name:"Международные отношения",code:"41.03.05",dir:"Международные отношения"},
+  {name:"Юриспруденция",code:"40.03.01",dir:"Право"}
  ]
 },
+
 {
- id:"herzen",short:"Герцена",name:"РГПУ имени А. И. Герцена",city:"Санкт-Петербург",
- desc:"Педагогика, IT-образование, психология, гуманитарные и естественные науки.",
- admission:"https://herzen.spb.ru/abiturients/priem-rf-2026/",
- fee:"https://www.herzen.spb.ru/abiturients/",
- price:"В официальных карточках программ 2026 года встречаются тарифы 270 100–299 300 ₽ в год. Конкретная сумма зависит от программы.",
- priceTag:"Примеры цен 2026",
- budget:"Количество бюджетных мест и перечень вступительных испытаний указаны на страницах программ.",
+ id:"herzen",
+ name:"РГПУ имени А. И. Герцена",
+ short:"Герцена",
+ city:"Санкт-Петербург",
+ desc:"Педагогика, IT-образование, психология и гуманитарные науки.",
+ admission:"https://www.herzen.spb.ru/abiturients/",
+ fee:"https://www.herzen.spb.ru/about/struct-uni/otherdep/otdel-platnykh-obrazovatelnykh-uslug/",
+ cost:"Стоимость обучения зависит от образовательной программы и формы обучения. Уточняй по приказам университета.",
+ budget:"Количество бюджетных мест и экзамены публикуются на странице программ.",
  programs:[
-  {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT",
-   examGroups:[
-    {label:"Русский язык",options:["russian"]},
-    {label:"Математика",options:["math"]},
-    {label:"Информатика или физика",options:["informatics","physics"]}
-   ]},
-  {name:"Юриспруденция",code:"40.03.01",dir:"Право"},
-  {name:"Государственное и муниципальное управление",code:"38.03.04",dir:"Менеджмент"},
   {name:"Педагогическое образование",code:"44.03.01",dir:"Педагогика и психология"},
-  {name:"Психолого-педагогическое образование",code:"44.03.02",dir:"Педагогика и психология"}
+  {name:"Психолого-педагогическое образование",code:"44.03.02",dir:"Педагогика и психология"},
+  {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT"},
+  {name:"Юриспруденция",code:"40.03.01",dir:"Право"},
+  {name:"Государственное и муниципальное управление",code:"38.03.04",dir:"Менеджмент"}
  ]
 },
+
 {
- id:"spmi",short:"Горный",name:"Санкт-Петербургский горный университет",city:"Санкт-Петербург",
- desc:"Горное дело, геология, инженерия, нефтегазовое дело.",
+ id:"spmi",
+ name:"Санкт-Петербургский горный университет",
+ short:"Горный",
+ city:"Санкт-Петербург",
+ desc:"Горное дело, геология, инженерия и нефтегазовое дело.",
  admission:"https://spmi.ru/",
  fee:"https://spmi.ru/sites/default/files/imci_images/univer/svedenia_jb_organizacii/document/2026/stoimost-obucheniya2026.pdf",
- price:"Официальный документ содержит цены для российских и иностранных граждан на 2026/27 учебный год. Сумма указана по направлениям и за семестр.",
- priceTag:"Официальный тариф 2026/27",
+ cost:"Опубликован официальный документ о стоимости обучения для поступающих в 2026/27 году. Сумма указывается по программе и семестру.",
  budget:"План бюджетных мест и конкурс публикуются приёмной комиссией.",
  programs:[
   {name:"Горное дело",code:"21.05.04",dir:"Инженерия"},
   {name:"Нефтегазовое дело",code:"21.03.01",dir:"Инженерия"},
   {name:"Геология",code:"05.03.01",dir:"Математика"},
-  {name:"Прикладная геодезия",code:"21.05.01",dir:"Инженерия"}
+  {name:"Прикладная геология",code:"21.05.02",dir:"Инженерия"}
  ]
 },
+
 {
- id:"pavlov",short:"Павлова",name:"ПСПбГМУ имени И. П. Павлова",city:"Санкт-Петербург",
+ id:"pavlov",
+ name:"ПСПбГМУ имени И. П. Павлова",
+ short:"Павлова",
+ city:"Санкт-Петербург",
  desc:"Лечебное дело, стоматология, педиатрия и медицинские специальности.",
  admission:"https://abit.1spbgmu.ru/vysshee-obrazovanie/napravleniya-podgotovki/",
- fee:"https://1spbgmu.ru/images/home/documents/prises/2025/Приказ_о_введении_в_действие_прейскуранта_на_2026_2027.PDF",
- price:"Официальный прейскурант 2026/27 опубликован. Стоимость зависит от специальности и формы обучения.",
- priceTag:"Официальный прейскурант",
- budget:"На странице поступления показаны бюджетные и контрактные места по каждой специальности.",
+ fee:"https://www.1spbgmu.ru/component/content/article/505-svedeniya-ob-obrazovatelnoj-organizatsii/1539-platnye-obrazovatelnye-uslugi",
+ cost:"Опубликован прейскурант платных образовательных услуг на 2026/27 учебный год. Суммы различаются по специальностям.",
+ budget:"Бюджетные места доступны в соответствии с планом приёма по специальностям.",
  programs:[
   {name:"Лечебное дело",code:"31.05.01",dir:"Медицина"},
   {name:"Стоматология",code:"31.05.03",dir:"Медицина"},
   {name:"Педиатрия",code:"31.05.02",dir:"Медицина"}
  ]
 },
+
 {
- id:"leti",short:"ЛЭТИ",name:"СПбГЭТУ «ЛЭТИ»",city:"Санкт-Петербург",
+ id:"leti",
+ name:"СПбГЭТУ «ЛЭТИ»",
+ short:"ЛЭТИ",
+ city:"Санкт-Петербург",
  desc:"Радиотехника, электроника, программирование и инженерия.",
  admission:"https://etu.ru/ru/abiturientam/",
- fee:"https://new.etu.ru/",
- price:"Для первого курса опубликован приказ о стоимости обучения 2026/27 года. Стоимость зависит от направления.",
- priceTag:"Официальный приказ",
+ fee:"https://etu.ru/ru/",
+ cost:"Тарифы на 2026/27 утверждаются приказом университета и зависят от направления обучения.",
  budget:"План бюджетных мест и вступительные испытания доступны на сайте приёмной комиссии.",
  programs:[
   {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT"},
@@ -788,14 +1397,17 @@ const universities = [
   {name:"Электроника и наноэлектроника",code:"11.03.04",dir:"Инженерия"}
  ]
 },
+
 {
- id:"sutd",short:"СПбГУПТД",name:"СПбГУПТД",city:"Санкт-Петербург",
+ id:"sutd",
+ name:"СПбГУПТД",
+ short:"СПбГУПТД",
+ city:"Санкт-Петербург",
  desc:"Дизайн, экономика, IT, технологии и управление.",
  admission:"https://prouniver.ru/bachelor/",
  fee:"https://prouniver.ru/price/bachelor/",
- price:"Официальная тарифная страница содержит стоимость для первокурсников на 2026/27 год по институтам и программам.",
- priceTag:"Официальный тариф 2026/27",
- budget:"В разделе бакалавриата опубликованы бюджетные и внебюджетные места и статистика приёма.",
+ cost:"На официальной странице опубликованы цены для набора 2026/27. Например, очное IT-направление — около 340 000 ₽ в год, некоторые дизайнерские программы дороже.",
+ budget:"Раздел бакалавриата содержит бюджетные места, договорные места и статистику прошлых лет.",
  programs:[
   {name:"Дизайн",code:"54.03.01",dir:"Дизайн"},
   {name:"Информационные системы и технологии",code:"09.03.02",dir:"IT"},
@@ -804,38 +1416,36 @@ const universities = [
   {name:"Технология изделий лёгкой промышленности",code:"29.03.01",dir:"Инженерия"}
  ]
 },
+
 {
- id:"lesgaft",short:"Лесгафта",name:"Университет имени П. Ф. Лесгафта",city:"Санкт-Петербург",
+ id:"lesgaft",
+ name:"Университет имени П. Ф. Лесгафта",
+ short:"Лесгафта",
+ city:"Санкт-Петербург",
  desc:"Физическая культура, спорт, спортивная подготовка и педагогика.",
  admission:"https://lesgaft.spb.ru/ru/node/478",
- fee:"https://lesgaft.spb.ru/sites/default/files/u91/stoimost_prikaz_na_26_god_1-2-4_0.pdf",
- price:"Опубликован приказ о стоимости платного обучения на 2026/27 год. Тариф зависит от программы и формы обучения.",
- priceTag:"Официальный приказ",
- budget:"Правила приёма 2026/27 и бюджетные места опубликованы университетом.",
+ fee:"https://lesgaft.spb.ru/sveden/paid_edu/",
+ cost:"Опубликован приказ о стоимости платного обучения на 2026/27. Тариф зависит от программы и формы обучения.",
+ budget:"Бюджетные места опубликованы в плане приёма университета.",
  programs:[
   {name:"Физическая культура",code:"49.03.01",dir:"Спорт"},
   {name:"Спорт",code:"49.03.04",dir:"Спорт"},
   {name:"Рекреация и спортивно-оздоровительный туризм",code:"49.03.03",dir:"Спорт"}
  ]
 },
+
 {
- id:"kfu",short:"КФУ",name:"Казанский федеральный университет",city:"Казань",
+ id:"kfu",
+ name:"Казанский федеральный университет",
+ short:"КФУ",
+ city:"Казань",
  desc:"IT, медицина, экономика, менеджмент, международные отношения и право.",
  admission:"https://admissions.kpfu.ru/",
- fee:"https://admissions.kpfu.ru/bakalavriat-specialitet/informaciya-o-priyome/stoimost-obucheniya/",
- price:"Официальный приказ о стоимости обучения на 2026/27 год опубликован. Для некоторых IT-программ доступны отдельные цены; например, 302 496 ₽ в год для одной из программ ИТИС.",
- priceTag:"Официальные тарифы 2026/27",
- budget:"Итоги приёма 2026 года и проходные баллы поступивших опубликованы на сайте КФУ.",
+ fee:"https://admissions.kpfu.ru/dokumenty/bakalavriat-specialitet/itogi-priyoma/",
+ cost:"Опубликован приказ о стоимости обучения на 2026/27 год. Итоговая цена определяется выбранной программой.",
+ budget:"Опубликованы итоги приёма 2026 года, включая статистику поступивших и проходные показатели.",
  programs:[
-  {name:"Программная инженерия",code:"09.03.04",dir:"IT",
-   examGroups:[
-    {label:"Русский язык",options:["russian"]},
-    {label:"Профильная математика",options:["math"]},
-    {label:"Информатика",options:["informatics"]}
-   ],
-   pass:{budget:265,paid:185,year:2026,source:"https://kpfu.ru/itis/admissions"},
-   costNote:"В источнике для данной программы опубликована стоимость 302 496 ₽ за 2026/27 год."
-  },
+  {name:"Программная инженерия",code:"09.03.04",dir:"IT"},
   {name:"Экономика",code:"38.03.01",dir:"Экономика"},
   {name:"Менеджмент",code:"38.03.02",dir:"Менеджмент"},
   {name:"Государственное и муниципальное управление",code:"38.03.04",dir:"Менеджмент"},
@@ -846,14 +1456,17 @@ const universities = [
   {name:"Лечебное дело",code:"31.05.01",dir:"Медицина"}
  ]
 },
+
 {
- id:"kai",short:"КНИТУ-КАИ",name:"КНИТУ-КАИ имени А. Н. Туполева",city:"Казань",
+ id:"kai",
+ name:"КНИТУ-КАИ имени А. Н. Туполева",
+ short:"КНИТУ-КАИ",
+ city:"Казань",
  desc:"Авиация, двигателестроение, информационные технологии и инженерия.",
  admission:"https://kai.ru/",
  fee:"https://kai.ru/",
- price:"Цена зависит от направления и формы обучения. Для точной суммы нужно открыть тарифы головного университета, а не филиалов.",
- priceTag:"Уточнить по программе",
- budget:"Бюджетные места, испытания и план приёма публикуются на сайте КНИТУ-КАИ.",
+ cost:"Стоимость зависит от направления и формы обучения. Точный тариф нужно проверять в приказе университета.",
+ budget:"План бюджетных мест и правила приёма публикуются на сайте КНИТУ-КАИ.",
  programs:[
   {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT"},
   {name:"Программная инженерия",code:"09.03.04",dir:"IT"},
@@ -862,34 +1475,29 @@ const universities = [
   {name:"Двигатели летательных аппаратов",code:"24.05.02",dir:"Инженерия"}
  ]
 },
+
 {
- id:"innopolis",short:"Иннополис",name:"Университет Иннополис",city:"Иннополис",
- desc:"Программная инженерия, робототехника, информационные технологии и AI.",
- admission:"https://apply.innopolis.university/bachelors/",
- fee:"https://apply.innopolis.university/bachelors/",
- price:"Возможна бесплатная учёба на бюджетном месте или при полном гранте. Университет указывает гранты от 20% до 100%. Тариф по платному месту следует уточнять в заявке.",
- priceTag:"Бюджет и гранты",
- budget:"В 2026 году на странице бакалавриата указаны 171 бюджетное и 367 платных мест.",
+ id:"innopolis",
+ name:"Университет Иннополис",
+ short:"Иннополис",
+ city:"Иннополис",
+ desc:"Программная инженерия, робототехника, IT и искусственный интеллект.",
+ admission:"https://apply.innopolis.university/",
+ fee:"https://apply.innopolis.university/",
+ cost:"Абитуриенты могут претендовать на гранты от 20% до 100% стоимости обучения. Уточняй индивидуальный тариф и размер гранта.",
+ priceNote:"Сайт университета указывает 171 бюджетное место бакалавриата в 2026 году.",
+ budget:"171 бюджетное место бакалавриата в 2026 году; также есть гранты на обучение.",
  programs:[
-  {name:"Программная инженерия",code:"09.03.04",dir:"IT",
-   examGroups:[
-    {label:"Русский язык",options:["russian"]},
-    {label:"Профильная математика",options:["math"]},
-    {label:"Информатика или физика",options:["informatics","physics"]}
-   ]},
-  {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT",
-   examGroups:[
-    {label:"Русский язык",options:["russian"]},
-    {label:"Профильная математика",options:["math"]},
-    {label:"Информатика или физика",options:["informatics","physics"]}
-   ]},
+  {name:"Программная инженерия",code:"09.03.04",dir:"IT"},
+  {name:"Информатика и вычислительная техника",code:"09.03.01",dir:"IT"},
   {name:"Робототехника",code:"15.03.06",dir:"Инженерия"}
  ]
 }
+
 ];
 
 /* =====================================================
-   СОСТОЯНИЕ И НАВИГАЦИЯ
+   СОСТОЯНИЕ
 ===================================================== */
 
 const state={
@@ -898,576 +1506,1032 @@ const state={
  direction:"",
  scores:{},
  baseMath:"",
- olympiad:{name:"",subject:"",level:"",result:""},
- internal:{type:"",details:""},
+ olympiad:{
+  name:"",
+  subject:"",
+  level:"",
+  result:"",
+  year:""
+ },
+ internal:{
+  type:"",
+  details:""
+ },
  step:0,
  resultForm:"budget"
 };
 
-let favorites=readStorage("postupai_favorites",[]);
-let compared=readStorage("postupai_compared",[]);
-let lastResults=[];
+let favorites=loadArray("postupai_favorites");
+let compared=loadArray("postupai_compared");
+let currentResults=[];
 
-function readStorage(key,fallback){
+function loadArray(key){
  try{
   const v=JSON.parse(localStorage.getItem(key));
-  return Array.isArray(v)?v:fallback;
- }catch(e){return fallback}
+  return Array.isArray(v)?v:[];
+ }catch(e){return []}
 }
-function saveStorage(){
+
+function saveData(){
  localStorage.setItem("postupai_favorites",JSON.stringify(favorites));
  localStorage.setItem("postupai_compared",JSON.stringify(compared));
 }
 
-function go(where){
- ["home","quiz-section","catalog-section","results-section"].forEach(id=>{
-  const el=document.getElementById(id);
-  if(el)el.style.display=(id===where || id==="home"&&where==="home")?"block":"none";
- });
- if(where==="quiz-section"){
-  state.step=0;
-  renderQuiz();
- }
- if(where==="catalog-section")renderCatalog();
- if(where==="results-section")renderResults();
- document.querySelectorAll(".navlinks button").forEach(b=>b.classList.remove("active"));
- const navId=where==="home"?"nav-home":where==="quiz-section"?"nav-quiz":"nav-catalog";
- document.getElementById(navId).classList.add("active");
- window.scrollTo({top:0,behavior:"smooth"});
+function escapeHTML(text){
+ return String(text??"").replace(/[&<>"']/g,ch=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ }[ch]));
+}
+
+function byId(id){return DB.find(x=>x.id===id)}
+
+/* =====================================================
+   ПРОКРУТКА
+===================================================== */
+
+function goTo(id){
+ const element=document.getElementById(id);
+ if(element)element.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 /* =====================================================
-   ЗАВИСИМЫЙ ОПРОС
+   ЗАВИСИМЫЕ ВОПРОСЫ
 ===================================================== */
 
-function getFlow(){
- const flow=[
+function getQuestions(){
+ const questions=[
   {
-   id:"education",title:"Какое у тебя образование?",
-   hint:"От этого зависит, какие правила приёма будут актуальны.",
+   id:"education",
+   title:"Какое у тебя образование?",
+   hint:"От этого зависит доступный способ поступления.",
    options:[
     ["school","Заканчиваю 11 класс","Поступление после школы."],
     ["finished","Уже окончил школу","Есть аттестат о среднем общем образовании."],
-    ["college","Окончил или заканчиваю колледж","Поступление на базе среднего профессионального образования."]
-   ]
-  },
-  {
-   id:"route",title:"Как планируешь поступать?",
-   hint:"После выбора способа сайт покажет только относящиеся к нему вопросы.",
-   options:[
-    ["ege","По результатам ЕГЭ","Покажем подбор по предметам и баллам."],
-    ["olympiad","По олимпиаде","Спросим название, предмет, уровень и результат олимпиады."],
-    ["internal","По внутренним испытаниям","ЕГЭ спрашивать не будем."]
-   ]
-  },
-  {
-   id:"direction",title:"Какое направление ты уже выбрал?",
-   hint:"Сайт не подбирает профессию. Он ищет программы выбранного направления.",
-   options:[
-    ["IT","IT и программирование","Информатика, разработка, технологии."],
-    ["Экономика","Экономика","Финансы, анализ, экономика."],
-    ["Менеджмент","Менеджмент и управление","Менеджмент, ГМУ, управление персоналом."],
-    ["Международные отношения","Международные отношения","Международная деятельность."],
-    ["Политология","Политология","Политические науки."],
-    ["Право","Юриспруденция","Право и юридические науки."],
-    ["Медицина","Медицина","Лечебное дело, педиатрия и другие медицинские специальности."],
-    ["Инженерия","Инженерия","Технические и инженерные программы."],
-    ["Математика","Математика","Фундаментальная и прикладная математика."],
-    ["Дизайн","Дизайн и архитектура","Дизайн, архитектура, проектирование."],
-    ["Гуманитарные науки","Гуманитарные науки","История, филология и другие дисциплины."],
-    ["Педагогика и психология","Педагогика и психология","Образование и психология."],
-    ["Спорт","Спорт","Физическая культура и спортивная подготовка."]
+    ["college","Окончил или заканчиваю колледж","Поступление после среднего профессионального образования."]
    ]
   }
  ];
 
+ let methods;
+
+ if(state.education==="college"){
+  methods=[
+   ["ege","По результатам ЕГЭ","Если у тебя есть результаты ЕГЭ."],
+   ["internal","По внутренним испытаниям после колледжа","Если вуз разрешает поступать по вступительным испытаниям для СПО."]
+  ];
+ }else{
+  methods=[
+   ["ege","По результатам ЕГЭ","Подбор по экзаменам и баллам."],
+   ["olympiad","По олимпиаде","Проверка олимпиадных льгот и правил вузов."],
+   ["internal","По внутренним испытаниям","Если есть законное основание сдавать экзамены в вузе."]
+  ];
+ }
+
+ questions.push({
+  id:"route",
+  title:"Как планируешь поступать?",
+  hint:"После выбора появятся только относящиеся к нему вопросы.",
+  options:methods
+ });
+
+ questions.push({
+  id:"direction",
+  title:"Какое направление ты уже выбрал?",
+  hint:"Сайт не подбирает профессию. Он ищет университеты и программы по твоему выбору.",
+  options:[
+   ["IT","IT и программирование","Разработка, информатика, компьютерные науки."],
+   ["Экономика","Экономика","Финансы, экономика и анализ."],
+   ["Менеджмент","Менеджмент и управление","Менеджмент, ГМУ и управление персоналом."],
+   ["Международные отношения","Международные отношения","Международная деятельность."],
+   ["Политология","Политология","Политические науки."],
+   ["Право","Юриспруденция","Право и юридические направления."],
+   ["Медицина","Медицина","Лечебное дело, педиатрия и другие специальности."],
+   ["Инженерия","Инженерия","Технические и инженерные программы."],
+   ["Математика","Математика","Фундаментальная и прикладная математика."],
+   ["Дизайн","Дизайн и архитектура","Дизайн, архитектура и проектирование."],
+   ["Гуманитарные науки","Гуманитарные науки","История, филология и другие дисциплины."],
+   ["Педагогика и психология","Педагогика и психология","Образование и психология."],
+   ["Спорт","Спорт","Физическая культура и спортивная подготовка."]
+  ]
+ });
+
  if(state.route==="ege"){
-  flow.push({
-   id:"ege",title:"Укажи предметы и баллы ЕГЭ",
-   hint:"Отметь только те экзамены, которые сдавал. Для каждого введи свой балл. Базовая математика задаётся отдельно.",
+  questions.push({
+   id:"ege",
+   title:"Укажи предметы и баллы ЕГЭ",
+   hint:"Отметь только сданные предметы. Базовую математику можно указать отдельно.",
    type:"ege"
   });
  }
+
  if(state.route==="olympiad"){
-  flow.push({
-   id:"olympiad",title:"Информация об олимпиаде",
-   hint:"Укажи данные диплома. Сайт не будет спрашивать баллы ЕГЭ.",
+  questions.push({
+   id:"olympiad",
+   title:"Информация об олимпиаде",
+   hint:"Укажи данные диплома. Вопросов о ЕГЭ не будет.",
    type:"olympiad"
   });
  }
+
  if(state.route==="internal"){
-  flow.push({
-   id:"internal",title:"Какие внутренние испытания планируешь сдавать?",
-   hint:"Перечень зависит от вуза, программы и основания поступления. Баллы ЕГЭ здесь не используются.",
+  questions.push({
+   id:"internal",
+   title:"Какие внутренние испытания планируешь сдавать?",
+   hint:"Перечень зависит от вуза, направления и основания поступления.",
    type:"internal"
   });
  }
- return flow;
+
+ return questions;
 }
 
+/* =====================================================
+   ОТРИСОВКА ОПРОСА
+===================================================== */
+
 function renderQuiz(){
- const flow=getFlow();
- state.step=Math.min(state.step,flow.length-1);
- const q=flow[state.step];
+ const questions=getQuestions();
+
+ if(state.step>=questions.length)state.step=questions.length-1;
+
+ const question=questions[state.step];
+
+ document.querySelectorAll(".step").forEach((el,index)=>{
+  el.classList.toggle("active",index===state.step);
+ });
+
+ document.getElementById("prevBtn").style.visibility=
+  state.step===0?"hidden":"visible";
+
+ document.getElementById("nextBtn").textContent=
+  state.step===questions.length-1?
+  "Показать результаты →":
+  "Продолжить →";
+
  const host=document.getElementById("questionHost");
 
- document.querySelectorAll(".step").forEach((el,i)=>{
-  el.classList.toggle("active",i===state.step);
- });
- document.getElementById("prevBtn").style.visibility=state.step===0?"hidden":"visible";
- document.getElementById("nextBtn").textContent=state.step===flow.length-1?"Показать результаты →":"Продолжить →";
-
- if(q.type==="ege"){
-  host.innerHTML=`
-   <div class="question active">
-    <h3>${q.title}</h3><p class="hint">${q.hint}</p>
-    <div class="exam-grid" id="examGrid">
-    ${Object.entries(EXAMS).map(([id,name])=>`
-     <label class="exam-item ${state.scores[id]===undefined?"disabled":""}">
-      <input type="checkbox" data-exam-check="${id}" ${state.scores[id]!==undefined?"checked":""}>
-      <span>${name}<small>Максимум 100</small></span>
-      <input type="number" data-exam-score="${id}" min="0" max="100"
-       placeholder="0–100" value="${state.scores[id]??""}" ${state.scores[id]===undefined?"disabled":""}>
-     </label>`).join("")}
-    </div>
-    <div class="field-wrap" style="margin-top:16px;max-width:280px">
-     <label class="field-label" for="baseMath">Базовая математика — необязательно</label>
-     <input class="field" id="baseMath" type="number" min="2" max="5" step="1" placeholder="От 2 до 5" value="${state.baseMath}">
-     <small class="muted">Базовая математика оценивается по пятибалльной шкале и не заменяет профильную.</small>
-    </div>
-    <div class="notice">Сумма будет рассчитываться отдельно для каждой программы — только по требуемым предметам. Нельзя просто сложить все введённые баллы.</div>
-   </div>`;
-  bindExamInputs();
+ if(question.type==="ege"){
+  renderEGE(host);
   return;
  }
 
- if(q.type==="olympiad"){
-  host.innerHTML=`
-   <div class="question active">
-    <h3>${q.title}</h3><p class="hint">${q.hint}</p>
-    <div class="field-wrap"><label class="field-label">Название олимпиады</label>
-     <input id="olympName" class="field" placeholder="Например, ВсОШ" value="${escapeHTML(state.olympiad.name)}"></div>
-    <div class="field-wrap"><label class="field-label">Предмет олимпиады</label>
-     <select id="olympSubject" class="field">
-      <option value="">Выбери предмет</option>
-      ${Object.values(EXAMS).filter(x=>x!=="Математика профильная").map(x=>`<option ${state.olympiad.subject===x?"selected":""}>${x}</option>`).join("")}
-     </select></div>
-    <div class="field-wrap"><label class="field-label">Уровень</label>
-     <select id="olympLevel" class="field">
-      <option value="">Выбери уровень</option>
-      ${["I уровень","II уровень","III уровень","Всероссийская олимпиада школьников","Другой уровень / не знаю"].map(x=>`<option ${state.olympiad.level===x?"selected":""}>${x}</option>`).join("")}
-     </select></div>
-    <div class="field-wrap"><label class="field-label">Результат</label>
-     <select id="olympResult" class="field">
-      ${["Победитель","Призёр","Участник","Пока не участвовал"].map(x=>`<option ${state.olympiad.result===x?"selected":""}>${x}</option>`).join("")}
-     </select></div>
-    <div class="notice">Олимпиадная льгота зависит от уровня олимпиады, профиля, класса, года диплома и конкретной программы. Победа сама по себе не гарантирует БВИ во всех вузах.</div>
-   </div>`;
+ if(question.type==="olympiad"){
+  renderOlympiad(host);
   return;
  }
 
- if(q.type==="internal"){
-  host.innerHTML=`
-   <div class="question active">
-    <h3>${q.title}</h3><p class="hint">${q.hint}</p>
-    <div class="field-wrap"><label class="field-label">Основание / тип испытаний</label>
-     <select id="internalType" class="field">
-      <option value="">Выбери вариант</option>
-      <option value="school" ${state.internal.type==="school"?"selected":""}>Общеобразовательные предметы, проводимые вузом</option>
-      <option value="college" ${state.internal.type==="college"?"selected":""}>Испытания для поступающих после колледжа</option>
-      <option value="creative" ${state.internal.type==="creative"?"selected":""}>Творческие или профессиональные испытания</option>
-      <option value="special" ${state.internal.type==="special"?"selected":""}>Имею право сдавать внутренние испытания по особому основанию</option>
-      <option value="unknown" ${state.internal.type==="unknown"?"selected":""}>Пока не знаю, какие испытания нужны</option>
-     </select>
-    </div>
-    <div class="field-wrap"><label class="field-label">Дополнительная информация — необязательно</label>
-     <textarea class="field" id="internalDetails" rows="3" placeholder="Например: математика, русский язык, творческий экзамен">${escapeHTML(state.internal.details)}</textarea>
-    </div>
-    <div class="info">После опроса откроются страницы приёмных комиссий выбранных вузов. У каждого университета перечень и формат внутренних экзаменов свои. Сайт не будет подменять их баллами ЕГЭ.</div>
-   </div>`;
+ if(question.type==="internal"){
+  renderInternal(host);
   return;
  }
 
- if(q.options){
-  const selected=state[q.id];
-  host.innerHTML=`
-   <div class="question active">
-    <h3>${q.title}</h3><p class="hint">${q.hint}</p>
-    <div class="options">
-     ${q.options.map(([value,title,description])=>`
-      <button class="option ${selected===value?"selected":""}" data-choice="${value}">
-       <strong>${title}</strong><small>${description}</small>
-      </button>`).join("")}
-    </div>
-   </div>`;
-  host.querySelectorAll("[data-choice]").forEach(btn=>{
-   btn.addEventListener("click",()=>{
-    state[q.id]=btn.dataset.choice;
-    if(q.id==="route"){
-     state.scores={};state.baseMath="";
-    }
-    if(q.id==="education"){
-     /* Образование сохранено и будет использовано далее при отображении правил. */
-    }
-    renderQuiz();
-   });
+ host.innerHTML=`
+  <div class="question active">
+   <h3>${escapeHTML(question.title)}</h3>
+   <p class="hint">${escapeHTML(question.hint)}</p>
+   <div class="options">
+    ${question.options.map(([value,title,description])=>`
+     <button class="option ${state[question.id]===value?"selected":""}"
+       data-choice="${escapeHTML(value)}">
+      <strong>${escapeHTML(title)}</strong>
+      <small>${escapeHTML(description)}</small>
+     </button>
+    `).join("")}
+   </div>
+  </div>
+ `;
+
+ host.querySelectorAll("[data-choice]").forEach(button=>{
+  button.addEventListener("click",()=>{
+   chooseAnswer(question.id,button.dataset.choice);
   });
+ });
+}
+
+function chooseAnswer(id,value){
+ const previous=state[id];
+ state[id]=value;
+
+ if(id==="education"&&previous!==value){
+  state.route="";
+  state.direction="";
+  state.scores={};
+  state.baseMath="";
+  state.olympiad={name:"",subject:"",level:"",result:"",year:""};
+  state.internal={type:"",details:""};
+  state.step=0;
  }
+
+ if(id==="route"&&previous!==value){
+  state.scores={};
+  state.baseMath="";
+  state.olympiad={name:"",subject:"",level:"",result:"",year:""};
+  state.internal={type:"",details:""};
+ }
+
+ renderQuiz();
+}
+
+/* =====================================================
+   ПОЛЯ ЕГЭ
+===================================================== */
+
+function renderEGE(host){
+ const subjects=Object.entries(EXAMS);
+
+ host.innerHTML=`
+  <div class="question active">
+   <h3>Укажи предметы и баллы ЕГЭ</h3>
+   <p class="hint">
+    Выбирай только экзамены, которые ты сдавал.
+    Для каждого предмета введи результат от 0 до 100.
+   </p>
+
+   <div class="exam-grid" id="examGrid">
+    ${subjects.map(([id,name])=>`
+     <label class="exam-item ${state.scores[id]===undefined?"disabled":""}">
+      <input type="checkbox" data-exam-check="${id}"
+       ${state.scores[id]!==undefined?"checked":""}>
+      <span>${name}<small>Максимум 100</small></span>
+      <input type="number"
+       data-exam-score="${id}"
+       min="0" max="100"
+       placeholder="0–100"
+       value="${state.scores[id]??""}"
+       ${state.scores[id]===undefined?"disabled":""}>
+     </label>
+    `).join("")}
+   </div>
+
+   <div class="field-wrap" style="margin-top:16px;max-width:300px">
+    <label class="field-label" for="baseMath">
+     Базовая математика — необязательно
+    </label>
+    <input class="field" id="baseMath" type="number"
+     min="2" max="5" step="1"
+     placeholder="От 2 до 5"
+     value="${escapeHTML(state.baseMath)}">
+    <small class="muted">
+     Максимум — 5. Этот результат не добавляется к конкурсной сумме
+     и не заменяет профильную математику.
+    </small>
+   </div>
+
+   <div class="notice">
+    Сайт рассчитывает сумму отдельно для каждой программы.
+    Он учитывает только предметы, необходимые именно для неё.
+    Если требования программы не подтверждены, сайт сообщит об этом,
+    а не станет угадывать.
+   </div>
+  </div>
+ `;
+
+ bindExamInputs();
 }
 
 function bindExamInputs(){
  const grid=document.getElementById("examGrid");
- grid.addEventListener("change",e=>{
-  if(e.target.matches("[data-exam-check]")){
-   const id=e.target.dataset.examCheck;
-   const score=grid.querySelector(`[data-exam-score="${id}"]`);
-   if(e.target.checked){
-    if(state.scores[id]===undefined)state.scores[id]="";
-    score.disabled=false;
-   }else{
-    delete state.scores[id];score.value="";score.disabled=true;
-   }
-   renderQuiz();
+
+ grid.addEventListener("change",event=>{
+  if(!event.target.matches("[data-exam-check]"))return;
+
+  const id=event.target.dataset.examCheck;
+
+  if(event.target.checked){
+   if(state.scores[id]===undefined)state.scores[id]="";
+  }else{
+   delete state.scores[id];
   }
+
+  renderQuiz();
  });
- grid.addEventListener("input",e=>{
-  if(e.target.matches("[data-exam-score]")){
-   const id=e.target.dataset.examScore;
-   const val=e.target.value;
-   if(val===""){state.scores[id]="";return}
-   let n=Number(val);
-   if(!Number.isFinite(n))n=0;
-   n=Math.max(0,Math.min(100,n));
-   e.target.value=n;state.scores[id]=n;
+
+ grid.addEventListener("input",event=>{
+  if(!event.target.matches("[data-exam-score]"))return;
+
+  const id=event.target.dataset.examScore;
+  const input=event.target;
+
+  if(input.value===""){
+   state.scores[id]="";
+   return;
   }
+
+  let value=Number(input.value);
+
+  if(!Number.isFinite(value))value=0;
+
+  value=Math.max(0,Math.min(100,value));
+
+  input.value=value;
+  state.scores[id]=value;
  });
- const base=document.getElementById("baseMath");
- base.addEventListener("input",()=>state.baseMath=base.value);
+
+ document.getElementById("baseMath").addEventListener("input",event=>{
+  state.baseMath=event.target.value;
+ });
 }
 
-function validateCurrent(){
- const q=getFlow()[state.step];
- if(q.id==="education"&&!state.education){alert("Выбери образование.");return false}
- if(q.id==="route"&&!state.route){alert("Выбери способ поступления.");return false}
- if(q.id==="direction"&&!state.direction){alert("Выбери направление.");return false}
+/* =====================================================
+   ПОЛЯ ОЛИМПИАДЫ
+===================================================== */
 
- if(q.type==="ege"){
+function renderOlympiad(host){
+ host.innerHTML=`
+  <div class="question active">
+   <h3>Информация об олимпиаде</h3>
+   <p class="hint">
+    Укажи название, предмет, уровень и результат олимпиады.
+    ЕГЭ в этой ветке опроса не используется.
+   </p>
+
+   <div class="field-wrap">
+    <label class="field-label">Название олимпиады</label>
+    <input class="field" id="olympName"
+     placeholder="Например, ВсОШ"
+     value="${escapeHTML(state.olympiad.name)}">
+   </div>
+
+   <div class="field-wrap">
+    <label class="field-label">Предмет</label>
+    <select class="field" id="olympSubject">
+     <option value="">Выбери предмет</option>
+     ${Object.values(EXAMS).map(name=>`
+      <option ${state.olympiad.subject===name?"selected":""}>${name}</option>
+     `).join("")}
+    </select>
+   </div>
+
+   <div class="field-wrap">
+    <label class="field-label">Уровень олимпиады</label>
+    <select class="field" id="olympLevel">
+     <option value="">Выбери уровень</option>
+     ${[
+      "I уровень",
+      "II уровень",
+      "III уровень",
+      "Всероссийская олимпиада школьников",
+      "Другой уровень / не знаю"
+     ].map(x=>`
+      <option ${state.olympiad.level===x?"selected":""}>${x}</option>
+     `).join("")}
+    </select>
+   </div>
+
+   <div class="field-wrap">
+    <label class="field-label">Результат</label>
+    <select class="field" id="olympResult">
+     ${[
+      "Победитель",
+      "Призёр",
+      "Участник",
+      "Пока не участвовал"
+     ].map(x=>`
+      <option ${state.olympiad.result===x?"selected":""}>${x}</option>
+     `).join("")}
+    </select>
+   </div>
+
+   <div class="field-wrap">
+    <label class="field-label">Год получения диплома</label>
+    <input class="field" id="olympYear" type="number"
+     min="2020" max="2026" placeholder="Например, 2026"
+     value="${escapeHTML(state.olympiad.year)}">
+   </div>
+
+   <div class="notice">
+    Олимпиадные льготы зависят от уровня олимпиады, профиля,
+    класса, года диплома и конкретной программы.
+    Победа сама по себе не гарантирует БВИ во всех вузах.
+   </div>
+  </div>
+ `;
+}
+
+/* =====================================================
+   ПОЛЯ ВНУТРЕННИХ ИСПЫТАНИЙ
+===================================================== */
+
+function renderInternal(host){
+ host.innerHTML=`
+  <div class="question active">
+   <h3>Какие внутренние испытания планируешь сдавать?</h3>
+   <p class="hint">
+    Укажи тип испытаний. ЕГЭ здесь не запрашивается
+    и не используется для сравнения.
+   </p>
+
+   <div class="field-wrap">
+    <label class="field-label">Основание / тип испытаний</label>
+    <select class="field" id="internalType">
+     <option value="">Выбери вариант</option>
+     <option value="college" ${state.internal.type==="college"?"selected":""}>
+      Испытания для поступающих после колледжа
+     </option>
+     <option value="school" ${state.internal.type==="school"?"selected":""}>
+      Общеобразовательные испытания, проводимые вузом
+     </option>
+     <option value="creative" ${state.internal.type==="creative"?"selected":""}>
+      Творческие или профессиональные испытания
+     </option>
+     <option value="special" ${state.internal.type==="special"?"selected":""}>
+      Есть особое законное основание сдавать внутренние экзамены
+     </option>
+     <option value="unknown" ${state.internal.type==="unknown"?"selected":""}>
+      Пока не знаю, какие испытания нужны
+     </option>
+    </select>
+   </div>
+
+   <div class="field-wrap">
+    <label class="field-label">Дополнительная информация — необязательно</label>
+    <textarea class="field" id="internalDetails" rows="3"
+     placeholder="Например: математика, русский язык, творческий экзамен">${escapeHTML(state.internal.details)}</textarea>
+   </div>
+
+   <div class="info">
+    После опроса откроются страницы приёмных комиссий выбранных вузов.
+    У каждого университета перечень и формат внутренних экзаменов свои.
+    Сайт не станет подменять их баллами ЕГЭ.
+   </div>
+  </div>
+ `;
+}
+
+/* =====================================================
+   ПРОВЕРКА ОТВЕТОВ
+===================================================== */
+
+function validateCurrentQuestion(){
+ const question=getQuestions()[state.step];
+
+ if(question.id==="education"&&!state.education){
+  alert("Выбери вариант образования.");
+  return false;
+ }
+
+ if(question.id==="route"&&!state.route){
+  alert("Выбери способ поступления.");
+  return false;
+ }
+
+ if(question.id==="direction"&&!state.direction){
+  alert("Выбери направление.");
+  return false;
+ }
+
+ if(question.type==="ege"){
   const selected=Object.keys(state.scores);
-  if(!selected.length){alert("Отметь предметы, по которым сдавал ЕГЭ.");return false}
+
+  if(!selected.length){
+   alert("Отметь хотя бы один экзамен.");
+   return false;
+  }
+
   for(const id of selected){
    const value=state.scores[id];
-   if(value===""||!Number.isFinite(Number(value))||Number(value)<0||Number(value)>100){
-    alert("Введи корректный балл от 0 до 100 по каждому отмеченному предмету.");return false;
+
+   if(value===""||!Number.isFinite(Number(value))||
+      Number(value)<0||Number(value)>100){
+    alert("Введи корректный балл от 0 до 100 по каждому выбранному предмету.");
+    return false;
    }
   }
+
   if(state.baseMath!==""){
    const n=Number(state.baseMath);
+
    if(!Number.isInteger(n)||n<2||n>5){
-    alert("Базовая математика оценивается по шкале от 2 до 5. Максимум — 5.");return false;
+    alert("Базовая математика оценивается от 2 до 5. Максимум — 5.");
+    return false;
    }
   }
  }
- if(q.type==="olympiad"){
+
+ if(question.type==="olympiad"){
   state.olympiad.name=document.getElementById("olympName").value.trim();
   state.olympiad.subject=document.getElementById("olympSubject").value;
   state.olympiad.level=document.getElementById("olympLevel").value;
   state.olympiad.result=document.getElementById("olympResult").value;
+  state.olympiad.year=document.getElementById("olympYear").value;
+
   if(!state.olympiad.name||!state.olympiad.subject||!state.olympiad.level){
-   alert("Заполни название, предмет и уровень олимпиады.");return false;
+   alert("Заполни название, предмет и уровень олимпиады.");
+   return false;
   }
  }
- if(q.type==="internal"){
+
+ if(question.type==="internal"){
   state.internal.type=document.getElementById("internalType").value;
   state.internal.details=document.getElementById("internalDetails").value.trim();
-  if(!state.internal.type){alert("Выбери тип внутренних испытаний.");return false}
+
+  if(!state.internal.type){
+   alert("Выбери тип внутренних испытаний.");
+   return false;
+  }
  }
+
  return true;
 }
 
 function nextQuestion(){
- if(!validateCurrent())return;
- const flow=getFlow();
- if(state.step<flow.length-1){
-  state.step++;renderQuiz();return;
+ if(!validateCurrentQuestion())return;
+
+ const questions=getQuestions();
+
+ if(state.step<questions.length-1){
+  state.step++;
+  renderQuiz();
+  return;
  }
+
  buildResults();
 }
+
 function previousQuestion(){
  if(state.step>0){
-  state.step--;renderQuiz();
+  state.step--;
+  renderQuiz();
  }
 }
 
 /* =====================================================
-   ПРОВЕРКА СООТВЕТСТВИЯ ЕГЭ КОНКРЕТНОЙ ПРОГРАММЕ
+   РАСЧЁТ СУММЫ ЕГЭ ПО КОНКРЕТНОЙ ПРОГРАММЕ
 ===================================================== */
 
 function calculateProgramScore(program){
- if(!program.examGroups)return {
-  known:false,reason:"Предметы этой программы ещё не подтверждены в базе. Проверь правила приёма по ссылке."
- };
- const used=[];
+ if(!program.examGroups){
+  return {
+   known:false,
+   reason:"Набор вступительных предметов этой программы пока не подтверждён."
+  };
+ }
+
  let total=0;
+ const used=[];
+
  for(const group of program.examGroups){
   const available=group.options
    .filter(id=>state.scores[id]!==undefined&&state.scores[id]!=="")
    .map(id=>({id,score:Number(state.scores[id])}))
    .sort((a,b)=>b.score-a.score);
+
   if(!available.length){
    return {
     known:false,
-    reason:"Не хватает экзамена: "+group.label,
-    missing:group.label
+    reason:"Не указан необходимый предмет: "+group.label
    };
   }
+
   const best=available[0];
   total+=best.score;
-  used.push({id:best.id,score:best.score,label:EXAMS[best.id]});
+
+  used.push({
+   id:best.id,
+   name:EXAMS[best.id],
+   score:best.score
+  });
  }
+
  return {known:true,total,used};
 }
 
-function comparePass(score,threshold){
- if(threshold===null||threshold===undefined)return "unknown";
- if(score>=threshold)return "above";
- if(score>=threshold-10)return "close";
- return "below";
-}
+/* =====================================================
+   СТАТУС ПОСТУПЛЕНИЯ
+===================================================== */
 
 function evaluateProgram(program,form){
- if(state.route!=="ege"){
-  if(state.route==="olympiad"){
-   return {
-    type:"olympiad",status:"unknown",
-    label:"Нужно проверить олимпиадную льготу",
-    detail:"Сопоставь свой диплом с перечнем олимпиад и льгот конкретного вуза."
-   };
-  }
+ if(state.route==="olympiad"){
   return {
-   type:"internal",status:"unknown",
+   status:"unknown",
+   label:"Нужно проверить олимпиадную льготу",
+   detail:"Сверь свой диплом с перечнем олимпиад, профилем и льготами конкретного вуза."
+  };
+ }
+
+ if(state.route==="internal"){
+  return {
+   status:"unknown",
    label:"Нужно проверить внутренние испытания",
-   detail:"Баллы ЕГЭ для этого маршрута не сравниваются."
+   detail:"Баллы ЕГЭ для выбранного способа поступления не сравниваются."
   };
  }
- const calculated=calculateProgramScore(program);
- if(!calculated.known){
+
+ const calculation=calculateProgramScore(program);
+
+ if(!calculation.known){
   return {
-   type:"ege",status:"unknown",label:"Недостаточно данных",
-   detail:calculated.reason
+   status:"unknown",
+   label:"Недостаточно данных",
+   detail:calculation.reason
   };
  }
- if(!program.pass||program.pass[form]===null||program.pass[form]===undefined){
+
+ if(!program.pass||program.pass[form]===undefined||
+    program.pass[form]===null){
   return {
-   type:"ege",status:"unknown",total:calculated.total,used:calculated.used,
+   status:"unknown",
+   total:calculation.total,
+   used:calculation.used,
    label:"Нет подтверждённого проходного балла",
-   detail:"Требования к предметам сопоставлены, но проходной балл этой программы не внесён."
+   detail:"Состав экзаменов известен, но проходной ориентир для этой формы обучения не внесён."
   };
  }
+
  const threshold=program.pass[form];
- const status=comparePass(calculated.total,threshold);
- const difference=calculated.total-threshold;
- const label=status==="above"?"Выше проходного ориентира":
-  status==="close"?"Пограничный результат":"Пока не хватает баллов";
+ const difference=calculation.total-threshold;
+
+ if(difference>=0){
+  return {
+   status:"above",
+   label:"Выше проходного ориентира",
+   total:calculation.total,
+   threshold,
+   difference,
+   used:calculation.used,
+   detail:`Твоя сумма по предметам программы: ${calculation.total}. Проходной ориентир ${program.pass.year} года: ${threshold}.`
+  };
+ }
+
+ if(difference>=-10){
+  return {
+   status:"close",
+   label:"Пограничный результат",
+   total:calculation.total,
+   threshold,
+   difference,
+   used:calculation.used,
+   detail:`До опубликованного проходного ориентира не хватает ${Math.abs(difference)} баллов.`
+  };
+ }
+
  return {
-  type:"ege",status,total:calculated.total,threshold,difference,
-  used:calculated.used,label,
-  detail:`Твои баллы по нужным предметам: ${calculated.total}. Проходной ориентир ${program.pass.year} года: ${threshold}.`
+  status:"below",
+  label:"Пока не хватает баллов",
+  total:calculation.total,
+  threshold,
+  difference,
+  used:calculation.used,
+  detail:`До опубликованного проходного ориентира не хватает ${Math.abs(difference)} баллов.`
  };
 }
 
 /* =====================================================
-   РЕЗУЛЬТАТЫ
+   ПОСТРОЕНИЕ РЕЗУЛЬТАТОВ
 ===================================================== */
 
 function buildResults(){
- lastResults=[];
- universities.forEach(u=>{
-  u.programs.filter(p=>p.dir===state.direction).forEach(p=>{
-   lastResults.push({uni:u,program:p,evaluation:evaluateProgram(p,"budget")});
-  });
+ currentResults=[];
+
+ DB.forEach(uni=>{
+  uni.programs
+   .filter(program=>program.dir===state.direction)
+   .forEach(program=>{
+    currentResults.push({
+     uni,
+     program
+    });
+   });
  });
- go("results-section");
+
+ state.resultForm="budget";
+
+ document.getElementById("results").style.display="block";
+ document.getElementById("results").scrollIntoView({
+  behavior:"smooth",
+  block:"start"
+ });
+
+ renderResults();
 }
 
 function renderResults(){
- const list=document.getElementById("resultsList");
+ const host=document.getElementById("resultsList");
  const caption=document.getElementById("resultsCaption");
+
  if(state.route==="ege"){
-  caption.textContent="Сопоставлены выбранное направление и введённые баллы. Базовая математика не входит в конкурсную сумму.";
+  caption.textContent=
+   "Сравнение по выбранным предметам ЕГЭ. Для каждой программы учитываются только необходимые ей экзамены.";
  }else if(state.route==="olympiad"){
-  caption.textContent="Результаты олимпиады будут проверяться по правилам конкретных вузов. Баллы ЕГЭ не запрашивались.";
+  caption.textContent=
+   "Подбор по олимпиаде. Баллы ЕГЭ не запрашивались и не используются.";
  }else{
-  caption.textContent="Показаны официальные страницы для проверки внутренних испытаний. Баллы ЕГЭ не используются.";
+  caption.textContent=
+   "Подбор по внутренним испытаниям. Баллы ЕГЭ не используются.";
  }
 
- const forms=["budget","paid"];
- let html=`
- <div class="tabs">
-  <button class="tab ${state.resultForm==="budget"?"active":""}" data-form="budget">Бюджет</button>
-  <button class="tab ${state.resultForm==="paid"?"active":""}" data-form="paid">Платное обучение</button>
- </div>`;
+ let html="";
+
  if(state.route==="ege"){
-  const entries=[];
-  lastResults.forEach(item=>{
-   const evaluation=evaluateProgram(item.program,state.resultForm);
-   entries.push({...item,evaluation});
-  });
-  const priority={above:0,close:1,unknown:2,below:3};
-  entries.sort((a,b)=>(priority[a.evaluation.status]??4)-(priority[b.evaluation.status]??4));
-  html+=entries.map(item=>programResultHTML(item.uni,item.program,item.evaluation)).join("");
-  if(!entries.length)html+=`<div class="empty">По выбранному направлению пока нет программ в каталоге.</div>`;
-  html+=`<div class="notice">Сравнение возможно только там, где в базе подтверждены и набор экзаменов, и проходной ориентир. Если данных нет, это не означает, что поступить невозможно. Проверяй конкурс на официальном сайте.</div>`;
- }else{
-  html+=lastResults.map(item=>programResultHTML(item.uni,item.program,evaluateProgram(item.program,state.resultForm))).join("");
-  html+=`<div class="notice">${state.route==="olympiad"?"Олимпиадные льготы зависят от перечня, уровня и профиля олимпиады.":"Внутренние испытания могут различаться по программе и основанию поступления."} Обязательно открой правила приёма конкретного вуза.</div>`;
+  html+=`
+   <div class="tabs">
+    <button class="tab ${state.resultForm==="budget"?"active":""}" data-form="budget">Бюджет</button>
+    <button class="tab ${state.resultForm==="paid"?"active":""}" data-form="paid">Платное обучение</button>
+   </div>
+  `;
  }
- list.innerHTML=html;
- document.querySelectorAll("[data-form]").forEach(btn=>{
+
+ const entries=currentResults.map(item=>({
+  ...item,
+  evaluation:evaluateProgram(item.program,state.resultForm)
+ }));
+
+ const order={above:0,close:1,unknown:2,below:3};
+
+ entries.sort((a,b)=>
+  (order[a.evaluation.status]??4)-(order[b.evaluation.status]??4)
+ );
+
+ if(!entries.length){
+  html+=`<div class="empty">В каталоге пока нет программ выбранного направления.</div>`;
+ }else{
+  html+=entries.map(item=>
+   programResultHTML(item.uni,item.program,item.evaluation)
+  ).join("");
+ }
+
+ html+=`
+  <div class="notice">
+   Проходные баллы прошлых лет не гарантируют зачисление.
+   Если у программы нет подтверждённого набора экзаменов или проходного
+   ориентира, сайт отмечает это отдельно. Это не означает, что поступить
+   невозможно — необходимо проверить текущие правила приёма.
+  </div>
+ `;
+
+ host.innerHTML=html;
+
+ host.querySelectorAll("[data-form]").forEach(btn=>{
   btn.addEventListener("click",()=>{
-   state.resultForm=btn.dataset.form;renderResults();
+   state.resultForm=btn.dataset.form;
+   renderResults();
   });
  });
- list.querySelectorAll("[data-fav]").forEach(btn=>{
-  btn.addEventListener("click",()=>toggleFavorite(btn.dataset.fav));
+
+ host.querySelectorAll("[data-favorite]").forEach(btn=>{
+  btn.addEventListener("click",()=>toggleFavorite(btn.dataset.favorite));
  });
- list.querySelectorAll("[data-compare]").forEach(btn=>{
+
+ host.querySelectorAll("[data-compare]").forEach(btn=>{
   btn.addEventListener("click",()=>toggleCompare(btn.dataset.compare));
  });
 }
 
-function programResultHTML(u,p,e){
- const cls=e.status==="above"?"above":e.status==="close"?"close":e.status==="below"?"below":"unknown";
+function programResultHTML(uni,program,evaluation){
+ const cls=evaluation.status==="above"?"above":
+  evaluation.status==="close"?"close":
+  evaluation.status==="below"?"below":"unknown";
+
+ let scoreTags="";
+
+ if(evaluation.used){
+  scoreTags=evaluation.used.map(x=>
+   `<span class="tag">${escapeHTML(x.name)}: ${x.score}</span>`
+  ).join("");
+
+  scoreTags+=`<span class="tag blue">Сумма: ${evaluation.total}</span>`;
+ }
+
+ const pass=program.pass;
+ const passLine=pass?
+  `<div class="tags">
+   <span class="tag">Бюджет ${pass.year}: ${pass.budget??"нет данных"}</span>
+   <span class="tag">Платное ${pass.year}: ${pass.paid??"нет данных"}</span>
+  </div>`:"";
+
  return `
- <article class="result-card">
-  <div class="result-title">
-   <div><h3>${escapeHTML(p.name)}</h3><p>${escapeHTML(u.name)} · ${escapeHTML(u.city)} · ${p.code}</p></div>
-   <span class="result-status ${cls}">${e.label}</span>
-  </div>
-  <p>${escapeHTML(e.detail||"")}</p>
-  ${e.used?`<div class="tags">${e.used.map(x=>`<span class="tag">${x.label}: ${x.score}</span>`).join("")}<span class="tag blue">Сумма: ${e.total}</span></div>`:""}
-  ${p.pass?`<div class="tags">
-   <span class="tag">Бюджет ${p.pass.year}: ${p.pass.budget??"нет данных"}</span>
-   <span class="tag">Платное ${p.pass.year}: ${p.pass.paid??"нет данных"}</span>
-  </div>`:""}
-  <p><b>Стоимость платного обучения:</b> ${escapeHTML(u.price)}</p>
-  <div class="uni-buttons">
-   <button class="small" data-fav="${u.id}">♡ В избранное</button>
-   <button class="small" data-compare="${u.id}">⇄ Сравнить вуз</button>
-   <a class="small" href="${u.admission}" target="_blank" rel="noopener">Правила приёма ↗</a>
-   <a class="small" href="${u.fee}" target="_blank" rel="noopener">Тарифы ↗</a>
-  </div>
- </article>`;
+  <article class="result-card">
+   <div class="result-title">
+    <div>
+     <h3>${escapeHTML(program.name)}</h3>
+     <p>${escapeHTML(uni.name)} · ${escapeHTML(uni.city)} · ${program.code}</p>
+    </div>
+    <span class="result-status ${cls}">${escapeHTML(evaluation.label)}</span>
+   </div>
+
+   <p>${escapeHTML(evaluation.detail||"")}</p>
+
+   ${scoreTags?`<div class="tags">${scoreTags}</div>`:""}
+   ${passLine}
+
+   <p><b>Платное обучение:</b> ${escapeHTML(uni.cost)}</p>
+
+   <div class="uni-buttons">
+    <button class="small" data-favorite="${uni.id}">♡ В избранное</button>
+    <button class="small" data-compare="${uni.id}">⇄ Сравнить вуз</button>
+    <a class="small" href="${uni.admission}" target="_blank" rel="noopener">Приём ↗</a>
+    <a class="small" href="${uni.fee}" target="_blank" rel="noopener">Стоимость ↗</a>
+   </div>
+  </article>
+ `;
 }
 
 /* =====================================================
-   КАТАЛОГ УНИВЕРСИТЕТОВ
+   КАТАЛОГ
 ===================================================== */
 
 function renderCatalog(){
- const search=(document.getElementById("search").value||"").toLowerCase().trim();
+ const search=document.getElementById("search").value.toLowerCase().trim();
  const city=document.getElementById("cityFilter").value;
  const direction=document.getElementById("directionFilter").value;
  const sort=document.getElementById("sortFilter").value;
 
- let list=universities.filter(u=>{
-  if(city&&u.city!==city)return false;
-  if(!u.programs.some(p=>!direction||p.dir===direction))return false;
-  const text=(u.name+" "+u.short+" "+u.desc+" "+u.programs.map(p=>p.name+" "+p.code).join(" ")).toLowerCase();
+ let list=DB.filter(uni=>{
+  if(city&&uni.city!==city)return false;
+
+  if(direction&&!uni.programs.some(p=>p.dir===direction))return false;
+
+  const text=(
+   uni.name+" "+
+   uni.short+" "+
+   uni.desc+" "+
+   uni.programs.map(p=>p.name+" "+p.code).join(" ")
+  ).toLowerCase();
+
   return !search||text.includes(search);
  });
 
  if(sort==="price"){
-  list.sort((a,b)=>minPrice(a)-minPrice(b));
+  list.sort((a,b)=>getPriceNumber(a)-getPriceNumber(b));
  }else if(sort==="budget"||sort==="paid"){
-  list.sort((a,b)=>minThreshold(a,sort)-minThreshold(b,sort));
+  list.sort((a,b)=>getMinPass(a,sort)-getMinPass(b,sort));
  }
 
- document.getElementById("catalogSummary").innerHTML=
- `<b>Найдено университетов: ${list.length} из ${universities.length}</b>
- <p class="muted">Стоимость указывается как годовой ориентир или ссылка на официальный тариф. Бюджетные места существуют только там, где они установлены для конкретной программы.</p>`;
+ document.getElementById("catalogSummary").innerHTML=`
+  <b>Найдено университетов: ${list.length} из ${DB.length}</b>
+  <p class="muted">
+   Проходные баллы показываются только для программ с подтверждёнными данными.
+   Цены указываются по официальному тарифу или с пояснением, где его проверить.
+  </p>
+ `;
 
- document.getElementById("catalogCards").innerHTML=list.length?list.map(u=>{
-  const filtered=u.programs.filter(p=>!direction||p.dir===direction);
-  const known=filtered.filter(p=>p.pass&&p.pass.budget!==undefined&&p.pass.budget!==null);
-  const lowest=known.length?Math.min(...known.map(p=>p.pass.budget)):null;
-  return `
+ document.getElementById("catalogCards").innerHTML=list.length?
+  list.map(uniCard).join(""):
+  `<div class="empty">Ничего не найдено. Измени параметры поиска.</div>`;
+
+ document.querySelectorAll("[data-open-uni]").forEach(btn=>{
+  btn.addEventListener("click",()=>openUniversity(btn.dataset.openUni));
+ });
+
+ document.querySelectorAll("[data-fav]").forEach(btn=>{
+  btn.addEventListener("click",()=>toggleFavorite(btn.dataset.fav));
+ });
+
+ document.querySelectorAll("[data-compare]").forEach(btn=>{
+  btn.addEventListener("click",()=>toggleCompare(btn.dataset.compare));
+ });
+}
+
+function uniCard(uni){
+ const dir=document.getElementById("directionFilter").value;
+ const programs=uni.programs.filter(p=>!dir||p.dir===dir);
+
+ const known=programs
+  .filter(p=>p.pass&&p.pass.budget!==undefined&&p.pass.budget!==null);
+
+ const lowest=known.length?
+  Math.min(...known.map(p=>p.pass.budget)):null;
+
+ return `
   <article class="uni">
-   <div class="uni-top"><span class="city">${escapeHTML(u.city)}</span>
-    <button class="small fav" onclick="toggleFavorite('${u.id}')">${favorites.includes(u.id)?"♥":"♡"}</button>
+   <div class="uni-top">
+    <span class="city">${escapeHTML(uni.city)}</span>
+    <button class="small fav" data-fav="${uni.id}">
+     ${favorites.includes(uni.id)?"♥":"♡"}
+    </button>
    </div>
-   <h3>${escapeHTML(u.name)}</h3>
-   <p class="muted">${escapeHTML(u.desc)}</p>
+
+   <h3>${escapeHTML(uni.name)}</h3>
+   <p class="muted">${escapeHTML(uni.desc)}</p>
+
    <div class="tags">
-    <span class="tag">${filtered.length} программ в каталоге</span>
-    ${lowest!==null?`<span class="tag green">Бюджетный ориентир от ${lowest}</span>`:`<span class="tag">Проходные данные уточняются</span>`}
+    <span class="tag">${programs.length} программ</span>
+    ${lowest!==null?
+     `<span class="tag green">Минимум бюджета: ${lowest}</span>`:
+     `<span class="tag">Проходные данные уточняются</span>`}
    </div>
-   <p class="muted"><b>Платное обучение:</b><br>${escapeHTML(u.price)}</p>
-   <p class="muted"><b>Бюджет:</b><br>${escapeHTML(u.budget)}</p>
+
+   <p class="muted">
+    <b>Стоимость платного обучения:</b><br>
+    ${escapeHTML(uni.cost)}
+   </p>
+
+   <p class="muted">
+    <b>Бюджет:</b><br>
+    ${escapeHTML(uni.budget)}
+   </p>
+
    <div class="uni-buttons">
-    <button class="small" onclick="openUniversity('${u.id}')">Подробнее</button>
-    <button class="small" onclick="toggleCompare('${u.id}')">${compared.includes(u.id)?"✓ В сравнении":"⇄ Сравнить"}</button>
-    <a class="small" href="${u.admission}" target="_blank" rel="noopener">Приём ↗</a>
+    <button class="small" data-open-uni="${uni.id}">Подробнее</button>
+    <button class="small" data-compare="${uni.id}">
+     ${compared.includes(uni.id)?"✓ В сравнении":"⇄ Сравнить"}
+    </button>
+    <a class="small" href="${uni.admission}" target="_blank" rel="noopener">Приём ↗</a>
    </div>
-  </article>`;
- }).join(""):`<div class="empty">По выбранным параметрам ничего не найдено.</div>`;
- updateCompareBar();
+  </article>
+ `;
 }
 
-function minPrice(u){
- const match=u.price.match(/[\d\s]+/);
- return match?Number(match[0].replace(/\s/g,"")):Infinity;
+function getMinPass(uni,form){
+ const vals=uni.programs
+  .map(p=>p.pass?.[form])
+  .filter(x=>x!==undefined&&x!==null);
+
+ return vals.length?Math.min(...vals):Infinity;
 }
-function minThreshold(u,form){
- const values=u.programs.map(p=>p.pass?.[form]).filter(x=>x!==null&&x!==undefined);
- return values.length?Math.min(...values):Infinity;
+
+function getPriceNumber(uni){
+ const text=uni.cost.replace(/\s/g,"");
+ const match=text.match(/\d{5,}/);
+ return match?Number(match[0]):Infinity;
 }
+
+/* =====================================================
+   КАРТОЧКА ВУЗА
+===================================================== */
 
 function openUniversity(id){
- const u=universities.find(x=>x.id===id);if(!u)return;
- const programs=u.programs.filter(p=>!document.getElementById("directionFilter").value||
- p.dir===document.getElementById("directionFilter").value);
+ const uni=byId(id);
+ if(!uni)return;
+
+ const dir=document.getElementById("directionFilter").value;
+
+ const programs=uni.programs.filter(p=>!dir||p.dir===dir);
+
  let html=`
- <div class="kicker">${escapeHTML(u.city)}</div>
- <h2>${escapeHTML(u.name)}</h2>
- <p class="muted">${escapeHTML(u.desc)}</p>
- <div class="pricebox">
-  <strong>Стоимость платного обучения</strong>
-  <p>${escapeHTML(u.price)}</p>
-  <small>${escapeHTML(u.priceTag||"Тариф по программе")}. Ссылка на официальный тариф находится ниже.</small>
-  <p><a href="${u.fee}" target="_blank" rel="noopener">Посмотреть тарифы университета ↗</a></p>
- </div>
- <div class="pricebox">
-  <strong>Бюджетное обучение</strong>
-  <p>${escapeHTML(u.budget)}</p>
-  <small>Бюджетное место не является гарантированным: зачисление проводится по конкурсу и в пределах установленных мест.</small>
- </div>
- <div class="uni-buttons">
-  <a class="small" href="${u.admission}" target="_blank" rel="noopener">Приёмная комиссия ↗</a>
-  <a class="small" href="${u.fee}" target="_blank" rel="noopener">Стоимость обучения ↗</a>
- </div>
- <h3 style="margin-top:20px">Направления и программы</h3>`;
- html+=programs.map(p=>{
-  const pass=p.pass;
-  let passHtml=pass?`
-   <div class="scoreline">
-    <span>Бюджет ${pass.year}: ${pass.budget??"нет данных"}</span>
-    <span>Платное ${pass.year}: ${pass.paid??"нет данных"}</span>
+  <div class="city">${escapeHTML(uni.city)}</div>
+  <h2>${escapeHTML(uni.name)}</h2>
+  <p class="muted">${escapeHTML(uni.desc)}</p>
+
+  <div class="pricebox">
+   <strong>Платное обучение</strong>
+   <p>${escapeHTML(uni.cost)}</p>
+   <small>
+    Точный тариф зависит от программы и формы обучения.
+    Сверь его с официальным приказом или таблицей университета.
+   </small>
+   <p><a href="${uni.fee}" target="_blank" rel="noopener">Официальные тарифы ↗</a></p>
+  </div>
+
+  <div class="pricebox">
+   <strong>Бюджетные места</strong>
+   <p>${escapeHTML(uni.budget)}</p>
+   <small>
+    Число мест и конкурс необходимо проверять по конкретной программе.
+   </small>
+  </div>
+
+  <div class="uni-buttons">
+   <a class="small" href="${uni.admission}" target="_blank" rel="noopener">Приёмная комиссия ↗</a>
+   <a class="small" href="${uni.fee}" target="_blank" rel="noopener">Тарифы ↗</a>
+  </div>
+
+  <h3 style="margin-top:22px">Программы в каталоге</h3>
+ `;
+
+ html+=programs.map(program=>{
+  const pass=program.pass;
+
+  let examText="Состав экзаменов необходимо проверить в правилах приёма.";
+
+  if(program.examGroups){
+   examText=program.examGroups.map(group=>
+    group.options.map(id=>EXAMS[id]).join(" или ")
+   ).join(" + ");
+  }
+
+  return `
+   <div class="program">
+    <h4>${escapeHTML(program.name)} · ${program.code}</h4>
+    <p>Направление: ${escapeHTML(program.dir)}</p>
+    <p><b>Вступительные предметы:</b> ${escapeHTML(examText)}</p>
+
+    ${pass?`
+     <div class="scoreline">
+      <span>Бюджет ${pass.year}: ${pass.budget??"нет данных"}</span>
+      <span>Платное ${pass.year}: ${pass.paid??"нет данных"}</span>
+     </div>
+     ${pass.source?`<p><a href="${pass.source}" target="_blank" rel="noopener">Источник баллов ↗</a></p>`:""}
+     ${program.passNote?`<p>${escapeHTML(program.passNote)}</p>`:""}
+    `:`
+     <p class="muted">Подтверждённый проходной балл пока не внесён.</p>
+    `}
    </div>
-   <p><a href="${pass.source}" target="_blank" rel="noopener">Источник проходных баллов ↗</a></p>`
-   :`<p class="muted">Подтверждённый проходной балл по этой программе пока не внесён.</p>`;
-  const requirementHtml=p.examGroups?`
-   <p><b>ЕГЭ:</b> ${p.examGroups.map(g=>g.options.map(x=>EXAMS[x]).join(" или ")).join(" + ")}</p>`
-   :`<p class="muted">Состав экзаменов нужно уточнить по правилам приёма программы.</p>`;
-  return `<div class="program">
-   <h4>${escapeHTML(p.name)} · ${p.code}</h4>
-   <p>Направление: ${escapeHTML(p.dir)}</p>
-   ${requirementHtml}${passHtml}
-   ${p.costNote?`<p>${escapeHTML(p.costNote)}</p>`:""}
-  </div>`;
+  `;
  }).join("");
- html+=`<div class="notice">Проходной балл прошлых лет — ориентир, а не обещание зачисления. Состав экзаменов может различаться между программами одного направления.</div>`;
- document.getElementById("modalContent").innerHTML=html;
- document.getElementById("modal").classList.add("open");
+
+ html+=`
+  <div class="notice">
+   Проходной балл прошлых лет не гарантирует зачисление.
+   Состав экзаменов может отличаться даже у программ одного направления.
+  </div>
+ `;
+
+ openModal(html);
 }
 
 /* =====================================================
@@ -1475,136 +2539,268 @@ function openUniversity(id){
 ===================================================== */
 
 function toggleFavorite(id){
- favorites=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];
- saveStorage();renderCatalog();renderFavorites();
+ favorites=favorites.includes(id)?
+  favorites.filter(x=>x!==id):
+  [...favorites,id];
+
+ saveData();
+ renderCatalog();
+ renderFavorites();
 }
+
 function renderFavorites(){
- const list=universities.filter(u=>favorites.includes(u.id));
- document.getElementById("favoritesList").innerHTML=list.length?list.map(u=>`
-  <article class="uni">
-   <span class="city">${escapeHTML(u.city)}</span>
-   <h3>${escapeHTML(u.name)}</h3>
-   <p class="muted">${escapeHTML(u.price)}</p>
-   <button class="small" onclick="openUniversity('${u.id}')">Подробнее</button>
-   <button class="small" onclick="toggleFavorite('${u.id}')">Убрать из избранного</button>
-  </article>`).join(""):`<div class="empty">Пока ничего не сохранено.</div>`;
+ const list=DB.filter(uni=>favorites.includes(uni.id));
+
+ document.getElementById("favoritesList").innerHTML=list.length?
+  list.map(uni=>`
+   <article class="uni">
+    <span class="city">${escapeHTML(uni.city)}</span>
+    <h3>${escapeHTML(uni.name)}</h3>
+    <p class="muted">${escapeHTML(uni.cost)}</p>
+    <button class="small" onclick="openUniversity('${uni.id}')">Подробнее</button>
+    <button class="small" onclick="toggleFavorite('${uni.id}')">Убрать из избранного</button>
+   </article>
+  `).join(""):
+  `<div class="empty">Пока ничего не сохранено.</div>`;
 }
 
 /* =====================================================
-   СРАВНЕНИЕ ДО ТРЁХ ВУЗОВ
+   СРАВНЕНИЕ ВУЗОВ
 ===================================================== */
 
 function toggleCompare(id){
  if(compared.includes(id)){
   compared=compared.filter(x=>x!==id);
  }else{
-  if(compared.length>=3){alert("Можно сравнить максимум три университета.");return}
+  if(compared.length>=3){
+   alert("Можно сравнить максимум три университета.");
+   return;
+  }
   compared.push(id);
  }
- saveStorage();renderCatalog();renderCompare();updateCompareBar();
+
+ saveData();
+ renderCatalog();
+ renderCompare();
+ updateCompareBar();
 }
+
 function clearCompared(){
- compared=[];saveStorage();renderCatalog();renderCompare();updateCompareBar();
+ compared=[];
+ saveData();
+ renderCatalog();
+ renderCompare();
+ updateCompareBar();
 }
+
 function updateCompareBar(){
  const bar=document.getElementById("comparebar");
  bar.classList.toggle("show",compared.length>0);
- document.getElementById("comparebarText").textContent=`Выбрано: ${compared.length}/3`;
+ document.getElementById("comparebarText").textContent=
+  `Выбрано: ${compared.length}/3`;
 }
-function compareSelected(){
- if(compared.length<2){alert("Для сравнения выбери минимум два вуза.");return}
- const list=universities.filter(u=>compared.includes(u.id));
- const direction=document.getElementById("directionFilter").value||state.direction;
- let html=`
- <div class="kicker">СРАВНЕНИЕ</div><h2>Сравнение университетов</h2>
- <p class="muted">Сравнивай проходные ориентиры только вместе с названием программы и годом. Минимум по разным программам не означает, что программы одинаковы.</p>`;
- html+=list.map(u=>{
-  const ps=u.programs.filter(p=>!direction||p.dir===direction);
-  const minB=minThreshold(u,"budget"),minP=minThreshold(u,"paid");
-  return `<div class="program">
-   <h3>${escapeHTML(u.name)}</h3>
-   <p>${escapeHTML(u.city)}</p>
-   <div class="scoreline">
-    <span>Минимальный известный бюджетный ориентир: ${Number.isFinite(minB)?minB:"нет данных"}</span>
-    <span>Минимальный известный платный ориентир: ${Number.isFinite(minP)?minP:"нет данных"}</span>
-   </div>
-   <div class="pricebox"><b>Платное обучение</b><p>${escapeHTML(u.price)}</p></div>
-   <p><b>Программы в выбранном направлении:</b></p>
-   ${ps.map(p=>`<p>${escapeHTML(p.name)} (${p.code}) — бюджет: ${p.pass?.budget??"нет данных"}, платное: ${p.pass?.paid??"нет данных"} ${p.pass?"("+p.pass.year+")":""}</p>`).join("")||"<p>Программы не внесены в выбранный фильтр.</p>"}
-   <p><a href="${u.admission}" target="_blank" rel="noopener">Приёмная комиссия ↗</a> · <a href="${u.fee}" target="_blank" rel="noopener">Тариф ↗</a></p>
-  </div>`;
- }).join("");
- html+=`<div class="notice">Низкий проходной балл — не гарантия поступления. На результат влияют число бюджетных мест, конкурс, квоты, индивидуальные достижения и набор вступительных испытаний.</div>`;
- document.getElementById("modalContent").innerHTML=html;
- document.getElementById("modal").classList.add("open");
-}
+
 function renderCompare(){
- const list=universities.filter(u=>compared.includes(u.id));
- document.getElementById("compareList").innerHTML=list.length?list.map(u=>`
-  <article class="result-card">
-   <h3>${escapeHTML(u.name)}</h3><p>${escapeHTML(u.city)}</p>
-   <p>${escapeHTML(u.price)}</p>
-   <button class="small" onclick="toggleCompare('${u.id}')">Убрать</button>
-  </article>`).join(""):`<div class="empty">Добавь университеты к сравнению в каталоге.</div>`;
+ const list=DB.filter(uni=>compared.includes(uni.id));
+
+ document.getElementById("compareList").innerHTML=list.length?
+  list.map(uni=>`
+   <article class="result-card">
+    <h3>${escapeHTML(uni.name)}</h3>
+    <p>${escapeHTML(uni.city)}</p>
+    <p>${escapeHTML(uni.cost)}</p>
+    <button class="small" onclick="toggleCompare('${uni.id}')">Убрать</button>
+   </article>
+  `).join(""):
+  `<div class="empty">Добавь университеты к сравнению в каталоге.</div>`;
+}
+
+function compareSelected(){
+ if(compared.length<2){
+  alert("Для сравнения выбери минимум два университета.");
+  return;
+ }
+
+ const list=DB.filter(uni=>compared.includes(uni.id));
+ const direction=document.getElementById("directionFilter").value;
+
+ let html=`
+  <div class="kicker">СРАВНЕНИЕ</div>
+  <h2>Сравнение университетов</h2>
+  <p class="muted">
+   Ниже показаны опубликованные минимальные проходные значения
+   среди программ выбранного направления. Сравнивай вместе
+   с названием программы и годом.
+  </p>
+ `;
+
+ html+=list.map(uni=>{
+  const programs=uni.programs.filter(p=>!direction||p.dir===direction);
+
+  const budgetPrograms=programs
+   .filter(p=>p.pass?.budget!==undefined&&p.pass?.budget!==null)
+   .sort((a,b)=>a.pass.budget-b.pass.budget);
+
+  const paidPrograms=programs
+   .filter(p=>p.pass?.paid!==undefined&&p.pass?.paid!==null)
+   .sort((a,b)=>a.pass.paid-b.pass.paid);
+
+  return `
+   <div class="program">
+    <h3>${escapeHTML(uni.name)}</h3>
+    <p>${escapeHTML(uni.city)}</p>
+
+    <div class="pricebox">
+     <strong>Платное обучение</strong>
+     <p>${escapeHTML(uni.cost)}</p>
+     <a href="${uni.fee}" target="_blank" rel="noopener">Тарифы ↗</a>
+    </div>
+
+    <div class="pricebox">
+     <strong>Бюджетные места</strong>
+     <p>${escapeHTML(uni.budget)}</p>
+    </div>
+
+    <h4>Минимальный известный бюджетный ориентир</h4>
+    ${budgetPrograms.length?
+     budgetPrograms.map(p=>`
+      <p>
+       ${escapeHTML(p.name)} (${p.code}) —
+       <b>${p.pass.budget}</b>, ${p.pass.year} год
+      </p>
+     `).join(""):
+     `<p>Подтверждённый проходной ориентир не внесён.</p>`}
+
+    <h4>Минимальный известный платный ориентир</h4>
+    ${paidPrograms.length?
+     paidPrograms.map(p=>`
+      <p>
+       ${escapeHTML(p.name)} (${p.code}) —
+       <b>${p.pass.paid}</b>, ${p.pass.year} год
+      </p>
+     `).join(""):
+     `<p>Подтверждённый платный ориентир не внесён.</p>`}
+
+    <h4>Программы в каталоге</h4>
+    ${programs.map(p=>`
+     <p>${escapeHTML(p.name)} · ${p.code}</p>
+    `).join("")}
+
+    <p>
+     <a href="${uni.admission}" target="_blank" rel="noopener">Приёмная комиссия ↗</a>
+    </p>
+   </div>
+  `;
+ }).join("");
+
+ html+=`
+  <div class="notice">
+   Самые низкие проходные значения могут относиться к разным программам,
+   поэтому они не доказывают, что один университет в целом легче другого.
+   Для корректного сравнения смотри одну и ту же специальность,
+   форму обучения и год поступления.
+  </div>
+ `;
+
+ openModal(html);
 }
 
 /* =====================================================
-   МОДАЛЬНОЕ ОКНО И МИНИ-ИГРА
+   МОДАЛЬНОЕ ОКНО
 ===================================================== */
 
-function closeModal(){document.getElementById("modal").classList.remove("open")}
-function escapeHTML(s){
- return String(s??"").replace(/[&<>"']/g,c=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
- }[c]));
+function openModal(html){
+ document.getElementById("modalContent").innerHTML=html;
+ document.getElementById("modal").classList.add("open");
 }
 
-let gameTimer=null,gameScore=0,gameLeft=15;
+function closeModal(){
+ document.getElementById("modal").classList.remove("open");
+}
+
+/* =====================================================
+   МИНИ-ИГРА
+===================================================== */
+
+let gameTimer=null;
+let gameScore=0;
+let gameLeft=15;
 let gameBest=Number(localStorage.getItem("postupai_game_best")||0);
+
 document.getElementById("gameBest").textContent=gameBest;
 
 function startGame(){
  clearInterval(gameTimer);
- gameScore=0;gameLeft=15;
+
+ gameScore=0;
+ gameLeft=15;
+
  document.getElementById("gameScore").textContent="0";
+ document.getElementById("gameTime").textContent="15";
  document.getElementById("gameMessage").textContent="Лови звезду!";
  document.getElementById("gameStart").disabled=true;
+
  spawnStar();
+
  gameTimer=setInterval(()=>{
   gameLeft--;
+
+  document.getElementById("gameTime").textContent=gameLeft;
+
   if(gameLeft<=0){
    clearInterval(gameTimer);
+
    document.getElementById("gameArena").innerHTML="";
    document.getElementById("gameStart").disabled=false;
+
    if(gameScore>gameBest){
     gameBest=gameScore;
     localStorage.setItem("postupai_game_best",String(gameBest));
     document.getElementById("gameBest").textContent=gameBest;
    }
-   document.getElementById("gameMessage").textContent="Время! Очки: "+gameScore;
+
+   document.getElementById("gameMessage").textContent=
+    "Время! Твой результат: "+gameScore;
   }
  },1000);
 }
+
 function spawnStar(){
  const arena=document.getElementById("gameArena");
  arena.innerHTML="";
+
  const star=document.createElement("button");
- star.className="star";star.textContent="⭐";star.type="button";
- star.style.left=Math.random()*Math.max(0,arena.clientWidth-45)+"px";
- star.style.top=Math.random()*Math.max(0,arena.clientHeight-45)+"px";
+ star.className="star";
+ star.textContent="⭐";
+ star.type="button";
+
+ star.style.left=
+  Math.random()*Math.max(0,arena.clientWidth-45)+"px";
+
+ star.style.top=
+  Math.random()*Math.max(0,arena.clientHeight-45)+"px";
+
  star.addEventListener("click",()=>{
   if(gameLeft<=0)return;
+
   gameScore++;
   document.getElementById("gameScore").textContent=gameScore;
   spawnStar();
  });
+
  arena.appendChild(star);
 }
 
-/* Первичная отрисовка */
+/* =====================================================
+   ЗАПУСК
+===================================================== */
+
+renderQuiz();
 renderCatalog();
 renderFavorites();
 renderCompare();
+updateCompareBar();
+
 </script>
 </body>
 </html>
