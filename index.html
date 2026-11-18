@@ -3,813 +3,684 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111630">
-<title>ПОСТУПАЙ — навигатор абитуриента</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>ПОСТУПАЙ — подбор университета</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
 :root {
-    --dark: #111630;
-    --dark2: #202952;
-    --blue: #5868ff;
-    --purple: #8c5cf6;
-    --pink: #ff70ad;
-    --green: #c9f36b;
-    --bg: #f5f6ff;
-    --text: #171c38;
-    --muted: #7c829e;
-    --white: #ffffff;
-    --border: #e7e9f4;
-    --shadow: 0 15px 45px rgba(25,32,85,.08);
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
+  --dark:#111630;
+  --ink:#171c3b;
+  --muted:#747c99;
+  --bg:#f5f6ff;
+  --blue:#5268ff;
+  --purple:#8757f5;
+  --pink:#ff6ca8;
+  --lime:#c7f36b;
+  --line:#e8e9f4;
+  --white:#fff;
+  --green:#16835c;
+  --yellow:#a16c08;
+  --red:#c34455;
+  --shadow:0 18px 55px #20265c12;
+}
+
+*{box-sizing:border-box}
 
-body {
-    margin: 0;
-    font-family: 'Manrope', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-}
-
-button, input, select {
-    font: inherit;
-}
+html{scroll-behavior:smooth}
 
-button {
-    cursor: pointer;
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Manrope,Arial,sans-serif;
 }
 
-a {
-    text-decoration: none;
+button,input,select{font:inherit}
+button{cursor:pointer;border:0}
+
+.wrap{
+  width:min(1180px,92%);
+  margin:auto;
 }
-
-.container {
-    width: min(1180px, 92%);
-    margin: auto;
-}
-
-/* HEADER */
 
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--dark);
-    color: white;
-    border-bottom: 1px solid rgba(255,255,255,.1);
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:var(--dark);
+  color:white;
+  border-bottom:1px solid #ffffff20;
 }
 
-.nav {
-    min-height: 76px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+.nav{
+  min-height:75px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
 }
 
-.logo {
-    color: white;
-    font-size: 25px;
-    font-weight: 800;
-    letter-spacing: -1px;
+.logo{
+  font-size:25px;
+  font-weight:900;
+  color:white;
+  text-decoration:none;
+  letter-spacing:-1.5px;
 }
 
-.logo span {
-    color: var(--green);
-}
+.logo span{color:var(--lime)}
 
-.nav-menu {
-    display: flex;
-    gap: 8px;
+.navlinks{
+  display:flex;
+  gap:7px;
 }
 
-.nav-menu button {
-    background: transparent;
-    color: #d8dcf5;
-    padding: 12px 15px;
-    border-radius: 12px;
-    font-weight: 700;
-    border: none;
+.navlinks button{
+  color:#dce0ff;
+  background:transparent;
+  padding:11px 14px;
+  border-radius:12px;
+  font-weight:700;
 }
 
-.nav-menu button:hover,
-.nav-menu button.active {
-    background: rgba(255,255,255,.12);
-    color: white;
+.navlinks button.active,
+.navlinks button:hover{
+  background:#ffffff19;
+  color:white;
 }
 
-.nav-action {
-    background: var(--green);
-    color: var(--dark);
-    border: none;
-    padding: 13px 18px;
-    border-radius: 13px;
-    font-weight: 800;
+.navcta{
+  background:var(--lime);
+  color:var(--dark);
+  padding:12px 17px;
+  border-radius:12px;
+  font-weight:900;
 }
-
-/* HERO */
 
-.hero {
-    color: white;
-    padding: 85px 0 90px;
-    background:
-        radial-gradient(circle at 85% 20%, #6154e8 0, transparent 30%),
-        radial-gradient(circle at 5% 100%, #d84c9c 0, transparent 27%),
-        linear-gradient(120deg, #171d43, #29336d 65%, #242452);
-    overflow: hidden;
+.hero{
+  padding:75px 0;
+  color:white;
+  background:
+    radial-gradient(circle at 85% 15%,#6154e8 0,transparent 30%),
+    radial-gradient(circle at 8% 100%,#ff6ca8 0,transparent 28%),
+    linear-gradient(120deg,#171d43,#29316c 65%,#25245a);
 }
 
-.hero-content {
-    display: grid;
-    grid-template-columns: 1.2fr .8fr;
-    gap: 40px;
-    align-items: center;
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  align-items:center;
+  gap:35px;
 }
 
-.label {
-    display: inline-block;
-    background: rgba(255,255,255,.12);
-    border: 1px solid rgba(255,255,255,.2);
-    border-radius: 100px;
-    padding: 10px 15px;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 1px;
+.eyebrow{
+  display:inline-flex;
+  gap:9px;
+  align-items:center;
+  padding:9px 14px;
+  background:#ffffff18;
+  border:1px solid #ffffff30;
+  border-radius:50px;
+  font-size:11px;
+  font-weight:900;
 }
 
-.hero h1 {
-    font-size: clamp(42px, 6vw, 74px);
-    line-height: 1.04;
-    letter-spacing: -3px;
-    margin: 25px 0 20px;
+.dot{
+  width:8px;
+  height:8px;
+  background:var(--lime);
+  border-radius:50%;
 }
 
-.hero h1 span {
-    color: var(--green);
+.hero h1{
+  font-size:clamp(42px,6vw,72px);
+  line-height:1.03;
+  letter-spacing:-3px;
+  margin:23px 0;
 }
 
-.hero-text {
-    max-width: 600px;
-    color: #d9defe;
-    line-height: 1.8;
-    font-size: 16px;
+.hero h1 em{
+  color:var(--lime);
+  font-style:normal;
 }
 
-.hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 13px;
-    margin-top: 30px;
+.hero p{
+  color:#d8dcff;
+  line-height:1.8;
+  max-width:600px;
 }
 
-.btn {
-    border: none;
-    padding: 15px 21px;
-    border-radius: 13px;
-    font-weight: 800;
-    transition: .2s;
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:28px;
 }
 
-.btn:hover {
-    transform: translateY(-3px);
+.btn{
+  padding:14px 20px;
+  border-radius:13px;
+  font-weight:900;
 }
 
-.btn-green {
-    background: var(--green);
-    color: var(--dark);
+.primary{
+  background:var(--lime);
+  color:var(--dark);
 }
 
-.btn-outline {
-    background: rgba(255,255,255,.12);
-    color: white;
-    border: 1px solid rgba(255,255,255,.3);
+.secondary{
+  background:#ffffff18;
+  border:1px solid #ffffff40;
+  color:white;
 }
 
-.hero-card {
-    background: rgba(255,255,255,.12);
-    border: 1px solid rgba(255,255,255,.25);
-    border-radius: 27px;
-    padding: 28px;
-    backdrop-filter: blur(12px);
-    transform: rotate(2deg);
+.hero-card{
+  padding:26px;
+  border-radius:25px;
+  background:#ffffff15;
+  border:1px solid #ffffff35;
 }
 
-.hero-card-title {
-    display: flex;
-    justify-content: space-between;
-    color: #e0e4ff;
-    font-size: 12px;
-    font-weight: 800;
+.hero-card strong{
+  display:block;
+  font-size:55px;
+  margin:15px 0;
 }
 
-.hero-number {
-    font-size: 65px;
-    font-weight: 800;
-    margin: 20px 0 0;
-}
+.hero-card p{font-size:13px}
 
-.hero-card p {
-    color: #dce0ff;
-    font-size: 13px;
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:-22px;
+  position:relative;
 }
 
-.bars {
-    display: flex;
-    align-items: end;
-    gap: 9px;
-    height: 85px;
-    margin-top: 25px;
+.stat{
+  background:white;
+  border-radius:17px;
+  padding:20px;
+  box-shadow:var(--shadow);
 }
 
-.bars span {
-    flex: 1;
-    background: linear-gradient(var(--green), #75d9d1);
-    border-radius: 8px 8px 3px 3px;
+.stat b{
+  display:block;
+  font-size:25px;
 }
-
-.bars span:nth-child(1) {height: 35%}
-.bars span:nth-child(2) {height: 55%}
-.bars span:nth-child(3) {height: 45%}
-.bars span:nth-child(4) {height: 80%}
-.bars span:nth-child(5) {height: 65%}
-.bars span:nth-child(6) {height: 100%}
-
-/* STATS */
 
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 15px;
-    margin-top: -30px;
-    position: relative;
-    z-index: 2;
+.stat span{
+  color:var(--muted);
+  font-size:12px;
+  font-weight:700;
 }
 
-.stat {
-    background: white;
-    padding: 21px;
-    border-radius: 18px;
-    box-shadow: var(--shadow);
-}
+.section{padding:65px 0}
 
-.stat strong {
-    display: block;
-    font-size: 27px;
+.section h2{
+  font-size:clamp(28px,4vw,40px);
+  letter-spacing:-1.5px;
+  margin:8px 0;
 }
 
-.stat span {
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 700;
+.kicker{
+  color:var(--blue);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
-/* SECTIONS */
-
-.section {
-    padding: 70px 0;
+.lead{
+  color:var(--muted);
+  line-height:1.7;
 }
 
-.section-heading {
-    margin-bottom: 28px;
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:25px;
 }
 
-.eyebrow {
-    color: var(--blue);
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
+.feature{
+  padding:23px;
+  border-radius:20px;
+  min-height:170px;
 }
 
-.section h2 {
-    font-size: clamp(28px,4vw,42px);
-    letter-spacing: -1.5px;
-    margin: 10px 0;
-}
+.feature:nth-child(1){background:#e7eaff}
+.feature:nth-child(2){background:#ffe5ef}
+.feature:nth-child(3){background:#e0f8f5}
 
-.section-description {
-    color: var(--muted);
-    line-height: 1.7;
-    max-width: 700px;
+.feature .icon{font-size:28px}
+.feature h3{margin:14px 0 8px}
+.feature p{
+  font-size:13px;
+  color:#68708b;
+  line-height:1.6;
 }
 
-/* FEATURES */
-
-.features {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 17px;
+.quizbox{
+  max-width:790px;
+  margin:25px auto 0;
+  padding:27px;
+  border-radius:25px;
+  background:white;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
 }
 
-.feature {
-    padding: 25px;
-    border-radius: 22px;
-    min-height: 185px;
+.quiztop{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  font-weight:900;
+  color:var(--muted);
 }
 
-.feature:nth-child(1) {background: #e7eaff}
-.feature:nth-child(2) {background: #ffe6f0}
-.feature:nth-child(3) {background: #e0f8f3}
-
-.feature-icon {
-    font-size: 30px;
+.progress{
+  height:8px;
+  background:#e9eaf5;
+  border-radius:20px;
+  margin:15px 0 28px;
+  overflow:hidden;
 }
 
-.feature h3 {
-    margin: 15px 0 8px;
+.progress div{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--blue),var(--pink));
+  transition:.3s;
 }
 
-.feature p {
-    color: #68708b;
-    font-size: 13px;
-    line-height: 1.7;
+.quizbox h3{
+  font-size:25px;
+  margin:0 0 10px;
 }
-
-/* CATALOG */
 
-.catalog-tools {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 11px;
-    padding: 15px;
-    background: white;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
+.question-description{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:20px;
 }
 
-.input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid var(--border);
-    background: #fafbff;
-    border-radius: 12px;
-    color: var(--text);
-    outline: none;
+.answers{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
-.input:focus {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(88,104,255,.12);
+.answer{
+  padding:15px;
+  background:#fafbff;
+  border:1.5px solid #e4e6f1;
+  border-radius:13px;
+  text-align:left;
+  font-weight:800;
+  color:var(--ink);
+  font-size:13px;
 }
 
-.catalog-info {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-    color: var(--muted);
-    font-size: 13px;
-    margin: 18px 0;
+.answer:hover{
+  border-color:var(--blue);
 }
 
-.university-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 17px;
+.answer.selected{
+  border-color:var(--blue);
+  background:#edf0ff;
+  color:var(--blue);
 }
 
-.university-card {
-    background: white;
-    padding: 21px;
-    border: 1px solid var(--border);
-    border-radius: 21px;
-    box-shadow: 0 7px 25px rgba(25,32,85,.04);
-    display: flex;
-    flex-direction: column;
-    min-height: 280px;
-    transition: .2s;
+.input-group{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin:15px 0;
 }
 
-.university-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
+.input-group label{
+  font-size:12px;
+  font-weight:900;
 }
 
-.card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.input-group input,
+.input-group select{
+  width:100%;
+  border:1px solid #e4e6f1;
+  background:#fafbff;
+  padding:14px;
+  border-radius:12px;
+  outline:none;
 }
 
-.city-tag {
-    background: #edf0ff;
-    color: #5362d8;
-    border-radius: 100px;
-    padding: 7px 10px;
-    font-size: 11px;
-    font-weight: 800;
+.input-group input:focus,
+.input-group select:focus{
+  border-color:var(--blue);
 }
 
-.favorite {
-    background: #f3f4fa;
-    color: #737b98;
-    border: none;
-    border-radius: 10px;
-    width: 36px;
-    height: 36px;
-    font-size: 19px;
+.quiz-buttons{
+  display:flex;
+  justify-content:space-between;
+  margin-top:25px;
+  gap:10px;
 }
 
-.favorite.active {
-    color: #f04e8b;
-    background: #fff0f5;
+.back{
+  background:#eef0fa;
+  color:var(--ink);
 }
 
-.university-card h3 {
-    font-size: 17px;
-    line-height: 1.4;
-    margin: 15px 0 8px;
+.quiz-note{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.7;
+  margin-top:18px;
 }
 
-.card-description {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.65;
+.toolbar{
+  display:grid;
+  grid-template-columns:1.5fr repeat(3,1fr);
+  gap:10px;
+  background:white;
+  padding:14px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  margin:22px 0;
 }
 
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 10px 0 16px;
+.field{
+  width:100%;
+  min-width:0;
+  padding:13px;
+  border:1px solid #e4e6f1;
+  border-radius:11px;
+  background:#fafbff;
+  outline:none;
 }
 
-.tag {
-    background: #f2f3f9;
-    color: #5f6683;
-    padding: 6px 9px;
-    border-radius: 8px;
-    font-size: 10px;
-    font-weight: 800;
-}
+.field:focus{border-color:var(--blue)}
 
-.card-bottom {
-    margin-top: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
+.results-line{
+  color:var(--muted);
+  font-size:13px;
+  margin:15px 0;
 }
 
-.program-count {
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 800;
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
 }
 
-.details-button {
-    background: var(--dark);
-    color: white;
-    padding: 11px 13px;
-    border-radius: 10px;
-    font-size: 11px;
-    font-weight: 800;
+.uni{
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  border:1px solid var(--line);
+  box-shadow:0 8px 28px #20265c08;
+  display:flex;
+  flex-direction:column;
+  min-height:270px;
 }
 
-.compare-check {
-    margin-top: 13px;
-    font-size: 11px;
-    color: var(--muted);
+.uni-top{
+  display:flex;
+  justify-content:space-between;
 }
 
-.empty {
-    background: white;
-    border-radius: 18px;
-    padding: 40px;
-    text-align: center;
-    color: var(--muted);
-    grid-column: 1/-1;
+.city{
+  background:#edf0ff;
+  color:#4d5fe3;
+  border-radius:50px;
+  padding:7px 10px;
+  font-size:11px;
+  font-weight:900;
 }
-
-/* QUIZ */
 
-.quiz-box {
-    max-width: 780px;
-    margin: auto;
-    padding: 28px;
-    background: white;
-    border-radius: 25px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
+.fav{
+  background:#f4f5fb;
+  border-radius:9px;
+  width:34px;
+  height:34px;
+  font-size:17px;
 }
 
-.quiz-progress-info {
-    display: flex;
-    justify-content: space-between;
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 800;
-}
+.fav.on{color:#ef508b}
 
-.progress {
-    height: 8px;
-    background: #e9eaf5;
-    border-radius: 100px;
-    margin: 14px 0 28px;
-    overflow: hidden;
+.uni h3{
+  font-size:17px;
+  line-height:1.4;
+  margin:15px 0 8px;
 }
 
-.progress div {
-    height: 100%;
-    background: linear-gradient(90deg,var(--blue),var(--pink));
-    transition: .3s;
+.desc{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.6;
 }
 
-.quiz-box h3 {
-    font-size: 25px;
-    margin: 0 0 20px;
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:15px;
 }
 
-.answers {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 11px;
+.chip{
+  padding:6px 8px;
+  background:#f3f4fa;
+  border-radius:8px;
+  color:#555e7c;
+  font-size:10px;
+  font-weight:800;
 }
 
-.answer {
-    padding: 16px;
-    border: 1px solid var(--border);
-    background: #fafbff;
-    color: var(--text);
-    border-radius: 13px;
-    text-align: left;
-    font-weight: 700;
-    font-size: 13px;
+.uni-foot{
+  margin-top:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
 }
 
-.answer.selected {
-    border: 2px solid var(--blue);
-    background: #eff0ff;
-    color: var(--blue);
+.details{
+  background:var(--dark);
+  color:white;
+  border-radius:10px;
+  padding:10px 13px;
+  font-size:11px;
+  font-weight:900;
 }
 
-.quiz-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 25px;
+.empty{
+  background:white;
+  padding:30px;
+  border-radius:17px;
+  color:var(--muted);
+  grid-column:1/-1;
+  line-height:1.7;
 }
 
-.quiz-note {
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.7;
-    margin-top: 20px;
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  background:#10152f9c;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
 }
 
-/* MODAL */
+.modal.show{display:flex}
 
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    background: rgba(10,14,38,.75);
-    padding: 18px;
-    align-items: center;
-    justify-content: center;
+.modal-box{
+  width:min(760px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:white;
+  border-radius:23px;
+  padding:25px;
 }
 
-.modal.open {
-    display: flex;
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
 }
 
-.modal-content {
-    background: white;
-    border-radius: 24px;
-    padding: 27px;
-    width: min(750px,100%);
-    max-height: 90vh;
-    overflow-y: auto;
+.close{
+  width:36px;
+  height:36px;
+  border-radius:10px;
+  background:#f1f2f8;
+  font-size:20px;
 }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
+.program{
+  border-bottom:1px solid var(--line);
+  padding:16px 0;
 }
 
-.close {
-    width: 38px;
-    height: 38px;
-    background: #f0f1f7;
-    border: none;
-    border-radius: 10px;
-    font-size: 21px;
-}
+.program h4{margin:0 0 7px}
 
-.program-item {
-    border-bottom: 1px solid var(--border);
-    padding: 17px 0;
+.program p{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.6;
 }
 
-.program-item:last-child {
-    border: none;
+.score-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
 }
 
-.program-item h4 {
-    margin: 0 0 8px;
+.score{
+  padding:8px 10px;
+  border-radius:8px;
+  background:#eaf8f2;
+  color:var(--green);
+  font-size:11px;
+  font-weight:900;
 }
 
-.program-item p {
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.6;
+.score.unknown{
+  background:#fff5df;
+  color:var(--yellow);
 }
 
-.unknown-score {
-    background: #fff4dc;
-    color: #8b6419;
-    padding: 8px 10px;
-    border-radius: 8px;
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 800;
+.status{
+  display:inline-block;
+  padding:8px 11px;
+  border-radius:9px;
+  font-size:11px;
+  font-weight:900;
+  margin-top:10px;
 }
 
-.official-link {
-    color: var(--blue);
-    font-size: 12px;
-    font-weight: 800;
+.status.good{
+  background:#e5f7ee;
+  color:var(--green);
 }
 
-.warning {
-    background: #fff6df;
-    color: #775b1e;
-    padding: 15px;
-    border-radius: 13px;
-    font-size: 11px;
-    line-height: 1.7;
-    margin-top: 20px;
+.status.near{
+  background:#fff3d9;
+  color:var(--yellow);
 }
-
-/* COMPARISON */
 
-.compare-bar {
-    position: fixed;
-    z-index: 150;
-    bottom: 17px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--dark);
-    color: white;
-    padding: 13px 17px;
-    border-radius: 15px;
-    display: none;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 12px 35px rgba(0,0,0,.25);
-    font-size: 12px;
+.status.bad{
+  background:#ffe9ec;
+  color:var(--red);
 }
 
-.compare-bar.visible {
-    display: flex;
+.status.unknown{
+  background:#eef0f5;
+  color:#626b83;
 }
 
-.compare-bar button {
-    background: var(--green);
-    color: var(--dark);
-    border: none;
-    border-radius: 9px;
-    padding: 10px 12px;
-    font-weight: 800;
+.source{
+  color:var(--blue);
+  font-size:11px;
+  font-weight:900;
+  text-decoration:none;
 }
 
-.compare-result {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 12px;
-    margin-top: 20px;
+.disclaimer{
+  background:#fff6df;
+  border:1px solid #f4e5b8;
+  padding:15px;
+  border-radius:13px;
+  color:#765a19;
+  font-size:11px;
+  line-height:1.7;
+  margin-top:18px;
 }
 
-.compare-column {
-    background: #f5f6ff;
-    padding: 15px;
-    border-radius: 13px;
-    font-size: 12px;
-    line-height: 1.6;
+.comparebar{
+  display:none;
+  position:fixed;
+  bottom:15px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--dark);
+  color:white;
+  padding:12px 16px;
+  border-radius:15px;
+  align-items:center;
+  gap:10px;
+  z-index:30;
+  font-size:12px;
 }
 
-/* FOOTER */
+.comparebar.show{display:flex}
 
-footer {
-    background: var(--dark);
-    color: white;
-    padding: 45px 0;
-    margin-top: 40px;
+.comparebar button{
+  background:var(--lime);
+  color:var(--dark);
+  padding:9px 12px;
+  border-radius:9px;
+  font-weight:900;
 }
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    gap: 25px;
-    flex-wrap: wrap;
+footer{
+  background:var(--dark);
+  color:white;
+  padding:38px 0;
+  margin-top:40px;
 }
 
-footer p {
-    color: #aeb5d5;
-    font-size: 12px;
-    line-height: 1.7;
-    max-width: 650px;
+footer p{
+  color:#aeb5d5;
+  font-size:12px;
+  line-height:1.7;
 }
-
-footer a {
-    color: var(--green);
-}
-
-/* RESPONSIVE */
-
-@media(max-width:900px) {
-    .hero-content {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-card {
-        display: none;
-    }
-
-    .university-grid {
-        grid-template-columns: repeat(2,1fr);
-    }
 
-    .catalog-tools {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .stats {
-        grid-template-columns: repeat(2,1fr);
-    }
+@media(max-width:850px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-card{display:none}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .toolbar{grid-template-columns:1fr 1fr}
 }
-
-@media(max-width:600px) {
-    .nav {
-        flex-wrap: wrap;
-        padding: 12px 0;
-    }
-
-    .nav-menu {
-        order: 3;
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .nav-menu button {
-        padding: 8px;
-        font-size: 11px;
-    }
-
-    .nav-action {
-        font-size: 11px;
-        padding: 10px;
-    }
-
-    .hero {
-        padding: 55px 0 65px;
-    }
-
-    .hero h1 {
-        letter-spacing: -2px;
-    }
-
-    .features,
-    .university-grid,
-    .catalog-tools {
-        grid-template-columns: 1fr;
-    }
-
-    .answers {
-        grid-template-columns: 1fr;
-    }
-
-    .section {
-        padding: 50px 0;
-    }
-
-    .quiz-box {
-        padding: 19px;
-    }
-
-    .compare-bar {
-        width: 94%;
-        justify-content: space-between;
-        gap: 7px;
-    }
 
-    .compare-result {
-        grid-template-columns: 1fr;
-    }
+@media(max-width:560px){
+  .nav{flex-wrap:wrap;padding:12px 0}
+  .navlinks{order:3;width:100%;justify-content:space-between}
+  .navlinks button{padding:8px;font-size:11px}
+  .hero{padding:50px 0}
+  .hero h1{letter-spacing:-2px}
+  .section{padding:45px 0}
+  .features,.cards{grid-template-columns:1fr}
+  .toolbar{grid-template-columns:1fr}
+  .answers{grid-template-columns:1fr}
+  .quizbox{padding:19px}
+  .quizbox h3{font-size:21px}
 }
 </style>
 </head>
@@ -817,1362 +688,1754 @@ footer a {
 <body>
 
 <header>
-    <div class="container nav">
+  <div class="wrap nav">
+    <a class="logo" href="#" onclick="go('home');return false">ПОСТУПАЙ<span>.</span></a>
 
-        <a href="#" class="logo" onclick="showPage('home')">
-            ПО<span>СТУПАЙ</span>
-        </a>
-
-        <nav class="nav-menu">
-            <button id="nav-home" class="active" onclick="showPage('home')">Главная</button>
-            <button id="nav-catalog" onclick="showPage('catalog')">Университеты</button>
-            <button id="nav-quiz" onclick="showPage('quiz')">Подбор</button>
-            <button id="nav-favorites" onclick="showPage('favorites')">Избранное</button>
-        </nav>
-
-        <button class="nav-action" onclick="showPage('quiz')">
-            Подобрать вуз ↗
-        </button>
-
+    <div class="navlinks">
+      <button id="nav-home" class="active" onclick="go('home')">Главная</button>
+      <button id="nav-quiz" onclick="go('quiz')">Подбор</button>
+      <button id="nav-catalog" onclick="go('catalog')">Каталог</button>
     </div>
+
+    <button class="navcta" onclick="go('quiz')">Найти вуз ↗</button>
+  </div>
 </header>
 
-<!-- ГЛАВНАЯ -->
+<main id="home">
 
-<main id="page-home">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><i class="dot"></i> НАВИГАТОР АБИТУРИЕНТА</div>
 
-    <section class="hero">
-        <div class="container hero-content">
+      <h1>Найди вуз,<br>в который <em>реально</em><br>можешь поступить.</h1>
 
-            <div>
-                <div class="label">✦ НАВИГАТОР АБИТУРИЕНТА</div>
+      <p>
+        Укажи свой способ поступления, баллы, город и направление.
+        Система сравнит твои данные с доступной статистикой университетов
+        и покажет подходящие варианты.
+      </p>
 
-                <h1>
-                    Твоё будущее<br>
-                    начинается с <span>выбора.</span>
-                </h1>
-
-                <p class="hero-text">
-                    Выбирай университет, изучай специальности и сравнивай
-                    направления. Найди образовательную программу, которая
-                    поможет тебе сделать первый шаг к будущей профессии.
-                </p>
-
-                <div class="hero-buttons">
-                    <button class="btn btn-green" onclick="showPage('quiz')">
-                        Подобрать университет ↗
-                    </button>
-
-                    <button class="btn btn-outline" onclick="showPage('catalog')">
-                        Смотреть каталог
-                    </button>
-                </div>
-            </div>
-
-            <div class="hero-card">
-                <div class="hero-card-title">
-                    <span>ТВОИ ВОЗМОЖНОСТИ</span>
-                    <span>2026 / 2027</span>
-                </div>
-
-                <div class="hero-number">∞</div>
-                <p>Возможностей для твоего будущего</p>
-
-                <div class="bars">
-                    <span></span><span></span><span></span>
-                    <span></span><span></span><span></span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <div class="container stats">
-        <div class="stat">
-            <strong id="stat-universities">27+</strong>
-            <span>университетов</span>
-        </div>
-
-        <div class="stat">
-            <strong id="stat-programs">100+</strong>
-            <span>образовательных программ</span>
-        </div>
-
-        <div class="stat">
-            <strong>3</strong>
-            <span>города России</span>
-        </div>
-
-        <div class="stat">
-            <strong>1</strong>
-            <span>удобный навигатор</span>
-        </div>
+      <div class="actions">
+        <button class="btn primary" onclick="go('quiz')">Начать подбор →</button>
+        <button class="btn secondary" onclick="go('catalog')">Каталог вузов</button>
+      </div>
     </div>
 
-    <section class="section">
-        <div class="container">
+    <div class="hero-card">
+      <div>ТВОЙ МАРШРУТ ПОСТУПЛЕНИЯ</div>
+      <strong>27 вузов</strong>
+      <p>Москва · Санкт-Петербург · Казань</p>
+      <p>Бюджет · Платное · Олимпиады · Колледж</p>
+    </div>
+  </div>
+</section>
 
-            <div class="section-heading">
-                <div class="eyebrow">ВОЗМОЖНОСТИ САЙТА</div>
-                <h2>Поступление без хаоса</h2>
-                <p class="section-description">
-                    Всё необходимое для выбора университета собрано в одном месте.
-                </p>
-            </div>
+<div class="wrap stats">
+  <div class="stat"><b id="stat-uni">27</b><span>университетов</span></div>
+  <div class="stat"><b id="stat-prog">0</b><span>программ в каталоге</span></div>
+  <div class="stat"><b>3</b><span>города</span></div>
+  <div class="stat"><b>2026</b><span>версия проекта</span></div>
+</div>
 
-            <div class="features">
+<section class="section">
+  <div class="wrap">
+    <div class="kicker">ПОСТУПЛЕНИЕ БЕЗ СЛУЧАЙНОСТЕЙ</div>
+    <h2>Сначала твоя ситуация — потом подходящие вузы</h2>
+    <p class="lead">Анкета меняется в зависимости от твоих ответов.</p>
 
-                <div class="feature">
-                    <div class="feature-icon">🎓</div>
-                    <h3>Каталог университетов</h3>
-                    <p>
-                        Изучай университеты Москвы, Санкт-Петербурга и Казани.
-                        Смотри направления и официальные сайты.
-                    </p>
-                </div>
+    <div class="features">
+      <div class="feature">
+        <div class="icon">🧭</div>
+        <h3>Умная анкета</h3>
+        <p>Вопросы про ЕГЭ не появятся, если ты выбираешь поступление по олимпиаде или подходящий маршрут после колледжа.</p>
+      </div>
 
-                <div class="feature">
-                    <div class="feature-icon">🧭</div>
-                    <h3>Персональный подбор</h3>
-                    <p>
-                        Ответь на вопросы о своих интересах, городе и баллах.
-                        Получи предварительную подборку.
-                    </p>
-                </div>
+      <div class="feature">
+        <div class="icon">📊</div>
+        <h3>Сравнение баллов</h3>
+        <p>Система сравнивает твои баллы с проходными значениями прошлых лет.</p>
+      </div>
 
-                <div class="feature">
-                    <div class="feature-icon">📊</div>
-                    <h3>Сравнение вузов</h3>
-                    <p>
-                        Добавляй университеты в сравнение и изучай
-                        образовательные программы.
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="section" style="background:white">
-        <div class="container">
-            <div class="section-heading">
-                <div class="eyebrow">С ЧЕГО НАЧАТЬ</div>
-                <h2>Три простых шага</h2>
-            </div>
-
-            <div class="features">
-
-                <div class="feature">
-                    <div class="feature-icon">01</div>
-                    <h3>Определи направление</h3>
-                    <p>Выбери область, которая тебе интересна: IT, медицина, экономика, инженерия и другие.</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon">02</div>
-                    <h3>Изучи университеты</h3>
-                    <p>Сравни программы, города и информацию о поступлении.</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon">03</div>
-                    <h3>Проверь требования</h3>
-                    <p>Открой официальный сайт университета и уточни правила приёма.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
+      <div class="feature">
+        <div class="icon">🎓</div>
+        <h3>Разные способы поступления</h3>
+        <p>ЕГЭ, внутренние испытания, олимпиады и поступление после колледжа рассматриваются отдельно.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 </main>
 
-<!-- КАТАЛОГ -->
+<section class="section" id="quiz-section" style="display:none">
+  <div class="wrap">
+    <div class="kicker">ПЕРСОНАЛЬНЫЙ ПОДБОР</div>
+    <h2>Расскажи о себе</h2>
+    <p class="lead">Отвечай последовательно. Следующий вопрос зависит от предыдущего.</p>
 
-<section class="section" id="page-catalog" style="display:none">
+    <div class="quizbox">
+      <div class="quiztop">
+        <span>АНКЕТА АБИТУРИЕНТА</span>
+        <span id="qcount"></span>
+      </div>
 
-    <div class="container">
+      <div class="progress"><div id="qbar"></div></div>
 
-        <div class="section-heading">
-            <div class="eyebrow">КАТАЛОГ ОБРАЗОВАНИЯ</div>
-            <h2>Университеты России</h2>
-            <p class="section-description">
-                Ищи университеты, выбирай город и интересующее направление.
-            </p>
-        </div>
+      <h3 id="qtitle"></h3>
+      <p class="question-description" id="qdescription"></p>
 
-        <div class="catalog-tools">
+      <div class="answers" id="qanswers"></div>
 
-            <input
-                class="input"
-                id="search"
-                placeholder="Название вуза или специальности..."
-                oninput="renderCatalog()"
-            >
+      <div id="qinputs"></div>
 
-            <select class="input" id="city-filter" onchange="renderCatalog()">
-                <option value="">Все города</option>
-                <option value="Москва">Москва</option>
-                <option value="Санкт-Петербург">Санкт-Петербург</option>
-                <option value="Казань">Казань</option>
-            </select>
+      <div class="quiz-buttons">
+        <button class="btn back" onclick="prevQ()">← Назад</button>
+        <button class="btn primary" onclick="nextQ()">Продолжить →</button>
+      </div>
 
-            <select class="input" id="direction-filter" onchange="renderCatalog()">
-                <option value="">Все направления</option>
-                <option value="IT">IT</option>
-                <option value="Инженерия">Инженерия</option>
-                <option value="Экономика">Экономика</option>
-                <option value="Медицина">Медицина</option>
-                <option value="Право">Право</option>
-                <option value="Гуманитарные науки">Гуманитарные науки</option>
-                <option value="Дизайн">Дизайн</option>
-                <option value="Естественные науки">Естественные науки</option>
-                <option value="Педагогика">Педагогика</option>
-            </select>
-
-            <select class="input" id="sort-filter" onchange="renderCatalog()">
-                <option value="default">Сначала популярные</option>
-                <option value="az">По названию А–Я</option>
-                <option value="za">По названию Я–А</option>
-            </select>
-
-        </div>
-
-        <div class="catalog-info">
-            <span id="catalog-count">Загружаем каталог...</span>
-            <span>♡ — добавить в избранное</span>
-        </div>
-
-        <div class="university-grid" id="university-list"></div>
-
+      <p class="quiz-note">
+        Результат — ориентировочная оценка по внесённым в базу данным.
+        Он не гарантирует зачисление.
+      </p>
     </div>
+  </div>
 </section>
 
-<!-- ПОДБОР -->
+<section class="section" id="catalog-section" style="display:none">
+  <div class="wrap">
+    <div class="kicker">КАТАЛОГ УНИВЕРСИТЕТОВ</div>
+    <h2>Подходящие программы</h2>
+    <p class="lead">Можно изменить параметры и посмотреть другие варианты.</p>
 
-<section class="section" id="page-quiz" style="display:none">
+    <div class="toolbar">
+      <input class="field" id="search" placeholder="Поиск университета или программы..." oninput="renderCatalog()">
 
-    <div class="container">
+      <select class="field" id="city" onchange="renderCatalog()">
+        <option value="">Все города</option>
+        <option>Москва</option>
+        <option>Санкт-Петербург</option>
+        <option>Казань</option>
+      </select>
 
-        <div class="section-heading">
-            <div class="eyebrow">ПЕРСОНАЛЬНЫЙ ПОДБОР</div>
-            <h2>Какой университет тебе подойдёт?</h2>
-            <p class="section-description">
-                Ответь на вопросы, чтобы получить предварительную подборку вузов.
-            </p>
-        </div>
+      <select class="field" id="direction" onchange="renderCatalog()">
+        <option value="">Все направления</option>
+        <option>IT</option>
+        <option>Инженерия</option>
+        <option>Экономика</option>
+        <option>Медицина</option>
+        <option>Право</option>
+        <option>Гуманитарные</option>
+        <option>Дизайн</option>
+        <option>Естественные науки</option>
+        <option>Педагогика</option>
+      </select>
 
-        <div class="quiz-box">
-
-            <div class="quiz-progress-info">
-                <span>АНКЕТА АБИТУРИЕНТА</span>
-                <span id="question-number">1 / 6</span>
-            </div>
-
-            <div class="progress">
-                <div id="progress-bar" style="width:16.6%"></div>
-            </div>
-
-            <h3 id="question-title"></h3>
-
-            <div class="answers" id="answers"></div>
-
-            <div class="quiz-buttons">
-                <button class="btn" style="background:#eff0f8" onclick="previousQuestion()">
-                    ← Назад
-                </button>
-
-                <button class="btn btn-green" onclick="nextQuestion()">
-                    Далее →
-                </button>
-            </div>
-
-            <p class="quiz-note">
-                Подбор является предварительной рекомендацией.
-                Он не гарантирует поступление. Проверяй требования,
-                экзамены и проходные баллы на официальных сайтах вузов.
-            </p>
-
-        </div>
-
+      <select class="field" id="sort" onchange="renderCatalog()">
+        <option value="">Без сортировки</option>
+        <option value="budget">Проходной на бюджет ↑</option>
+        <option value="paid">Проходной на платное ↑</option>
+      </select>
     </div>
+
+    <div class="results-line" id="result-count"></div>
+    <div class="cards" id="cards"></div>
+  </div>
 </section>
 
-<!-- ИЗБРАННОЕ -->
-
-<section class="section" id="page-favorites" style="display:none">
-
-    <div class="container">
-
-        <div class="section-heading">
-            <div class="eyebrow">ТВОЯ ПОДБОРКА</div>
-            <h2>Избранные университеты</h2>
-            <p class="section-description">
-                Здесь находятся университеты, которые ты сохранил.
-            </p>
-        </div>
-
-        <div class="university-grid" id="favorites-list"></div>
-
-    </div>
-</section>
-
-<!-- ОКНО УНИВЕРСИТЕТА -->
-
-<div class="modal" id="university-modal" onclick="closeOutside(event)">
-
-    <div class="modal-content">
-
-        <div class="modal-header">
-            <div>
-                <div class="eyebrow">ИНФОРМАЦИЯ ОБ УНИВЕРСИТЕТЕ</div>
-                <h2 id="modal-title"></h2>
-                <p class="section-description" id="modal-description"></p>
-            </div>
-
-            <button class="close" onclick="closeModal()">×</button>
-        </div>
-
-        <div id="modal-programs"></div>
-
-        <div class="warning">
-            Важно: проходные баллы прошлых лет не гарантируют поступление.
-            Они могут меняться каждый год. Для получения актуальной информации
-            проверяй сайт приёмной комиссии университета.
-        </div>
-
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <div class="kicker">ИНФОРМАЦИЯ О ВУЗЕ</div>
+        <h2 id="modal-title"></h2>
+        <p class="lead" id="modal-sub"></p>
+      </div>
+      <button class="close" onclick="closeModal()">×</button>
     </div>
 
-</div>
+    <div id="modal-programs"></div>
 
-<!-- ОКНО СРАВНЕНИЯ -->
-
-<div class="modal" id="compare-modal" onclick="closeCompareOutside(event)">
-
-    <div class="modal-content">
-
-        <div class="modal-header">
-            <div>
-                <div class="eyebrow">СРАВНЕНИЕ</div>
-                <h2>Сравнение университетов</h2>
-            </div>
-
-            <button class="close" onclick="closeCompare()">×</button>
-        </div>
-
-        <div class="compare-result" id="compare-result"></div>
-
+    <div class="disclaimer">
+      Проходной балл — результат конкурса прошлого года.
+      Он не гарантирует поступление в следующем году.
+      Минимальные баллы ЕГЭ устанавливаются отдельно по каждому предмету.
+      Не путай минимальные баллы для участия в конкурсе с проходными баллами.
     </div>
-
+  </div>
 </div>
 
-<div class="compare-bar" id="compare-bar">
-    <span id="compare-count">Выбрано: 0 / 3</span>
-    <button onclick="openCompare()">Сравнить</button>
-    <button onclick="clearCompare()" style="background:#ffffff20;color:white">
-        Очистить
-    </button>
+<div class="comparebar" id="comparebar">
+  <span id="comparetext">Выбрано: 0</span>
+  <button onclick="compare()">Сравнить</button>
+  <button onclick="clearCompare()">Очистить</button>
 </div>
-
-<!-- FOOTER -->
 
 <footer>
-    <div class="container footer-content">
-
-        <div>
-            <a href="#" class="logo" onclick="showPage('home')">
-                ПО<span>СТУПАЙ</span>
-            </a>
-
-            <p>
-                Навигатор абитуриента. Помогаем ориентироваться
-                в университетах, образовательных программах и выборе
-                будущей профессии.
-            </p>
-        </div>
-
-        <div>
-            <p>Учебный проект · 2026</p>
-            <p>Информация требует проверки на официальных сайтах вузов.</p>
-        </div>
-
-    </div>
+  <div class="wrap">
+    <a class="logo" href="#" onclick="go('home');return false">ПОСТУПАЙ<span>.</span></a>
+    <p>Информационный проект для абитуриентов. Проверяй официальные правила приёма и актуальные условия на сайте выбранного университета.</p>
+  </div>
 </footer>
 
 <script>
 
-/* =====================================
-   БАЗА УНИВЕРСИТЕТОВ
-===================================== */
+/* =========================================================
+   1. БАЗА УНИВЕРСИТЕТОВ
+   ========================================================= */
 
 const universities = [
 
 {
-id:"msu",
-name:"МГУ имени М. В. Ломоносова",
-city:"Москва",
-url:"https://www.msu.ru/",
-description:"Классический университет с большим выбором естественно-научных, гуманитарных и технических направлений.",
-programs:[
-["Прикладная математика и информатика","IT","01.03.02"],
-["Фундаментальная информатика","IT","02.03.02"],
-["Экономика","Экономика","38.03.01"],
-["Юриспруденция","Право","40.03.01"],
-["Журналистика","Гуманитарные науки","42.03.02"],
-["Биология","Естественные науки","06.03.01"]
-]
+ id:"msu",
+ name:"МГУ имени М. В. Ломоносова",
+ city:"Москва",
+ url:"https://www.msu.ru/",
+ desc:"Классический университет.",
+ programs:[
+  ["Фундаментальная информатика и информационные технологии","IT","02.03.02"],
+  ["Прикладная математика и информатика","IT","01.03.02"],
+  ["Экономика","Экономика","38.03.01"],
+  ["Юриспруденция","Право","40.03.01"],
+  ["Биология","Естественные науки","06.03.01"],
+  ["Механика и математическое моделирование","Естественные науки","01.03.03"]
+ ]
 },
 
 {
-id:"hse",
-name:"НИУ ВШЭ",
-city:"Москва",
-url:"https://www.hse.ru/",
-description:"Университет с программами в области экономики, аналитики, IT, дизайна и социальных наук.",
-programs:[
-["Программная инженерия","IT","09.03.04"],
-["Прикладная математика и информатика","IT","01.03.02"],
-["Экономика","Экономика","38.03.01"],
-["Менеджмент","Экономика","38.03.02"],
-["Дизайн","Дизайн","54.03.01"],
-["Юриспруденция","Право","40.03.01"]
-]
+ id:"hse",
+ name:"НИУ «Высшая школа экономики»",
+ city:"Москва",
+ url:"https://www.hse.ru/",
+ desc:"Экономика, IT, право, социальные и гуманитарные науки.",
+ programs:[
+  ["Программная инженерия","IT","09.03.04"],
+  ["Информатика и вычислительная техника","IT","09.03.01"],
+  ["Информационная безопасность","IT","10.03.01"],
+  ["Экономика","Экономика","38.03.01"],
+  ["Психология","Гуманитарные","37.03.01"],
+  ["Юриспруденция","Право","40.03.01"],
+  ["Дизайн","Дизайн","54.03.01"],
+  ["Физика","Естественные науки","03.03.02"],
+  ["Химия","Естественные науки","04.03.01"],
+  ["Бизнес-информатика","IT","38.03.05"],
+  ["Управление бизнесом","Экономика","38.03.02"]
+ ]
 },
 
 {
-id:"mipt",
-name:"МФТИ",
-city:"Москва",
-url:"https://mipt.ru/",
-description:"Физико-техническое образование, математика, программирование и научные исследования.",
-programs:[
-["Прикладная математика и информатика","IT","01.03.02"],
-["Прикладная математика и физика","Естественные науки","03.03.01"],
-["Информатика и вычислительная техника","IT","09.03.01"],
-["Биотехнические системы","Инженерия","12.03.04"]
-]
+ id:"mipt",
+ name:"МФТИ",
+ city:"Москва",
+ url:"https://mipt.ru/",
+ desc:"Физика, математика, программирование и инженерия.",
+ programs:[
+  ["Прикладная математика и информатика","IT","01.03.02"],
+  ["Прикладная математика и физика","Естественные науки","03.03.01"],
+  ["Информатика и вычислительная техника","IT","09.03.01"],
+  ["Биотехнология","Естественные науки","19.03.01"]
+ ]
 },
 
 {
-id:"mgimo",
-name:"МГИМО",
-city:"Москва",
-url:"https://mgimo.ru/",
-description:"Международные отношения, право, экономика, политология и иностранные языки.",
-programs:[
-["Международные отношения","Гуманитарные науки","41.03.05"],
-["Юриспруденция","Право","40.03.01"],
-["Экономика","Экономика","38.03.01"],
-["Менеджмент","Экономика","38.03.02"],
-["Лингвистика","Гуманитарные науки","45.03.02"]
-]
+ id:"mgimo",
+ name:"МГИМО МИД России",
+ city:"Москва",
+ url:"https://mgimo.ru/",
+ desc:"Международные отношения, право, экономика и лингвистика.",
+ programs:[
+  ["Международные отношения","Гуманитарные","41.03.05"],
+  ["Юриспруденция","Право","40.03.01"],
+  ["Экономика","Экономика","38.03.01"],
+  ["Лингвистика","Гуманитарные","45.03.02"]
+ ]
 },
 
 {
-id:"mephi",
-name:"НИЯУ МИФИ",
-city:"Москва",
-url:"https://mephi.ru/",
-description:"Ядерная физика, информационные технологии, инженерия и прикладная математика.",
-programs:[
-["Информатика и вычислительная техника","IT","09.03.01"],
-["Программная инженерия","IT","09.03.04"],
-["Ядерная физика","Естественные науки","14.03.02"],
-["Прикладная математика","IT","01.03.02"],
-["Электроника","Инженерия","11.03.04"]
-]
+ id:"mephi",
+ name:"НИЯУ МИФИ",
+ city:"Москва",
+ url:"https://admission.mephi.ru/",
+ desc:"Ядерная физика, IT, инженерия и безопасность.",
+ programs:[
+  ["Прикладная математика и информатика","IT","01.03.02"],
+  ["Информационная безопасность","IT","10.03.01"],
+  ["Физика","Естественные науки","03.03.02"],
+  ["Экономика","Экономика","38.03.01"],
+  ["Бизнес-информатика","IT","38.03.05"],
+  ["Мехатроника и робототехника","Инженерия","15.03.06"],
+  ["Ядерные физика и технологии","Инженерия","14.03.02"],
+  ["Международные отношения","Гуманитарные","41.03.05"],
+  ["Программная инженерия","IT","09.03.04"]
+ ]
 },
 
 {
-id:"bauman",
-name:"МГТУ им. Н. Э. Баумана",
-city:"Москва",
-url:"https://bmstu.ru/",
-description:"Техническое образование, робототехника, машиностроение и IT.",
-programs:[
-["Информатика и вычислительная техника","IT","09.03.01"],
-["Программная инженерия","IT","09.03.04"],
-["Робототехника","Инженерия","15.03.06"],
-["Машиностроение","Инженерия","15.03.01"],
-["Прикладная математика","IT","01.03.04"]
-]
+ id:"bmstu",
+ name:"МГТУ им. Н. Э. Баумана",
+ city:"Москва",
+ url:"https://bmstu.ru/",
+ desc:"Инженерные системы, робототехника, IT и машиностроение.",
+ programs:[
+  ["Информатика и вычислительная техника","IT","09.03.01"],
+  ["Программная инженерия","IT","09.03.04"],
+  ["Прикладная математика","Естественные науки","01.03.04"],
+  ["Робототехника","Инженерия","15.03.06"],
+  ["Машиностроение","Инженерия","15.03.01"]
+ ]
 },
 
 {
-id:"rudn",
-name:"РУДН",
-city:"Москва",
-url:"https://www.rudn.ru/",
-description:"Международный университет с программами в медицине, экономике, инженерии и гуманитарных науках.",
-programs:[
-["Лечебное дело","Медицина","31.05.01"],
-["Стоматология","Медицина","31.05.03"],
-["Экономика","Экономика","38.03.01"],
-["Юриспруденция","Право","40.03.01"],
-["Прикладная информатика","IT","09.03.03"]
-]
+ id:"rudn",
+ name:"РУДН",
+ city:"Москва",
+ url:"https://www.rudn.ru/",
+ desc:"Международный университет.",
+ programs:[
+  ["Прикладная информатика","IT","09.03.03"],
+  ["Экономика","Экономика","38.03.01"],
+  ["Лечебное дело","Медицина","31.05.01"],
+  ["Юриспруденция","Право","40.03.01"]
+ ]
 },
 
 {
-id:"mirea",
-name:"РТУ МИРЭА",
-city:"Москва",
-url:"https://www.mirea.ru/",
-description:"Информационные технологии, кибербезопасность, химия и радиоэлектроника.",
-programs:[
-["Информатика и вычислительная техника","IT","09.03.01"],
-["Программная инженерия","IT","09.03.04"],
-["Информационная безопасность","IT","10.03.01"],
-["Прикладная информатика","IT","09.03.03"],
-["Радиотехника","Инженерия","11.03.01"]
-]
+ id:"mirea",
+ name:"РТУ МИРЭА",
+ city:"Москва",
+ url:"https://www.mirea.ru/",
+ desc:"IT, информационная безопасность и радиоэлектроника.",
+ programs:[
+  ["Информационные системы и технологии","IT","09.03.02"],
+  ["Программная инженерия","IT","09.03.04"],
+  ["Информационная безопасность","IT","10.03.01"],
+  ["Радиотехника","Инженерия","11.03.01"],
+  ["Химическая технология","Естественные науки","18.03.01"]
+ ]
 },
 
 {
-id:"gubkin",
-name:"РГУ нефти и газа им. И. М. Губкина",
-city:"Москва",
-url:"https://gubkin.ru/",
-description:"Нефтегазовое дело, геология, инженерия и автоматизация.",
-programs:[
-["Нефтегазовое дело","Инженерия","21.03.01"],
-["Геология","Естественные науки","05.03.01"],
-["Информатика и вычислительная техника","IT","09.03.01"],
-["Экономика","Экономика","38.03.01"]
-]
+ id:"sechenov",
+ name:"Сеченовский университет",
+ city:"Москва",
+ url:"https://sechenov.ru/",
+ desc:"Медицинские и биомедицинские программы.",
+ programs:[
+  ["Лечебное дело","Медицина","31.05.01"],
+  ["Педиатрия","Медицина","31.05.02"],
+  ["Стоматология","Медицина","31.05.03"],
+  ["Фармация","Медицина","33.05.01"]
+ ]
 },
 
 {
-id:"rsuh",
-name:"РГГУ",
-city:"Москва",
-url:"https://www.rsuh.ru/",
-description:"История, филология, психология, международные отношения и гуманитарные науки.",
-programs:[
-["История","Гуманитарные науки","46.03.01"],
-["Филология","Гуманитарные науки","45.03.01"],
-["Психология","Гуманитарные науки","37.03.01"],
-["Журналистика","Гуманитарные науки","42.03.02"]
-]
+ id:"rsmu",
+ name:"РНИМУ им. Н. И. Пирогова",
+ city:"Москва",
+ url:"https://rsmu.ru/",
+ desc:"Медицинское и биологическое образование.",
+ programs:[
+  ["Лечебное дело","Медицина","31.05.01"],
+  ["Педиатрия","Медицина","31.05.02"],
+  ["Стоматология","Медицина","31.05.03"],
+  ["Медицинская биохимия","Медицина","30.05.01"]
+ ]
 },
 
 {
-id:"fa",
-name:"Финансовый университет",
-city:"Москва",
-url:"https://www.fa.ru/",
-description:"Финансы, экономика, управление и бизнес-информатика.",
-programs:[
-["Экономика","Экономика","38.03.01"],
-["Финансы и кредит","Экономика","38.03.01"],
-["Менеджмент","Экономика","38.03.02"],
-["Бизнес-информатика","IT","38.03.05"],
-["Прикладная информатика","IT","09.03.03"]
-]
+ id:"rea",
+ name:"РЭУ им. Г. В. Плеханова",
+ city:"Москва",
+ url:"https://www.rea.ru/",
+ desc:"Экономика, бизнес, управление и цифровые направления.",
+ programs:[
+  ["Экономика","Экономика","38.03.01"],
+  ["Менеджмент","Экономика","38.03.02"],
+  ["Бизнес-информатика","IT","38.03.05"],
+  ["Прикладная информатика","IT","09.03.03"],
+  ["Информатика и вычислительная техника","IT","09.03.01"]
+ ]
 },
 
 {
-id:"rea",
-name:"РЭУ им. Г. В. Плеханова",
-city:"Москва",
-url:"https://www.rea.ru/",
-description:"Экономика, торговое дело, менеджмент, IT и предпринимательство.",
-programs:[
-["Экономика","Экономика","38.03.01"],
-["Менеджмент","Экономика","38.03.02"],
-["Бизнес-информатика","IT","38.03.05"],
-["Прикладная информатика","IT","09.03.03"]
-]
+ id:"mgpu",
+ name:"Московский городской педагогический университет",
+ city:"Москва",
+ url:"https://www.mgpu.ru/",
+ desc:"Педагогика, психология и гуманитарные науки.",
+ programs:[
+  ["Педагогическое образование","Педагогика","44.03.01"],
+  ["Психолого-педагогическое образование","Педагогика","44.03.02"],
+  ["Лингвистика","Гуманитарные","45.03.02"]
+ ]
 },
 
 {
-id:"sechenov",
-name:"Сеченовский университет",
-city:"Москва",
-url:"https://www.sechenov.ru/",
-description:"Медицинское образование, фармация и биотехнологии.",
-programs:[
-["Лечебное дело","Медицина","31.05.01"],
-["Стоматология","Медицина","31.05.03"],
-["Педиатрия","Медицина","31.05.02"],
-["Фармация","Медицина","33.05.01"]
-]
+ id:"mpei",
+ name:"НИУ «МЭИ»",
+ city:"Москва",
+ url:"https://mpei.ru/",
+ desc:"Энергетика и электротехника.",
+ programs:[
+  ["Электроэнергетика и электротехника","Инженерия","13.03.02"],
+  ["Теплоэнергетика и теплотехника","Инженерия","13.03.01"],
+  ["Информатика и вычислительная техника","IT","09.03.01"]
+ ]
 },
 
 {
-id:"guu",
-name:"Государственный университет управления",
-city:"Москва",
-url:"https://guu.ru/",
-description:"Менеджмент, управление персоналом и государственное управление.",
-programs:[
-["Менеджмент","Экономика","38.03.02"],
-["Управление персоналом","Экономика","38.03.03"],
-["Государственное управление","Экономика","38.03.04"]
-]
+ id:"marhi",
+ name:"МАРХИ",
+ city:"Москва",
+ url:"https://www.markhi.ru/",
+ desc:"Архитектура и градостроительство.",
+ programs:[
+  ["Архитектура","Дизайн","07.03.01"],
+  ["Градостроительство","Дизайн","07.03.04"]
+ ]
 },
 
 {
-id:"spbu",
-name:"Санкт-Петербургский государственный университет",
-city:"Санкт-Петербург",
-url:"https://spbu.ru/",
-description:"Классический университет с программами в науке, праве, экономике и гуманитарных дисциплинах.",
-programs:[
-["Прикладная математика и информатика","IT","01.03.02"],
-["Экономика","Экономика","38.03.01"],
-["Юриспруденция","Право","40.03.01"],
-["Международные отношения","Гуманитарные науки","41.03.05"],
-["Биология","Естественные науки","06.03.01"]
-]
+ id:"rggu",
+ name:"РГГУ",
+ city:"Москва",
+ url:"https://www.rsuh.ru/",
+ desc:"История, филология и гуманитарные науки.",
+ programs:[
+  ["История","Гуманитарные","46.03.01"],
+  ["Филология","Гуманитарные","45.03.01"],
+  ["Психология","Гуманитарные","37.03.01"],
+  ["Международные отношения","Гуманитарные","41.03.05"]
+ ]
 },
 
 {
-id:"itmo",
-name:"Университет ИТМО",
-city:"Санкт-Петербург",
-url:"https://itmo.ru/",
-description:"IT, искусственный интеллект, робототехника, программирование и фотоника.",
-programs:[
-["Программная инженерия","IT","09.03.04"],
-["Информатика и вычислительная техника","IT","09.03.01"],
-["Прикладная математика","IT","01.03.02"],
-["Информационная безопасность","IT","10.03.01"],
-["Фотоника","Инженерия","12.03.03"]
-]
+ id:"itmo",
+ name:"Университет ИТМО",
+ city:"Санкт-Петербург",
+ url:"https://abit.itmo.ru/bachelor",
+ desc:"IT, робототехника, фотоника и науки о жизни.",
+ programs:[
+  ["Прикладная математика и информатика","IT","01.03.02"],
+  ["Информатика и вычислительная техника","IT","09.03.01"],
+  ["Программная инженерия","IT","09.03.04"],
+  ["Информационная безопасность","IT","10.03.01"],
+  ["Робототехника","Инженерия","15.03.06"],
+  ["Фотоника и оптоинформатика","Инженерия","12.03.03"]
+ ]
 },
 
 {
-id:"spbstu",
-name:"СПбПУ Петра Великого",
-city:"Санкт-Петербург",
-url:"https://www.spbstu.ru/",
-description:"Инженерные, IT, физико-технические и экономические направления.",
-programs:[
-["Программная инженерия","IT","09.03.04"],
-["Информатика и вычислительная техника","IT","09.03.01"],
-["Прикладная математика","IT","01.03.02"],
-["Мехатроника и робототехника","Инженерия","15.03.06"],
-["Электроэнергетика","Инженерия","13.03.02"]
-]
+ id:"spbu",
+ name:"Санкт-Петербургский государственный университет",
+ city:"Санкт-Петербург",
+ url:"https://abiturient.spbu.ru/",
+ desc:"Классический университет.",
+ programs:[
+  ["Прикладная математика и информатика","IT","01.03.02"],
+  ["Программная инженерия","IT","09.03.04"],
+  ["Экономика","Экономика","38.03.01"],
+  ["Юриспруденция","Право","40.03.01"],
+  ["Международные отношения","Гуманитарные","41.03.05"],
+  ["Биология","Естественные науки","06.03.01"]
+ ]
 },
 
 {
-id:"unecon",
-name:"СПбГЭУ",
-city:"Санкт-Петербург",
-url:"https://unecon.ru/",
-description:"Экономика, финансы, менеджмент, туризм и информационные системы.",
-programs:[
-["Экономика","Экономика","38.03.01"],
-["Менеджмент","Экономика","38.03.02"],
-["Бизнес-информатика","IT","38.03.05"],
-["Прикладная информатика","IT","09.03.03"]
-]
+ id:"spbstu",
+ name:"СПбПУ Петра Великого",
+ city:"Санкт-Петербург",
+ url:"https://www.spbstu.ru/",
+ desc:"Инженерные, IT и физико-технические направления.",
+ programs:[
+  ["Программная инженерия","IT","09.03.04"],
+  ["Информатика и вычислительная техника","IT","09.03.01"],
+  ["Прикладная математика и информатика","IT","01.03.02"],
+  ["Мехатроника и робототехника","Инженерия","15.03.06"],
+  ["Электроэнергетика","Инженерия","13.03.02"]
+ ]
 },
 
 {
-id:"herzen",
-name:"РГПУ им. А. И. Герцена",
-city:"Санкт-Петербург",
-url:"https://www.herzen.spb.ru/",
-description:"Педагогическое образование, психология, филология и естественные науки.",
-programs:[
-["Педагогическое образование","Педагогика","44.03.01"],
-["Психолого-педагогическое образование","Педагогика","44.03.02"],
-["Лингвистика","Гуманитарные науки","45.03.02"],
-["Биология","Естественные науки","06.03.01"]
-]
+ id:"spbgeu",
+ name:"СПбГЭУ",
+ city:"Санкт-Петербург",
+ url:"https://unecon.ru/",
+ desc:"Экономика, финансы и менеджмент.",
+ programs:[
+  ["Экономика","Экономика","38.03.01"],
+  ["Менеджмент","Экономика","38.03.02"],
+  ["Бизнес-информатика","IT","38.03.05"],
+  ["Прикладная информатика","IT","09.03.03"]
+ ]
 },
 
 {
-id:"mining",
-name:"Санкт-Петербургский горный университет",
-city:"Санкт-Петербург",
-url:"https://spmi.ru/",
-description:"Горное дело, геология, нефтегазовое дело и инженерные направления.",
-programs:[
-["Горное дело","Инженерия","21.05.04"],
-["Нефтегазовое дело","Инженерия","21.03.01"],
-["Геология","Естественные науки","05.03.01"]
-]
+ id:"herzen",
+ name:"РГПУ им. А. И. Герцена",
+ city:"Санкт-Петербург",
+ url:"https://www.herzen.spb.ru/",
+ desc:"Педагогическое образование и гуманитарные науки.",
+ programs:[
+  ["Педагогическое образование","Педагогика","44.03.01"],
+  ["Психолого-педагогическое образование","Педагогика","44.03.02"],
+  ["Лингвистика","Гуманитарные","45.03.02"],
+  ["Биология","Естественные науки","06.03.01"]
+ ]
 },
 
 {
-id:"pavlov",
-name:"ПСПбГМУ им. И. П. Павлова",
-city:"Санкт-Петербург",
-url:"https://www.1spbgmu.ru/",
-description:"Медицинское и стоматологическое образование.",
-programs:[
-["Лечебное дело","Медицина","31.05.01"],
-["Стоматология","Медицина","31.05.03"],
-["Педиатрия","Медицина","31.05.02"]
-]
+ id:"spmi",
+ name:"Санкт-Петербургский горный университет",
+ city:"Санкт-Петербург",
+ url:"https://spmi.ru/",
+ desc:"Горное дело, геология и нефтегазовое дело.",
+ programs:[
+  ["Горное дело","Инженерия","21.05.04"],
+  ["Нефтегазовое дело","Инженерия","21.03.01"],
+  ["Геология","Естественные науки","05.03.01"]
+ ]
 },
 
 {
-id:"leti",
-name:"СПбГЭТУ «ЛЭТИ»",
-city:"Санкт-Петербург",
-url:"https://etu.ru/",
-description:"Радиотехника, электроника, программирование и приборостроение.",
-programs:[
-["Информатика и вычислительная техника","IT","09.03.01"],
-["Программная инженерия","IT","09.03.04"],
-["Радиотехника","Инженерия","11.03.01"],
-["Приборостроение","Инженерия","12.03.01"]
-]
+ id:"spbgmu",
+ name:"ПСПбГМУ им. И. П. Павлова",
+ city:"Санкт-Петербург",
+ url:"https://www.1spbgmu.ru/",
+ desc:"Медицинское образование.",
+ programs:[
+  ["Лечебное дело","Медицина","31.05.01"],
+  ["Стоматология","Медицина","31.05.03"],
+  ["Педиатрия","Медицина","31.05.02"]
+ ]
 },
 
 {
-id:"sutd",
-name:"СПбГУПТД",
-city:"Санкт-Петербург",
-url:"https://sutd.ru/",
-description:"Дизайн, технологии лёгкой промышленности, IT и экономика.",
-programs:[
-["Дизайн","Дизайн","54.03.01"],
-["Информационные системы и технологии","IT","09.03.02"],
-["Технология изделий лёгкой промышленности","Инженерия","29.03.01"]
-]
+ id:"leti",
+ name:"СПбГЭТУ «ЛЭТИ»",
+ city:"Санкт-Петербург",
+ url:"https://etu.ru/",
+ desc:"Радиотехника, электроника и программирование.",
+ programs:[
+  ["Информатика и вычислительная техника","IT","09.03.01"],
+  ["Программная инженерия","IT","09.03.04"],
+  ["Радиотехника","Инженерия","11.03.01"],
+  ["Приборостроение","Инженерия","12.03.01"]
+ ]
 },
 
 {
-id:"lesgaft",
-name:"НГУ им. П. Ф. Лесгафта",
-city:"Санкт-Петербург",
-url:"https://lesgaft.spb.ru/",
-description:"Физическая культура, спорт и спортивная подготовка.",
-programs:[
-["Физическая культура","Педагогика","49.03.01"],
-["Спорт","Педагогика","49.03.04"]
-]
+ id:"gup",
+ name:"СПбГУПТД",
+ city:"Санкт-Петербург",
+ url:"https://sutd.ru/",
+ desc:"Дизайн, технологии и информационные системы.",
+ programs:[
+  ["Дизайн","Дизайн","54.03.01"],
+  ["Информационные системы и технологии","IT","09.03.02"],
+  ["Технология изделий лёгкой промышленности","Инженерия","29.03.01"]
+ ]
 },
 
 {
-id:"kpfu",
-name:"Казанский федеральный университет",
-city:"Казань",
-url:"https://kpfu.ru/",
-description:"Классический университет с программами по IT, медицине, праву и естественным наукам.",
-programs:[
-["Прикладная математика и информатика","IT","01.03.02"],
-["Экономика","Экономика","38.03.01"],
-["Юриспруденция","Право","40.03.01"],
-["Лечебное дело","Медицина","31.05.01"]
-]
+ id:"lesgaft",
+ name:"НГУ им. П. Ф. Лесгафта",
+ city:"Санкт-Петербург",
+ url:"https://lesgaft.spb.ru/",
+ desc:"Физическая культура и спорт.",
+ programs:[
+  ["Физическая культура","Педагогика","49.03.01"],
+  ["Спорт","Педагогика","49.03.04"]
+ ]
 },
 
 {
-id:"kai",
-name:"КНИТУ-КАИ",
-city:"Казань",
-url:"https://kai.ru/",
-description:"Авиация, двигателестроение, инженерия и информационные технологии.",
-programs:[
-["Самолёто- и вертолётостроение","Инженерия","24.03.04"],
-["Программная инженерия","IT","09.03.04"],
-["Двигатели летательных аппаратов","Инженерия","24.05.02"]
-]
+ id:"kpfu",
+ name:"Казанский федеральный университет",
+ city:"Казань",
+ url:"https://kpfu.ru/",
+ desc:"Классический университет.",
+ programs:[
+  ["Прикладная математика и информатика","IT","01.03.02"],
+  ["Экономика","Экономика","38.03.01"],
+  ["Юриспруденция","Право","40.03.01"],
+  ["Лечебное дело","Медицина","31.05.01"]
+ ]
 },
 
 {
-id:"innopolis",
-name:"Университет Иннополис",
-city:"Казань",
-url:"https://innopolis.university/",
-description:"Специализированный университет в области IT, искусственного интеллекта и робототехники.",
-programs:[
-["Программная инженерия","IT","09.03.04"],
-["Информатика и вычислительная техника","IT","09.03.01"],
-["Робототехника","Инженерия","15.03.06"]
-]
+ id:"kai",
+ name:"КНИТУ-КАИ",
+ city:"Казань",
+ url:"https://kai.ru/",
+ desc:"Авиация, двигателестроение и инженерия.",
+ programs:[
+  ["Самолёто- и вертолётостроение","Инженерия","24.03.04"],
+  ["Программная инженерия","IT","09.03.04"],
+  ["Двигатели летательных аппаратов","Инженерия","24.05.02"]
+ ]
+},
+
+{
+ id:"innopolis",
+ name:"Университет Иннополис",
+ city:"Казань",
+ url:"https://innopolis.university/",
+ desc:"IT, искусственный интеллект и робототехника.",
+ programs:[
+  ["Программная инженерия","IT","09.03.04"],
+  ["Информатика и вычислительная техника","IT","09.03.01"],
+  ["Робототехника","Инженерия","15.03.06"]
+ ]
 }
 
 ];
 
-/* =====================================
-   СОСТОЯНИЕ САЙТА
-===================================== */
 
-let favorites = JSON.parse(localStorage.getItem("postupai_favorites") || "[]");
-let compareList = [];
+/* =========================================================
+   2. БАЗА БАЛЛОВ
+   ========================================================= */
 
-let quizAnswers = [];
-let questionIndex = 0;
+/*
+  ВАЖНО:
+  Каждая запись должна относиться к конкретному вузу,
+  программе, форме обучения и году.
 
-let recommendedCity = "";
-let recommendedDirection = "";
+  budget — проходной на бюджет.
+  paid — проходной на платное.
+  minimum — минимальный порог (если он опубликован
+  именно в сопоставимом формате).
 
-/* =====================================
-   ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ
-===================================== */
+  verified:true означает, что запись проверена
+  по официальному источнику.
 
-function showPage(page) {
+  Не добавляй неподтверждённые цифры в эту базу.
+*/
 
-    const pages = ["home","catalog","quiz","favorites"];
+const scoreDatabase = {
 
-    pages.forEach(name => {
-        document.getElementById("page-" + name).style.display =
-            name === page ? "block" : "none";
-    });
+  "rea|09.03.01": {
+    budget:255,
+    paid:186,
+    minimum:null,
+    year:2025,
+    verified:true,
+    source:"https://www.rea.ru/",
+    note:"Статистика приёма РЭУ. Требуется сверка конкретной формы конкурса."
+  },
 
-    document.querySelectorAll(".nav-menu button").forEach(button => {
-        button.classList.remove("active");
-    });
+  "rea|09.03.03": {
+    budget:258,
+    paid:186,
+    minimum:null,
+    year:2025,
+    verified:true,
+    source:"https://www.rea.ru/",
+    note:"Статистика приёма РЭУ. Требуется сверка конкретной формы конкурса."
+  }
 
-    const activeButton = document.getElementById("nav-" + page);
+};
 
-    if (activeButton) {
-        activeButton.classList.add("active");
-    }
 
-    if (page === "catalog") {
-        renderCatalog();
-    }
+/* =========================================================
+   3. ПОЛУЧЕНИЕ ДАННЫХ
+   ========================================================= */
 
-    if (page === "favorites") {
-        renderFavorites();
-    }
+function getProgramData(university,program){
 
-    if (page === "quiz") {
-        renderQuestion();
-    }
+  const key=university.id+"|"+program[2];
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+  return scoreDatabase[key] || {
+    budget:null,
+    paid:null,
+    minimum:null,
+    year:null,
+    verified:false,
+    source:university.url,
+    note:"Подтверждённая статистика для этой программы ещё не внесена."
+  };
+
 }
 
-/* =====================================
-   КАРТОЧКИ УНИВЕРСИТЕТОВ
-===================================== */
 
-function createUniversityCard(university) {
+/* =========================================================
+   4. СОСТОЯНИЕ САЙТА
+   ========================================================= */
 
-    const isFavorite = favorites.includes(university.id);
-    const isCompared = compareList.includes(university.id);
+let favorites=JSON.parse(localStorage.getItem("postupai-favs")||"[]");
+
+let compareSet=[];
+
+let quizAnswers={};
+
+let questions=[];
+
+let questionIndex=0;
+
+let resultsMode=false;
+
+let selectedPrograms=[];
+
+
+/* =========================================================
+   5. НАВИГАЦИЯ
+   ========================================================= */
+
+function go(page){
+
+  document.getElementById("home").style.display=
+    page==="home"?"block":"none";
+
+  document.getElementById("quiz-section").style.display=
+    page==="quiz"?"block":"none";
+
+  document.getElementById("catalog-section").style.display=
+    page==="catalog"?"block":"none";
+
+  document.querySelectorAll(".navlinks button")
+    .forEach(button=>button.classList.remove("active"));
+
+  const id=page==="home"?"nav-home":
+    page==="quiz"?"nav-quiz":"nav-catalog";
+
+  document.getElementById(id).classList.add("active");
+
+  if(page==="quiz") startQuiz();
+
+  if(page==="catalog") renderCatalog();
+
+  window.scrollTo({top:0,behavior:"smooth"});
+
+}
+
+
+/* =========================================================
+   6. ПОСТРОЕНИЕ ВЕТВЯЩЕЙСЯ АНКЕТЫ
+   ========================================================= */
+
+function buildQuestions(){
+
+  const q=[];
+
+  /*
+    Первый вопрос нужен всем.
+  */
+
+  q.push({
+    id:"education",
+    title:"Где ты сейчас учишься?",
+    description:"От этого зависит дальнейший маршрут поступления.",
+    type:"choice",
+    answers:[
+      ["school","В школе"],
+      ["college","В колледже"],
+      ["finished","Уже окончил обучение"]
+    ]
+  });
+
+  /*
+    Для колледжа отдельная ветка.
+  */
+
+  if(quizAnswers.education==="college"){
+
+    q.push({
+      id:"collegeCourse",
+      title:"На каком курсе колледжа ты учишься?",
+      description:"Это поможет определить, когда планируется поступление.",
+      type:"choice",
+      answers:[
+        ["1","Первый курс"],
+        ["2","Второй курс"],
+        ["3","Третий курс"],
+        ["4","Четвёртый курс"],
+        ["finished","Уже окончил колледж"]
+      ]
+    });
+
+    q.push({
+      id:"collegeSpecialty",
+      title:"На каком направлении ты учишься?",
+      description:"Укажи профиль колледжа.",
+      type:"choice",
+      answers:[
+        ["it","IT и программирование"],
+        ["engineering","Инженерия"],
+        ["economics","Экономика и управление"],
+        ["medicine","Медицина"],
+        ["humanities","Гуманитарные науки"],
+        ["other","Другое"]
+      ]
+    });
+
+    q.push({
+      id:"collegeRoute",
+      title:"Как ты планируешь поступать в университет?",
+      description:"Возможность поступать по внутренним испытаниям зависит от правил конкретного вуза и соответствия профиля.",
+      type:"choice",
+      answers:[
+        ["internal","По внутренним испытаниям"],
+        ["ege","По ЕГЭ"],
+        ["unknown","Пока не знаю"]
+      ]
+    });
+
+  } else {
+
+    /*
+      Для школьников и выпускников школы
+      спрашиваем способ поступления.
+    */
+
+    q.push({
+      id:"route",
+      title:"Как ты хочешь поступать?",
+      description:"Выбери основной способ поступления.",
+      type:"choice",
+      answers:[
+        ["ege","По результатам ЕГЭ"],
+        ["olympiad","По олимпиаде"],
+        ["internal","По внутренним испытаниям"],
+        ["unknown","Пока не определился"]
+      ]
+    });
+
+  }
+
+  /*
+    Ветка олимпиады.
+    Никаких вопросов о сумме ЕГЭ.
+  */
+
+  if(quizAnswers.route==="olympiad"){
+
+    q.push({
+      id:"olympiadLevel",
+      title:"Какого уровня олимпиада?",
+      description:"Право на БВИ или другие льготы зависит от конкретной олимпиады и условий вуза.",
+      type:"choice",
+      answers:[
+        ["level1","Первый уровень"],
+        ["level2","Второй уровень"],
+        ["level3","Третий уровень"],
+        ["school","Всероссийская олимпиада школьников"],
+        ["other","Другая олимпиада"],
+        ["unknown","Пока не знаю"]
+      ]
+    });
+
+    q.push({
+      id:"olympiadSubject",
+      title:"По какому предмету олимпиада?",
+      description:"Выбери профиль олимпиады.",
+      type:"choice",
+      answers:[
+        ["math","Математика"],
+        ["informatics","Информатика"],
+        ["physics","Физика"],
+        ["chemistry","Химия"],
+        ["biology","Биология"],
+        ["russian","Русский язык"],
+        ["social","Обществознание"],
+        ["other","Другой предмет"]
+      ]
+    });
+
+  }
+
+  /*
+    Ветка ЕГЭ.
+    Показываем только тем, кто выбрал ЕГЭ.
+  */
+
+  const needsEge =
+    quizAnswers.route==="ege" ||
+    quizAnswers.collegeRoute==="ege";
+
+  if(needsEge){
+
+    q.push({
+      id:"egeTotal",
+      title:"Сколько баллов ЕГЭ у тебя примерно?",
+      description:"Введи сумму баллов по предметам, которые нужны для выбранных программ. Не включай дополнительные баллы, если они не входят в сравниваемый проходной показатель.",
+      type:"number",
+      min:0,
+      max:400,
+      placeholder:"Например, 245"
+    });
+
+  }
+
+  /*
+    Ветка внутренних испытаний.
+    Не спрашиваем баллы ЕГЭ.
+  */
+
+  const needsInternal =
+    quizAnswers.route==="internal" ||
+    quizAnswers.collegeRoute==="internal";
+
+  if(needsInternal){
+
+    q.push({
+      id:"internalReady",
+      title:"Ты готов сдавать внутренние экзамены университета?",
+      description:"Условия и перечень испытаний зависят от вуза.",
+      type:"choice",
+      answers:[
+        ["yes","Да"],
+        ["no","Нет"],
+        ["unknown","Пока не знаю"]
+      ]
+    });
+
+  }
+
+  /*
+    Общие вопросы.
+  */
+
+  q.push({
+    id:"city",
+    title:"В каком городе хочешь учиться?",
+    description:"Можно выбрать один город или рассматривать все три.",
+    type:"choice",
+    answers:[
+      ["Москва","Москва"],
+      ["Санкт-Петербург","Санкт-Петербург"],
+      ["Казань","Казань"],
+      ["all","Любой из трёх"]
+    ]
+  });
+
+  q.push({
+    id:"direction",
+    title:"Какое направление тебе интересно?",
+    description:"Выбери область, в которой хочешь учиться.",
+    type:"choice",
+    answers:[
+      ["IT","IT"],
+      ["Инженерия","Инженерия"],
+      ["Экономика","Экономика"],
+      ["Медицина","Медицина"],
+      ["Право","Право"],
+      ["Гуманитарные","Гуманитарные"],
+      ["Дизайн","Дизайн"],
+      ["Естественные науки","Естественные науки"],
+      ["Педагогика","Педагогика"],
+      ["all","Пока не определился"]
+    ]
+  });
+
+  q.push({
+    id:"payment",
+    title:"Какой вариант обучения рассматриваешь?",
+    description:"Можно выбрать оба варианта.",
+    type:"choice",
+    answers:[
+      ["budget","Только бюджет"],
+      ["paid","Только платное"],
+      ["both","Бюджет и платное"]
+    ]
+  });
+
+  return q;
+
+}
+
+
+/* =========================================================
+   7. АНКЕТА
+   ========================================================= */
+
+function startQuiz(){
+
+  quizAnswers={};
+
+  questions=buildQuestions();
+
+  questionIndex=0;
+
+  renderQuestion();
+
+}
+
+function renderQuestion(){
+
+  questions=buildQuestions();
+
+  if(questionIndex>=questions.length){
+    finishQuiz();
+    return;
+  }
+
+  const q=questions[questionIndex];
+
+  document.getElementById("qtitle").textContent=q.title;
+
+  document.getElementById("qdescription").textContent=q.description;
+
+  document.getElementById("qcount").textContent=
+    `${questionIndex+1} / ${questions.length}`;
+
+  document.getElementById("qbar").style.width=
+    ((questionIndex+1)/questions.length*100)+"%";
+
+  const answers=document.getElementById("qanswers");
+
+  const inputs=document.getElementById("qinputs");
+
+  answers.innerHTML="";
+  inputs.innerHTML="";
+
+  if(q.type==="choice"){
+
+    answers.innerHTML=q.answers.map(([value,label])=>`
+
+      <button
+        class="answer ${quizAnswers[q.id]===value?"selected":""}"
+        onclick="chooseAnswer('${q.id}','${value}')">
+
+        ${label}
+
+      </button>
+
+    `).join("");
+
+  }
+
+  if(q.type==="number"){
+
+    inputs.innerHTML=`
+
+      <div class="input-group">
+
+        <label for="number-answer">Сумма баллов</label>
+
+        <input
+          id="number-answer"
+          type="number"
+          min="${q.min}"
+          max="${q.max}"
+          placeholder="${q.placeholder}"
+          value="${quizAnswers[q.id]??""}">
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+function chooseAnswer(id,value){
+
+  quizAnswers[id]=value;
+
+  /*
+    После каждого ответа перестраиваем
+    дальнейшую последовательность вопросов.
+  */
+
+  questions=buildQuestions();
+
+  questionIndex++;
+
+  renderQuestion();
+
+}
+
+function saveCurrentAnswer(){
+
+  const q=questions[questionIndex];
+
+  if(!q)return true;
+
+  if(q.type==="number"){
+
+    const input=document.getElementById("number-answer");
+
+    const value=Number(input?.value);
+
+    if(!Number.isFinite(value) || value<0 || value>400){
+
+      alert("Введи корректное количество баллов от 0 до 400.");
+
+      return false;
+
+    }
+
+    quizAnswers[q.id]=value;
+
+  }
+
+  return true;
+
+}
+
+function nextQ(){
+
+  if(!saveCurrentAnswer())return;
+
+  const q=questions[questionIndex];
+
+  if(!quizAnswers[q.id] && q.type==="choice"){
+
+    alert("Выбери один из вариантов.");
+
+    return;
+
+  }
+
+  questionIndex++;
+
+  renderQuestion();
+
+}
+
+function prevQ(){
+
+  if(questionIndex===0)return;
+
+  questionIndex--;
+
+  renderQuestion();
+
+}
+
+
+/* =========================================================
+   8. ОЦЕНКА РЕЗУЛЬТАТА ПО ПРОХОДНЫМ БАЛЛАМ
+   ========================================================= */
+
+function evaluateProgram(programData){
+
+  const route=quizAnswers.route || quizAnswers.collegeRoute;
+
+  /*
+    Олимпиадный маршрут.
+    Не используем баллы ЕГЭ.
+  */
+
+  if(route==="olympiad"){
+
+    return {
+      code:"unknown",
+      label:"Нужно проверить олимпиадные льготы",
+      explanation:"Для этой программы не внесены подтверждённые условия БВИ или зачёта олимпиады."
+    };
+
+  }
+
+  /*
+    Внутренние испытания.
+    Проходной балл ЕГЭ не сравниваем.
+  */
+
+  if(route==="internal"){
+
+    return {
+      code:"unknown",
+      label:"Нужны данные внутренних испытаний",
+      explanation:"Для оценки нужно знать формат, предметы и конкурс внутренних экзаменов."
+    };
+
+  }
+
+  /*
+    ЕГЭ.
+  */
+
+  const score=Number(quizAnswers.egeTotal);
+
+  if(!Number.isFinite(score)){
+
+    return {
+      code:"unknown",
+      label:"Не указан балл ЕГЭ",
+      explanation:"Для оценки нужно указать сумму баллов."
+    };
+
+  }
+
+  const payment=quizAnswers.payment;
+
+  let thresholds=[];
+
+  if(payment==="budget" || payment==="both"){
+
+    if(programData.budget!==null){
+
+      thresholds.push({
+        type:"budget",
+        value:programData.budget
+      });
+
+    }
+
+  }
+
+  if(payment==="paid" || payment==="both"){
+
+    if(programData.paid!==null){
+
+      thresholds.push({
+        type:"paid",
+        value:programData.paid
+      });
+
+    }
+
+  }
+
+  if(!thresholds.length){
+
+    return {
+      code:"unknown",
+      label:"Нет подтверждённых данных",
+      explanation:"Для выбранной формы обучения нет подтверждённого проходного балла."
+    };
+
+  }
+
+  /*
+    Если есть несколько вариантов оплаты,
+    достаточно соответствовать одному из них.
+  */
+
+  const best=thresholds.sort((a,b)=>a.value-b.value)[0];
+
+  const difference=score-best.value;
+
+  if(difference>=10){
+
+    return {
+      code:"good",
+      label:"Выше прошлогоднего проходного",
+      explanation:`Твой результат выше значения ${best.value} баллов на ${difference} баллов. Это хороший ориентир, но не гарантия зачисления.`,
+      threshold:best.value,
+      type:best.type
+    };
+
+  }
+
+  if(difference>=0){
+
+    return {
+      code:"near",
+      label:"На уровне прошлогоднего проходного",
+      explanation:`Твой результат соответствует прошлогоднему значению ${best.value}. Конкурс следующего года может измениться.`,
+      threshold:best.value,
+      type:best.type
+    };
+
+  }
+
+  if(difference>=-10){
+
+    return {
+      code:"near",
+      label:"Немного ниже прошлогоднего проходного",
+      explanation:`Не хватает ${Math.abs(difference)} баллов до прошлогоднего значения ${best.value}.`,
+      threshold:best.value,
+      type:best.type
+    };
+
+  }
+
+  return {
+    code:"bad",
+    label:"Ниже прошлогоднего проходного",
+    explanation:`Разница с прошлогодним значением ${best.value} составляет ${Math.abs(difference)} баллов.`,
+    threshold:best.value,
+    type:best.type
+  };
+
+}
+
+
+/* =========================================================
+   9. ПОИСК ПОДХОДЯЩИХ ПРОГРАММ
+   ========================================================= */
+
+function finishQuiz(){
+
+  const city=quizAnswers.city;
+
+  const direction=quizAnswers.direction;
+
+  const searchResults=[];
+
+  universities.forEach(university=>{
+
+    if(city!=="all" && city && university.city!==city)return;
+
+    university.programs.forEach(program=>{
+
+      if(direction!=="all" && direction && program[1]!==direction)return;
+
+      const data=getProgramData(university,program);
+
+      const evaluation=evaluateProgram(data);
+
+      searchResults.push({
+        university,
+        program,
+        data,
+        evaluation
+      });
+
+    });
+
+  });
+
+  /*
+    Сортируем сначала программы с подходящими
+    подтверждёнными баллами, затем остальные.
+  */
+
+  const order={
+    good:1,
+    near:2,
+    unknown:3,
+    bad:4
+  };
+
+  searchResults.sort((a,b)=>
+    order[a.evaluation.code]-order[b.evaluation.code]
+  );
+
+  selectedPrograms=searchResults;
+
+  go("catalog");
+
+  document.getElementById("search").value="";
+
+  document.getElementById("city").value=
+    city==="all"?"":city;
+
+  document.getElementById("direction").value=
+    direction==="all"?"":direction;
+
+  renderResults(searchResults);
+
+}
+
+
+/* =========================================================
+   10. ВЫВОД РЕЗУЛЬТАТОВ
+   ========================================================= */
+
+function renderResults(results){
+
+  const cards=document.getElementById("cards");
+
+  document.getElementById("result-count").textContent=
+    `Найдено программ: ${results.length}. Результаты отсортированы по соответствию выбранным условиям.`;
+
+  if(!results.length){
+
+    cards.innerHTML=`
+      <div class="empty">
+        По выбранным параметрам программ не найдено.
+        Попробуй изменить город или направление.
+      </div>
+    `;
+
+    return;
+
+  }
+
+  const grouped=new Map();
+
+  results.forEach(item=>{
+
+    if(!grouped.has(item.university.id)){
+
+      grouped.set(item.university.id,{
+        university:item.university,
+        programs:[]
+      });
+
+    }
+
+    grouped.get(item.university.id).programs.push(item);
+
+  });
+
+  cards.innerHTML=[...grouped.values()].map(group=>{
+
+    const u=group.university;
+
+    const best=group.programs[0].evaluation;
 
     return `
-        <article class="university-card">
 
-            <div class="card-top">
+      <article class="uni">
 
-                <span class="city-tag">
-                    ${university.city}
-                </span>
+        <div class="uni-top">
 
-                <button
-                    class="favorite ${isFavorite ? "active" : ""}"
-                    onclick="toggleFavorite('${university.id}')"
-                    aria-label="Добавить в избранное"
-                >
-                    ${isFavorite ? "♥" : "♡"}
-                </button>
+          <span class="city">${u.city}</span>
 
-            </div>
+          <button
+            class="fav ${favorites.includes(u.id)?"on":""}"
+            onclick="toggleFavorite('${u.id}')">
 
-            <h3>${university.name}</h3>
+            ${favorites.includes(u.id)?"♥":"♡"}
 
-            <p class="card-description">
-                ${university.description}
-            </p>
+          </button>
 
-            <div class="tags">
+        </div>
 
-                ${university.programs.slice(0,4).map(program => `
-                    <span class="tag">${program[0]}</span>
-                `).join("")}
+        <h3>${u.name}</h3>
 
-                ${university.programs.length > 4
-                    ? `<span class="tag">+${university.programs.length - 4}</span>`
-                    : ""
-                }
+        <p class="desc">${u.desc}</p>
 
-            </div>
+        <div class="chips">
 
-            <div class="card-bottom">
+          ${group.programs.slice(0,5).map(item=>`
 
-                <span class="program-count">
-                    ${university.programs.length} программ
-                </span>
+            <span class="chip">${item.program[0]}</span>
 
-                <button
-                    class="details-button"
-                    onclick="openUniversity('${university.id}')"
-                >
-                    Подробнее ↗
-                </button>
+          `).join("")}
 
-            </div>
+        </div>
 
-            <label class="compare-check">
+        <div class="uni-foot">
 
-                <input
-                    type="checkbox"
-                    ${isCompared ? "checked" : ""}
-                    onchange="toggleCompare('${university.id}')"
-                >
+          <span class="count">
+            ${group.programs.length} программ
+          </span>
 
-                Добавить к сравнению
+          <button
+            class="details"
+            onclick="openUniversity('${u.id}')">
 
-            </label>
+            Подробнее ↗
 
-        </article>
+          </button>
+
+        </div>
+
+        <div class="status ${best.code}">
+          ${best.label}
+        </div>
+
+      </article>
+
     `;
+
+  }).join("");
+
 }
 
-/* =====================================
-   ПОИСК И ФИЛЬТРЫ
-===================================== */
 
-function renderCatalog() {
+/* =========================================================
+   11. ОБЫЧНЫЙ КАТАЛОГ
+   ========================================================= */
 
-    const search = document.getElementById("search").value.toLowerCase();
+function renderCatalog(){
 
-    const city = document.getElementById("city-filter").value;
+  const search=(document.getElementById("search").value||"").toLowerCase();
 
-    const direction = document.getElementById("direction-filter").value;
+  const city=document.getElementById("city").value;
 
-    const sort = document.getElementById("sort-filter").value;
+  const direction=document.getElementById("direction").value;
 
-    let filtered = universities.filter(university => {
+  const sort=document.getElementById("sort").value;
 
-        const cityMatches = !city || university.city === city;
+  let result=[];
 
-        const programsMatches = university.programs.some(program => {
+  universities.forEach(u=>{
 
-            const directionMatches =
-                !direction || program[1] === direction;
+    if(city && city!==u.city)return;
 
-            const searchMatches =
-                !search ||
-                university.name.toLowerCase().includes(search) ||
-                program[0].toLowerCase().includes(search) ||
-                program[1].toLowerCase().includes(search) ||
-                program[2].toLowerCase().includes(search);
+    let programs=u.programs.filter(p=>{
 
-            return directionMatches && searchMatches;
+      const matchesDirection=!direction || p[1]===direction;
 
-        });
+      const text=(u.name+" "+p[0]+" "+p[2]).toLowerCase();
 
-        return cityMatches && programsMatches;
+      return matchesDirection && text.includes(search);
 
     });
 
-    if (sort === "az") {
-        filtered.sort((a,b) => a.name.localeCompare(b.name,"ru"));
+    if(sort){
+
+      programs.sort((a,b)=>{
+
+        const sa=getProgramData(u,a)[sort];
+
+        const sb=getProgramData(u,b)[sort];
+
+        if(sa===null && sb===null)return 0;
+
+        if(sa===null)return 1;
+
+        if(sb===null)return -1;
+
+        return sa-sb;
+
+      });
+
     }
 
-    if (sort === "za") {
-        filtered.sort((a,b) => b.name.localeCompare(a.name,"ru"));
+    if(programs.length){
+
+      result.push({...u,shown:programs});
+
     }
 
-    document.getElementById("catalog-count").textContent =
-        `Найдено университетов: ${filtered.length}`;
+  });
 
-    document.getElementById("university-list").innerHTML =
+  const total=result.reduce((sum,u)=>sum+u.shown.length,0);
 
-        filtered.length
-        ? filtered.map(createUniversityCard).join("")
-        : `<div class="empty">По твоему запросу ничего не найдено. Попробуй изменить фильтры.</div>`;
+  document.getElementById("result-count").textContent=
+    `Университетов: ${result.length} · программ: ${total}`;
 
-    updateCompareBar();
+  document.getElementById("cards").innerHTML=result.map(u=>`
+
+    <article class="uni">
+
+      <div class="uni-top">
+
+        <span class="city">${u.city}</span>
+
+        <button
+          class="fav ${favorites.includes(u.id)?"on":""}"
+          onclick="toggleFavorite('${u.id}')">
+
+          ${favorites.includes(u.id)?"♥":"♡"}
+
+        </button>
+
+      </div>
+
+      <h3>${u.name}</h3>
+
+      <p class="desc">${u.desc}</p>
+
+      <div class="chips">
+
+        ${u.shown.slice(0,5).map(p=>`
+
+          <span class="chip">${p[0]}</span>
+
+        `).join("")}
+
+      </div>
+
+      <div class="uni-foot">
+
+        <span class="count">${u.shown.length} программ</span>
+
+        <button
+          class="details"
+          onclick="openUniversity('${u.id}')">
+
+          Подробнее ↗
+
+        </button>
+
+      </div>
+
+    </article>
+
+  `).join("");
+
 }
 
-/* =====================================
-   ИЗБРАННОЕ
-===================================== */
 
-function toggleFavorite(id) {
+/* =========================================================
+   12. КАРТОЧКА ВУЗА
+   ========================================================= */
 
-    if (favorites.includes(id)) {
-        favorites = favorites.filter(item => item !== id);
-    } else {
-        favorites.push(id);
-    }
+function openUniversity(id){
 
-    localStorage.setItem(
-        "postupai_favorites",
-        JSON.stringify(favorites)
-    );
+  const u=universities.find(x=>x.id===id);
 
-    renderCatalog();
-    renderFavorites();
-}
+  if(!u)return;
 
-function renderFavorites() {
+  document.getElementById("modal-title").textContent=u.name;
 
-    const selected = universities.filter(university =>
-        favorites.includes(university.id)
-    );
+  document.getElementById("modal-sub").textContent=
+    u.city+" · "+u.desc;
 
-    document.getElementById("favorites-list").innerHTML =
+  document.getElementById("modal-programs").innerHTML=
+    u.programs.map(p=>{
 
-        selected.length
-        ? selected.map(createUniversityCard).join("")
-        : `<div class="empty">Ты пока не добавил ни одного университета в избранное. Нажми ♡ в каталоге.</div>`;
+      const data=getProgramData(u,p);
 
-    updateCompareBar();
-}
+      let evaluation=null;
 
-/* =====================================
-   ПОДРОБНАЯ ИНФОРМАЦИЯ
-===================================== */
+      if(quizAnswers.route || quizAnswers.collegeRoute){
 
-function openUniversity(id) {
+        evaluation=evaluateProgram(data);
 
-    const university = universities.find(item => item.id === id);
+      }
 
-    if (!university) return;
+      return `
 
-    document.getElementById("modal-title").textContent =
-        university.name;
+        <div class="program">
 
-    document.getElementById("modal-description").textContent =
-        university.city + " · " + university.description;
+          <h4>${p[0]}</h4>
 
-    document.getElementById("modal-programs").innerHTML =
+          <p>
+            Направление: ${p[1]} · Код: ${p[2]}
+          </p>
 
-        university.programs.map(program => `
+          <div class="score-row">
 
-            <div class="program-item">
+            <span class="score ${data.budget===null?"unknown":""}">
+              Бюджет: ${data.budget===null?"нет данных":data.budget}
+            </span>
 
-                <h4>${program[0]}</h4>
+            <span class="score ${data.paid===null?"unknown":""}">
+              Платное: ${data.paid===null?"нет данных":data.paid}
+            </span>
 
-                <p>
-                    Направление: ${program[1]}<br>
-                    Код специальности: ${program[2]}
-                </p>
+            <span class="score ${data.minimum===null?"unknown":""}">
+              Минимум: ${data.minimum===null?"нет данных":data.minimum}
+            </span>
 
-                <span class="unknown-score">
-                    Проходной балл: нет проверенных данных
-                </span>
+          </div>
 
-                <p>
-                    <a
-                        class="official-link"
-                        href="${university.url}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Официальный сайт университета ↗
-                    </a>
-                </p>
+          <p>
+            Год статистики: ${data.year||"не указан"}
+          </p>
 
+          <p>${data.note}</p>
+
+          ${evaluation?`
+
+            <div class="status ${evaluation.code}">
+              ${evaluation.label}
             </div>
 
-        `).join("");
+            <p>${evaluation.explanation}</p>
 
-    document.getElementById("university-modal").classList.add("open");
-}
+          `:""}
 
-function closeModal() {
+          <p>
+            <a
+              class="source"
+              href="${data.source||u.url}"
+              target="_blank"
+              rel="noopener">
 
-    document.getElementById("university-modal").classList.remove("open");
-}
+              Проверить источник ↗
 
-function closeOutside(event) {
+            </a>
+          </p>
 
-    if (event.target.id === "university-modal") {
-        closeModal();
-    }
-}
+        </div>
 
-/* =====================================
-   СРАВНЕНИЕ
-===================================== */
+      `;
 
-function toggleCompare(id) {
+    }).join("");
 
-    if (compareList.includes(id)) {
-
-        compareList = compareList.filter(item => item !== id);
-
-    } else {
-
-        if (compareList.length >= 3) {
-            alert("Можно сравнить не более трёх университетов.");
-            renderCatalog();
-            return;
-        }
-
-        compareList.push(id);
-    }
-
-    updateCompareBar();
-    renderCatalog();
-    renderFavorites();
-}
-
-function updateCompareBar() {
-
-    const bar = document.getElementById("compare-bar");
-
-    bar.classList.toggle("visible", compareList.length > 0);
-
-    document.getElementById("compare-count").textContent =
-        `Выбрано: ${compareList.length} / 3`;
-}
-
-function clearCompare() {
-
-    compareList = [];
-
-    updateCompareBar();
-    renderCatalog();
-    renderFavorites();
-}
-
-function openCompare() {
-
-    if (compareList.length < 2) {
-        alert("Выбери хотя бы два университета для сравнения.");
-        return;
-    }
-
-    const selected = universities.filter(item =>
-        compareList.includes(item.id)
-    );
-
-    document.getElementById("compare-result").innerHTML =
-
-        selected.map(university => `
-
-            <div class="compare-column">
-
-                <h3>${university.name}</h3>
-
-                <p><b>Город:</b> ${university.city}</p>
-
-                <p><b>Программы:</b></p>
-
-                <ul>
-                    ${university.programs.map(program =>
-                        `<li>${program[0]}</li>`
-                    ).join("")}
-                </ul>
-
-                <a
-                    class="official-link"
-                    href="${university.url}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Официальный сайт ↗
-                </a>
-
-            </div>
-
-        `).join("");
-
-    document.getElementById("compare-modal").classList.add("open");
-}
-
-function closeCompare() {
-
-    document.getElementById("compare-modal").classList.remove("open");
-}
-
-function closeCompareOutside(event) {
-
-    if (event.target.id === "compare-modal") {
-        closeCompare();
-    }
-}
-
-/* =====================================
-   АНКЕТА АБИТУРИЕНТА
-===================================== */
-
-const questions = [
-
-    {
-        title: "Где ты сейчас учишься?",
-        answers: [
-            "Школа",
-            "Онлайн-школа",
-            "Колледж",
-            "Уже окончил обучение"
-        ]
-    },
-
-    {
-        title: "Как планируешь поступать?",
-        answers: [
-            "По ЕГЭ",
-            "По внутренним испытаниям",
-            "После колледжа",
-            "По олимпиаде",
-            "Пока не определился"
-        ]
-    },
-
-    {
-        title: "Какое направление тебе интересно?",
-        answers: [
-            "IT",
-            "Инженерия",
-            "Экономика",
-            "Медицина",
-            "Право",
-            "Гуманитарные науки",
-            "Дизайн",
-            "Естественные науки",
-            "Педагогика"
-        ]
-    },
-
-    {
-        title: "В каком городе хочешь учиться?",
-        answers: [
-            "Москва",
-            "Санкт-Петербург",
-            "Казань",
-            "Любой из трёх"
-        ]
-    },
-
-    {
-        title: "Какой у тебя ориентировочный суммарный балл ЕГЭ?",
-        answers: [
-            "До 200",
-            "200–239",
-            "240–269",
-            "270–299",
-            "300 и выше",
-            "Ещё не знаю / не ЕГЭ"
-        ]
-    },
-
-    {
-        title: "Какой вариант обучения рассматриваешь?",
-        answers: [
-            "Бюджет",
-            "Платное",
-            "Оба варианта"
-        ]
-    }
-
-];
-
-function renderQuestion() {
-
-    const question = questions[questionIndex];
-
-    document.getElementById("question-title").textContent =
-        question.title;
-
-    document.getElementById("question-number").textContent =
-        `${questionIndex + 1} / ${questions.length}`;
-
-    document.getElementById("progress-bar").style.width =
-        `${(questionIndex + 1) / questions.length * 100}%`;
-
-    document.getElementById("answers").innerHTML =
-
-        question.answers.map((answer,index) => `
-
-            <button
-                class="answer ${quizAnswers[questionIndex] === answer ? "selected" : ""}"
-                onclick="selectAnswer('${answer.replace(/'/g,"\\'")}')"
-            >
-                ${answer}
-            </button>
-
-        `).join("");
-}
-
-function selectAnswer(answer) {
-
-    quizAnswers[questionIndex] = answer;
-
-    renderQuestion();
-}
-
-function previousQuestion() {
-
-    if (questionIndex > 0) {
-        questionIndex--;
-        renderQuestion();
-    }
-}
-
-function nextQuestion() {
-
-    if (!quizAnswers[questionIndex]) {
-        alert("Сначала выбери один из вариантов ответа.");
-        return;
-    }
-
-    if (questionIndex < questions.length - 1) {
-
-        questionIndex++;
-        renderQuestion();
-
-    } else {
-
-        finishQuiz();
-
-    }
-}
-
-function finishQuiz() {
-
-    recommendedCity =
-        quizAnswers[3] === "Любой из трёх"
-        ? ""
-        : quizAnswers[3];
-
-    recommendedDirection = quizAnswers[2];
-
-    showPage("catalog");
-
-    document.getElementById("city-filter").value =
-        recommendedCity;
-
-    document.getElementById("direction-filter").value =
-        recommendedDirection;
-
-    document.getElementById("search").value = "";
-
-    renderCatalog();
-
-    document.getElementById("catalog-count").textContent +=
-        " · Подбор по твоим ответам";
-
-    alert(
-        "Готово! Мы подобрали университеты по выбранному направлению и городу. Изучи результаты и проверь условия поступления на официальных сайтах."
-    );
-
-    questionIndex = 0;
-    quizAnswers = [];
-}
-
-/* =====================================
-   ЗАПУСК
-===================================== */
-
-function initializeSite() {
-
-    const totalPrograms = universities.reduce(
-        (sum, university) => sum + university.programs.length,
-        0
-    );
-
-    document.getElementById("stat-universities").textContent =
-        universities.length + "+";
-
-    document.getElementById("stat-programs").textContent =
-        totalPrograms + "+";
-
-    renderCatalog();
-    renderQuestion();
+  document.getElementById("modal").classList.add("show");
 
 }
 
-initializeSite();
+function closeModal(){
+
+  document.getElementById("modal").classList.remove("show");
+
+}
+
+
+/* =========================================================
+   13. ИЗБРАННОЕ
+   ========================================================= */
+
+function toggleFavorite(id){
+
+  favorites=favorites.includes(id)
+    ?favorites.filter(x=>x!==id)
+    :[...favorites,id];
+
+  localStorage.setItem(
+    "postupai-favs",
+    JSON.stringify(favorites)
+  );
+
+  renderCatalog();
+
+}
+
+
+/* =========================================================
+   14. СРАВНЕНИЕ
+   ========================================================= */
+
+function toggleCompare(id){
+
+  if(compareSet.includes(id)){
+
+    compareSet=compareSet.filter(x=>x!==id);
+
+  }else if(compareSet.length<3){
+
+    compareSet.push(id);
+
+  }else{
+
+    alert("Можно сравнить не больше трёх университетов.");
+
+  }
+
+  updateCompare();
+
+}
+
+function updateCompare(){
+
+  const bar=document.getElementById("comparebar");
+
+  bar.classList.toggle("show",compareSet.length>0);
+
+  document.getElementById("comparetext").textContent=
+    `Выбрано: ${compareSet.length} / 3`;
+
+}
+
+function clearCompare(){
+
+  compareSet=[];
+
+  updateCompare();
+
+}
+
+function compare(){
+
+  const names=compareSet.map(id=>
+    universities.find(u=>u.id===id).name
+  );
+
+  alert(
+    "Сравнение университетов:\n\n"+
+    names.join("\n")
+  );
+
+}
+
+
+/* =========================================================
+   15. ЗАПУСК
+   ========================================================= */
+
+document.getElementById("stat-uni").textContent=
+  universities.length;
+
+document.getElementById("stat-prog").textContent=
+  universities.reduce(
+    (sum,u)=>sum+u.programs.length,
+    0
+  );
+
+renderCatalog();
 
 </script>
 
