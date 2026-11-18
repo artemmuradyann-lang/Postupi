@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ПОСТУПАЙ — Найди свой университет</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f8fc;
+    color: #17243a;
+}
+
+header {
+    background: white;
+    padding: 22px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 15px rgba(0,0,0,.04);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    color: #2463eb;
+}
+
+nav a {
+    text-decoration: none;
+    color: #26354d;
+    margin-left: 25px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.hero {
+    padding: 100px 8%;
+    background: linear-gradient(120deg,#eaf2ff,#f8fbff);
+}
+
+.hero h1 {
+    font-size: 55px;
+    max-width: 700px;
+    line-height: 1.15;
+    margin-bottom: 25px;
+}
+
+.hero p {
+    font-size: 19px;
+    color: #66758d;
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+button {
+    border: none;
+    background: #2864ed;
+    color: white;
+    padding: 16px 28px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    background: #174bc4;
+    transform: translateY(-2px);
+}
+
+section {
+    padding: 65px 8%;
+}
+
+.section-title {
+    font-size: 34px;
+    margin-bottom: 30px;
+}
+
+.stats {
+    display: flex;
+    gap: 25px;
+    margin-top: 45px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    background: white;
+    padding: 23px;
+    border-radius: 15px;
+    min-width: 160px;
+}
+
+.stat h2 {
+    color: #2864ed;
+    font-size: 28px;
+    margin-bottom: 7px;
+}
+
+#quiz {
+    display: none;
+    max-width: 750px;
+    margin: 40px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.06);
+}
+
+.progress {
+    height: 7px;
+    background: #e7edf7;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.progress div {
+    height: 100%;
+    background: #2864ed;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.question {
+    font-size: 27px;
+    margin: 25px 0;
+}
+
+.options {
+    display: grid;
+    gap: 12px;
+}
+
+.option {
+    padding: 18px;
+    background: #f4f7fc;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: .2s;
+}
+
+.option:hover {
+    border-color: #2864ed;
+    background: #edf3ff;
+}
+
+.option.selected {
+    border-color: #2864ed;
+    background: #e8f0ff;
+}
+
+.quiz-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+#results {
+    display: none;
+}
+
+#catalog {
+    display: block;
+}
+
+.filters {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+select {
+    padding: 14px;
+    border: 1px solid #dce3ef;
+    border-radius: 10px;
+    font-size: 15px;
+    background: white;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+    gap: 22px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 17px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.04);
+    transition: .2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.08);
+}
+
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #718097;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 7px 11px;
+    background: #eaf1ff;
+    color: #2864ed;
+    border-radius: 7px;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.card a {
+    color: #2864ed;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer {
+    background: #17243a;
+    color: white;
+    padding: 40px 8%;
+    margin-top: 50px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media(max-width:700px) {
+
+    .hero h1 {
+        font-size: 37px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    section {
+        padding: 45px 6%;
+    }
+
+    #quiz {
+        margin: 20px;
+        padding: 23px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">ПОСТУПАЙ.</div>
+
+<nav>
+<a onclick="home()">Главная</a>
+<a onclick="showCatalog()">Каталог вузов</a>
+<a onclick="about()">О проекте</a>
+</nav>
+
+</header>
+
+
+<main id="homePage">
+
+<div class="hero">
+
+<h1>Твой путь в университет начинается здесь.</h1>
+
+<p>
+Ответь на несколько вопросов, расскажи о своих планах
+и получи список университетов, которые подходят
+твоим интересам и возможностям.
+</p>
+
+<button onclick="startQuiz()">Подобрать университет →</button>
+
+<div class="stats">
+
+<div class="stat">
+<h2>3</h2>
+<p>Города</p>
+</div>
+
+<div class="stat">
+<h2>30+</h2>
+<p>Университетов в каталоге</p>
+</div>
+
+<div class="stat">
+<h2>7</h2>
+<p>Вопросов</p>
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+
+<div id="quiz">
+
+<h2>Подбор университета</h2>
+
+<div class="progress">
+<div id="progressBar"></div>
+</div>
+
+<p id="counter"></p>
+
+<h2 class="question" id="question"></h2>
+
+<div class="options" id="options"></div>
+
+<div class="quiz-buttons">
+
+<button onclick="previous()">Назад</button>
+
+<button onclick="next()">Далее →</button>
+
+</div>
+
+</div>
+
+
+<section id="results">
+
+<h2 class="section-title">Ваши рекомендации</h2>
+
+<p style="margin-bottom:25px;color:#718097">
+Мы подобрали университеты на основе ваших ответов.
+</p>
+
+<div class="grid" id="resultGrid"></div>
+
+<button onclick="showCatalog()" style="margin-top:30px">
+Посмотреть весь каталог
+</button>
+
+</section>
+
+
+<section id="catalog">
+
+<h2 class="section-title">Каталог университетов</h2>
+
+<div class="filters">
+
+<select id="cityFilter" onchange="renderCatalog()">
+<option value="">Все города</option>
+<option value="Москва">Москва</option>
+<option value="Санкт-Петербург">Санкт-Петербург</option>
+<option value="Казань">Казань</option>
+</select>
+
+<select id="directionFilter" onchange="renderCatalog()">
+<option value="">Все направления</option>
+<option value="IT">IT</option>
+<option value="Экономика">Экономика</option>
+<option value="Медицина">Медицина</option>
+<option value="Инженерия">Инженерия</option>
+<option value="Гуманитарные науки">Гуманитарные науки</option>
+</select>
+
+</div>
+
+<div class="grid" id="catalogGrid"></div>
+
+</section>
+
+
+<footer>
+
+<h2>ПОСТУПАЙ.</h2>
+
+<p style="margin-top:15px">
+Образовательный проект для будущих студентов.
+</p>
+
+<p style="margin-top:10px;color:#aab6c9">
+Информация носит ознакомительный характер.
+Проверяйте правила приёма на официальных сайтах вузов.
+</p>
+
+</footer>
+
+
+<script>
+
+const universities = [
+
+{
+name:"Московский государственный университет",
+city:"Москва",
+direction:"IT",
+description:"Один из крупнейших университетов России. Широкий выбор образовательных программ.",
+url:"https://www.msu.ru/"
+},
+
+{
+name:"МГТУ им. Н. Э. Баумана",
+city:"Москва",
+direction:"Инженерия",
+description:"Техническое образование, инженерия, информационные технологии.",
+url:"https://bmstu.ru/"
+},
+
+{
+name:"НИУ ВШЭ",
+city:"Москва",
+direction:"Экономика",
+description:"Экономика, управление, бизнес, аналитика и современные технологии.",
+url:"https://www.hse.ru/"
+},
+
+{
+name:"МИФИ",
+city:"Москва",
+direction:"IT",
+description:"Информационные технологии, физика и инженерные направления.",
+url:"https://mephi.ru/"
+},
+
+{
+name:"РТУ МИРЭА",
+city:"Москва",
+direction:"IT",
+description:"Программирование, информационная безопасность и инженерия.",
+url:"https://www.mirea.ru/"
+},
+
+{
+name:"Первый МГМУ им. И. М. Сеченова",
+city:"Москва",
+direction:"Медицина",
+description:"Один из ведущих медицинских университетов страны.",
+url:"https://sechenov.ru/"
+},
+
+{
+name:"СПбГУ",
+city:"Санкт-Петербург",
+direction:"Гуманитарные науки",
+description:"Классическое университетское образование по множеству направлений.",
+url:"https://spbu.ru/"
+},
+
+{
+name:"ИТМО",
+city:"Санкт-Петербург",
+direction:"IT",
+description:"Информационные технологии, программирование и робототехника.",
+url:"https://itmo.ru/"
+},
+
+{
+name:"СПбПУ Петра Великого",
+city:"Санкт-Петербург",
+direction:"Инженерия",
+description:"Инженерные, технические и технологические специальности.",
+url:"https://www.spbstu.ru/"
+},
+
+{
+name:"Финансовый университет",
+city:"Москва",
+direction:"Экономика",
+description:"Финансы, экономика, менеджмент и аналитика.",
+url:"https://www.fa.ru/"
+},
+
+{
+name:"Казанский федеральный университет",
+city:"Казань",
+direction:"Гуманитарные науки",
+description:"Крупный университет с большим количеством образовательных программ.",
+url:"https://kpfu.ru/"
+},
+
+{
+name:"КНИТУ-КАИ",
+city:"Казань",
+direction:"Инженерия",
+description:"Авиация, инженерия, технические науки.",
+url:"https://kai.ru/"
+},
+
+{
+name:"КНИТУ",
+city:"Казань",
+direction:"Инженерия",
+description:"Технологические, химические и инженерные направления.",
+url:"https://www.kstu.ru/"
+},
+
+{
+name:"Университет Иннополис",
+city:"Казань",
+direction:"IT",
+description:"Образование в области информационных технологий и робототехники.",
+url:"https://innopolis.university/"
+},
+
+{
+name:"РЭУ им. Г. В. Плеханова",
+city:"Москва",
+direction:"Экономика",
+description:"Экономика, предпринимательство и управление.",
+url:"https://www.rea.ru/"
+},
+
+{
+name:"МГПУ",
+city:"Москва",
+direction:"Гуманитарные науки",
+description:"Педагогика, психология и гуманитарные дисциплины.",
+url:"https://www.mgpu.ru/"
+},
+
+{
+name:"РНИМУ им. Н. И. Пирогова",
+city:"Москва",
+direction:"Медицина",
+description:"Медицинское и биологическое образование.",
+url:"https://rsmu.ru/"
+},
+
+{
+name:"Санкт-Петербургский горный университет",
+city:"Санкт-Петербург",
+direction:"Инженерия",
+description:"Горное дело, геология и инженерные направления.",
+url:"https://spmi.ru/"
+},
+
+{
+name:"Казанский государственный медицинский университет",
+city:"Казань",
+direction:"Медицина",
+description:"Подготовка специалистов в области медицины.",
+url:"https://kazangmu.ru/"
+},
+
+{
+name:"Университет ИТМО",
+city:"Санкт-Петербург",
+direction:"IT",
+description:"Программы в сфере цифровых технологий и науки.",
+url:"https://itmo.ru/"
+}
+
+];
+
+
+const questions = [
+
+{
+title:"Где вы сейчас учитесь?",
+answers:[
+"Обычная школа",
+"Онлайн-школа",
+"Колледж",
+"Другое"
+]
+},
+
+{
+title:"В каком классе или на каком курсе вы учитесь?",
+answers:[
+"9 класс",
+"10 класс",
+"11 класс",
+"Колледж",
+"Уже окончил обучение"
+]
+},
+
+{
+title:"Как вы планируете поступать?",
+answers:[
+"По результатам ЕГЭ",
+"По внутренним вступительным испытаниям",
+"После колледжа",
+"По олимпиаде",
+"Пока не определился"
+]
+},
+
+{
+title:"Какое направление вас интересует?",
+answers:[
+"IT",
+"Экономика",
+"Медицина",
+"Инженерия",
+"Гуманитарные науки",
+"Пока не определился"
+]
+},
+
+{
+title:"В каком городе хотите учиться?",
+answers:[
+"Москва",
+"Санкт-Петербург",
+"Казань",
+"Рассматриваю все города"
+]
+},
+
+{
+title:"Какой у вас примерный результат ЕГЭ?",
+answers:[
+"До 150 баллов",
+"150–200 баллов",
+"200–240 баллов",
+"240–270 баллов",
+"270–300 баллов",
+"Ещё не сдавал"
+]
+},
+
+{
+title:"Какая форма обучения вам подходит?",
+answers:[
+"Очная",
+"Очно-заочная",
+"Заочная",
+"Не имеет значения"
+]
+}
+
+];
+
+
+let current = 0;
+let answers = [];
+
+function startQuiz(){
+
+document.getElementById("homePage").style.display="none";
+document.getElementById("catalog").classList.add("hidden");
+document.getElementById("results").style.display="none";
+
+document.getElementById("quiz").style.display="block";
+
+current=0;
+answers=[];
+
+renderQuestion();
+
+window.scrollTo(0,0);
+
+}
+
+
+function renderQuestion(){
+
+let q=questions[current];
+
+document.getElementById("question").innerText=q.title;
+
+document.getElementById("counter").innerText=
+"Вопрос "+(current+1)+" из "+questions.length;
+
+document.getElementById("progressBar").style.width=
+((current+1)/questions.length*100)+"%";
+
+let html="";
+
+q.answers.forEach((answer,index)=>{
+
+html+=`
+<div class="option ${answers[current]===answer?'selected':''}"
+onclick="selectAnswer('${answer.replace(/'/g,"\\'")}')">
+${answer}
+</div>
+`;
+
+});
+
+document.getElementById("options").innerHTML=html;
+
+}
+
+
+function selectAnswer(answer){
+
+answers[current]=answer;
+
+renderQuestion();
+
+}
+
+
+function next(){
+
+if(!answers[current]){
+alert("Пожалуйста, выберите ответ.");
+return;
+}
+
+if(current<questions.length-1){
+
+current++;
+renderQuestion();
+
+}else{
+
+showResults();
+
+}
+
+}
+
+
+function previous(){
+
+if(current>0){
+
+current--;
+renderQuestion();
+
+}
+
+}
+
+
+function showResults(){
+
+document.getElementById("quiz").style.display="none";
+
+document.getElementById("results").style.display="block";
+
+let direction=answers[3];
+let city=answers[4];
+
+let filtered=universities.filter(u=>{
+
+let directionMatch=
+direction==="Пока не определился" || u.direction===direction;
+
+let cityMatch=
+city==="Рассматриваю все города" || u.city===city;
+
+return directionMatch && cityMatch;
+
+});
+
+if(filtered.length===0){
+
+filtered=universities.filter(u=>
+city==="Рассматриваю все города" || u.city===city
+);
+
+}
+
+document.getElementById("resultGrid").innerHTML=
+filtered.map(createCard).join("");
+
+window.scrollTo(0,0);
+
+}
+
+
+function createCard(u){
+
+return `
+<div class="card">
+
+<span class="tag">${u.city}</span>
+
+<h3>${u.name}</h3>
+
+<p>${u.description}</p>
+
+<p><b>Направление:</b> ${u.direction}</p>
+
+<a href="${u.url}" target="_blank" rel="noopener noreferrer">
+Официальный сайт →
+</a>
+
+</div>
+`;
+
+}
+
+
+function renderCatalog(){
+
+let city=document.getElementById("cityFilter").value;
+let direction=document.getElementById("directionFilter").value;
+
+let filtered=universities.filter(u=>{
+
+return (!city || u.city===city) &&
+(!direction || u.direction===direction);
+
+});
+
+document.getElementById("catalogGrid").innerHTML=
+filtered.map(createCard).join("");
+
+}
+
+
+function showCatalog(){
+
+document.getElementById("homePage").style.display="none";
+document.getElementById("quiz").style.display="none";
+document.getElementById("results").style.display="none";
+document.getElementById("catalog").classList.remove("hidden");
+
+renderCatalog();
+
+window.scrollTo(0,0);
+
+}
+
+
+function home(){
+
+document.getElementById("homePage").style.display="block";
+document.getElementById("quiz").style.display="none";
+document.getElementById("results").style.display="none";
+document.getElementById("catalog").classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+}
+
+
+function about(){
+
+alert(
+"ПОСТУПАЙ — образовательный проект, который помогает выпускникам ориентироваться в выборе университетов Москвы, Санкт-Петербурга и Казани."
+);
+
+}
+
+
+renderCatalog();
+
+</script>
+
+</body>
+</html>
